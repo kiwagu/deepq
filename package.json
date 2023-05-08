@@ -1,13 +1,21 @@
 {
   "name": "deepq",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
+    "start:api": "pnpm -r start:iam",
+    "start": "pnpm -r start"
   },
   "private": true,
   "dependencies": {
   },
   "devDependencies": {
-    "nx": "16.1.1"
+    "nx": "16.1.1",
+    "cz-customizable": "^7.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
   }
 }

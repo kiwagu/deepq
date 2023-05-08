@@ -1,0 +1,13 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: deepadmin
+      POSTGRES_PASSWORD: temp
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+volumes:
+  postgres:

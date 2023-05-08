@@ -1,0 +1,18 @@
+@use '@angular/material' as mat;
+@use './palette' as palette;
+@use '../typography' as typography;
+
+$zen-light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: mat.define-palette(palette.$zen-primary),
+      accent: mat.define-palette(palette.$zen-accent),
+      warn: mat.define-palette(palette.$zen-warn),
+    ),
+    typography: typography.$zen-typography,
+  )
+);
+
+@include mat.core();
+@include mat.all-component-typographies(typography.$zen-typography);
+@include mat.all-component-themes($zen-light-theme);
