@@ -1,7 +1,22 @@
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { CanActivate, CanActivateChild, CanMatch, Router } from '@angular/router';
+import { loggedInVar } from '@zen/graphql/client';
 
-import { AuthService } from '../auth.service';
+@Injectable({
+  providedIn: 'root',
+})
+export class LoggedInGuard implements CanActivate, CanActivateChild, CanMatch {
+  constructor(private router: Router) {}
 
-export const LoggedInGuard = () =>
-  inject(AuthService).loggedIn ? true : inject(Router).parseUrl('/login');
+  canActivate() {
+    return loggedInVar() ? true : this.router.parseUrl('/login');
+  }
+
+  canActivateChild() {
+    return this.canActivate();
+  }
+
+  canMatch() {
+    return this.canActivate();
+  }
+}

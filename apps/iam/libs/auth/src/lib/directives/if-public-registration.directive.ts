@@ -3,7 +3,6 @@ import { Environment } from '@zen/common';
 
 @Directive({
   selector: '[ifPublicRegistration]',
-  standalone: true,
 })
 export class IfPublicRegistrationDirective {
   #embededViewRef: EmbeddedViewRef<unknown> | undefined;

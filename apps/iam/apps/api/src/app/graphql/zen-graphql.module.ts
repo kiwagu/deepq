@@ -1,19 +1,19 @@
 import { ApolloDriver } from '@nestjs/apollo';
 import { Global, Module } from '@nestjs/common';
+import { APP_FILTER } from '@nestjs/core';
 import { GraphQLModule } from '@nestjs/graphql';
 
-import { ZenAuthModule } from '../auth';
+import { PrismaModule } from '@zen/nest-api/prisma';
+
 import { ConfigModule } from '../config';
-import { MailModule } from '../mail';
-import { PrismaModule } from '../prisma';
+import { RpcExceptionFilter } from './filters/rpc-exceptions.filter';
 import { GqlConfigService } from './gql-config.service';
 import { NEST_RESOLVERS } from './resolvers';
+import { defaultFieldsProvider } from './default-fields';
 
 @Global()
 @Module({
   imports: [
-    ZenAuthModule,
-    MailModule,
     PrismaModule,
     GraphQLModule.forRootAsync({
       driver: ApolloDriver,
@@ -21,6 +21,13 @@ import { NEST_RESOLVERS } from './resolvers';
       imports: [PrismaModule, ConfigModule],
     }),
   ],
-  providers: [...NEST_RESOLVERS],
+  providers: [
+    defaultFieldsProvider,
+    {
+      provide: APP_FILTER,
+      useClass: RpcExceptionFilter,
+    },
+    ...NEST_RESOLVERS,
+  ],
 })
 export class ZenGraphQLModule {}

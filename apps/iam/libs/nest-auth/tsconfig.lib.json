@@ -5,12 +5,13 @@
     "declaration": true,
     "types": ["node"],
     "emitDecoratorMetadata": true,
-    "target": "ES2022",
     "lib": ["ES2022"],
+    "module": "ES2022",
+    "moduleResolution": "node",
+    "target": "ES2022",
     "noImplicitAny": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true
+    "strictPropertyInitialization": false
   },
   "include": ["src/**/*.ts"],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]

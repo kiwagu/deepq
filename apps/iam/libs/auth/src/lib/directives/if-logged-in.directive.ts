@@ -7,13 +7,11 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { LoggedInGQL } from '@zen/graphql';
+import { loggedInVar } from '@zen/graphql/client';
 import { Subscription } from 'rxjs';
-
-import { AuthService } from '../auth.service';
 
 @Directive({
   selector: '[ifLoggedIn]',
-  standalone: true,
 })
 export class IfLoggedInDirective implements OnDestroy {
   #subsciption: Subscription;
@@ -23,8 +21,7 @@ export class IfLoggedInDirective implements OnDestroy {
   constructor(
     private templateRef: TemplateRef<unknown>,
     private viewContainer: ViewContainerRef,
-    private loggedInGQL: LoggedInGQL,
-    private auth: AuthService
+    private loggedInGQL: LoggedInGQL
   ) {
     this.#subsciption = this.loggedInGQL.watch().valueChanges.subscribe(() => this.update());
   }
@@ -40,7 +37,8 @@ export class IfLoggedInDirective implements OnDestroy {
   }
 
   update() {
-    if ((this.ifLoggedIn && this.auth.loggedIn) || (!this.ifLoggedIn && !this.auth.loggedIn)) {
+    const loggedIn = loggedInVar();
+    if ((this.ifLoggedIn && loggedIn) || (!this.ifLoggedIn && !loggedIn)) {
       this.render();
     } else {
       this.clear();

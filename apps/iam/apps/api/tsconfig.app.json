@@ -7,11 +7,10 @@
     "emitDecoratorMetadata": true,
     "target": "ES2022",
     "lib": ["ES2022"],
+    "moduleResolution": "node",
     "noImplicitAny": true,
     "strict": true,
-    "strictPropertyInitialization": false,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true
+    "strictPropertyInitialization": false
   },
   "exclude": [
     "jest.config.ts",

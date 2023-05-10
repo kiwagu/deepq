@@ -2,8 +2,10 @@ import { ExecutionContext, Injectable, UnauthorizedException, mixin } from '@nes
 import { ContextType } from '@nestjs/common/interfaces';
 import { Reflector } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
+import { RpcException } from '@nestjs/microservices';
 import { AuthGuard } from '@nestjs/passport';
-import { Role } from '@zen/common';
+import { ApiError, Role, RpcError } from '@zen/common';
+import { ClsService } from 'nestjs-cls';
 
 import { ALLOW_ANONYMOUS_KEY } from '../decorators/allow-anonymous.decorator';
 
@@ -31,11 +33,14 @@ export function RolesGuard(...roles: Array<Role>) {
 
   @Injectable()
   class MixinRolesGuard extends AuthGuard('jwt') {
-    constructor(readonly reflector: Reflector) {
+    constructor(
+      readonly reflector: Reflector,
+      readonly clsService: ClsService
+    ) {
       super();
     }
 
-    override async canActivate(context: ExecutionContext) {
+    async canActivate(context: ExecutionContext) {
       const allowAnonymousHandler = this.reflector.get<boolean | undefined>(
         ALLOW_ANONYMOUS_KEY,
         context.getHandler()
@@ -51,12 +56,29 @@ export function RolesGuard(...roles: Array<Role>) {
       if (allowAnonymousClass) return true;
 
       let req;
-      const type = context.getType() as ContextType | 'graphql';
+      const type = context.getType() as ContextType | 'graphql' | 'rpc';
 
       if (type === 'http') {
         req = context.switchToHttp().getRequest();
       } else if (type === 'graphql') {
         req = GqlExecutionContext.create(context).getContext().req;
+      } else if (type === 'rpc') {
+        try {
+          await super.canActivate(context);
+        } catch (error) {
+          if (error instanceof UnauthorizedException) {
+            throw new RpcException({
+              response: ApiError.AuthCommon.UNAUTHORIZED,
+              status: 400,
+              message: 'Unauthorized',
+              name: RpcException.name,
+            } as RpcError);
+          }
+
+          throw error;
+        }
+
+        req = this.getRequest(context);
       } else {
         throw new UnauthorizedException(`Context ${type} not supported`);
       }
@@ -69,11 +91,14 @@ export function RolesGuard(...roles: Array<Role>) {
     }
 
     getRequest(context: ExecutionContext) {
-      const type = context.getType() as ContextType | 'graphql';
+      const type = context.getType() as ContextType | 'graphql' | 'rpc';
+
       if (type === 'http') {
         return context.switchToHttp().getRequest();
       } else if (type === 'graphql') {
         return GqlExecutionContext.create(context).getContext().req;
+      } else if (type === 'rpc') {
+        return this.clsService.get('rpcReq');
       } else {
         throw new UnauthorizedException(`Context ${type} not supported`);
       }

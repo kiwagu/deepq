@@ -1,1 +1,1 @@
-export * from './lib/zen-layout/zen-layout.component';
+export * from './lib/zen-layout.module';

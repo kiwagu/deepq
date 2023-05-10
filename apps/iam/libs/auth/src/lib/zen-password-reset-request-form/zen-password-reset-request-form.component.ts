@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -9,19 +8,9 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ApolloError } from '@apollo/client/errors';
 import { ApiConstants, ApiError } from '@zen/common';
-import { ZenLoadingComponent } from '@zen/components';
 import { AuthPasswordResetRequestInput, AuthPasswordResetRequestQueryGQL } from '@zen/graphql';
 import { Subscription } from 'rxjs';
 
@@ -38,15 +27,6 @@ interface FormType {
   templateUrl: './zen-password-reset-request-form.component.html',
   animations: [...verticalAccordion],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    NgIf,
-    ReactiveFormsModule,
-    ZenLoadingComponent,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-  ],
 })
 export class ZenPasswordResetRequestFormComponent implements AfterContentInit, OnDestroy {
   @ViewChild('emailUsernameInput') emailUsernameInput!: ElementRef<HTMLInputElement>;

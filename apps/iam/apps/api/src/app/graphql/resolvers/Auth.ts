@@ -1,18 +1,10 @@
-import crypto from 'crypto';
-
-import { HttpException, Logger, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Inject, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { ClientProxy } from '@nestjs/microservices';
 import { Throttle } from '@nestjs/throttler';
-import { ApiError } from '@zen/common';
-import { CurrentUser, JwtPayload, RequestUser, RolesGuard } from '@zen/nest-auth';
 import gql from 'graphql-tag';
-import { bcrypt, bcryptVerify } from 'hash-wasm';
 
-import { AuthService } from '../../auth';
-import { ConfigService } from '../../config';
-import { JwtService } from '../../jwt';
-import { MailService } from '../../mail';
-import { PrismaClient, PrismaService } from '../../prisma';
+import { AuthSession } from '../../graphql/models/auth-session';
 import { GqlThrottlerGuard } from '../gql-throttler.guard';
 import {
   AccountInfo,
@@ -97,205 +89,49 @@ export const typeDefs = gql`
 @UseGuards(GqlThrottlerGuard)
 @Throttle()
 export class AuthResolver {
-  constructor(
-    private readonly auth: AuthService,
-    private readonly config: ConfigService,
-    private readonly jwtService: JwtService,
-    private readonly mail: MailService,
-    private readonly prisma: PrismaService
-  ) {}
+  constructor(@Inject('IAM_SERVICE') private client: ClientProxy) {}
 
   @Query()
-  async authLogin(@Args('data') args: AuthLoginInput) {
-    const user = await this.getUserByUsername(args.username, this.prisma);
-
-    if (!user) throw new HttpException(ApiError.AuthLogin.USER_NOT_FOUND, 400);
-
-    const correctPassword = await bcryptVerify({
-      password: args.password,
-      hash: user.password as string,
-    });
-    if (!correctPassword) throw new HttpException(ApiError.AuthLogin.INCORRECT_PASSWORD, 400);
-
-    return this.auth.getAuthSession(user, args.rememberMe);
+  authLogin(@Args('data') args: AuthLoginInput) {
+    return this.client.send<AuthSession, AuthLoginInput>({ cmd: 'authLogin' }, args);
   }
 
   @Query()
-  @UseGuards(RolesGuard())
-  async accountInfo(@CurrentUser() reqUser: RequestUser): Promise<AccountInfo> {
-    const user = await this.prisma.user.findUnique({
-      where: { id: reqUser.id },
-    });
-
-    if (!user) throw new UnauthorizedException('User not found');
-
-    return {
-      username: user.username,
-      hasPassword: !!user.password,
-      googleProfile: user.googleProfile as AccountInfo['googleProfile'],
-    };
+  accountInfo() {
+    return this.client.send<AccountInfo>({ cmd: 'accountInfo' }, {});
   }
 
   @Query()
-  @UseGuards(RolesGuard())
-  async authExchangeToken(
-    @CurrentUser() reqUser: RequestUser,
-    @Args('data') args: AuthExchangeTokenInput
-  ) {
-    const user = await this.prisma.user.findUnique({
-      where: { id: reqUser.id },
-    });
-
-    if (user) {
-      return this.auth.getAuthSession(user, args.rememberMe);
-    } else {
-      throw new UnauthorizedException('User not found');
-    }
+  async authExchangeToken(@Args('data') args: AuthExchangeTokenInput) {
+    return this.client.send<AccountInfo, AuthExchangeTokenInput>(
+      { cmd: 'authExchangeToken' },
+      args
+    );
   }
 
   @Query()
   async authPasswordResetRequest(@Args('data') args: AuthPasswordResetRequestInput) {
-    const possibleUsers = await this.prisma.user.findMany({
-      where: {
-        OR: [
-          {
-            email: {
-              equals: args.emailOrUsername,
-              mode: 'insensitive',
-            },
-          },
-          {
-            username: {
-              equals: args.emailOrUsername,
-              mode: 'insensitive',
-            },
-          },
-        ],
-        AND: [{ username: { not: null } }],
-      },
-    });
-
-    if (possibleUsers.length === 0)
-      throw new HttpException(ApiError.AuthPasswordResetRequest.USER_NOT_FOUND, 400);
-
-    possibleUsers.forEach(user => this.mail.sendPasswordReset(user));
+    return this.client.send<true, AuthPasswordResetRequestInput>(
+      { cmd: 'authPasswordResetRequest' },
+      args
+    );
   }
 
   @Mutation()
-  async authPasswordResetConfirmation(@Args('data') args: AuthPasswordResetConfirmationInput) {
-    let tokenPayload: JwtPayload;
-    try {
-      tokenPayload = this.jwtService.verify(args.token);
-    } catch {
-      throw new UnauthorizedException('JWT failed verification');
-    }
-
-    let user = await this.prisma.user.findUnique({ where: { id: tokenPayload.sub } });
-
-    if (!user) throw new UnauthorizedException('User not found');
-
-    const hashedPassword = await this.hashPassword(args.newPassword);
-
-    user = await this.prisma.user.update({
-      where: { id: user.id },
-      data: { password: hashedPassword },
-    });
-
-    return this.auth.getAuthSession(user);
+  authPasswordResetConfirmation(@Args('data') args: AuthPasswordResetConfirmationInput) {
+    return this.client.send<AccountInfo, AuthPasswordResetConfirmationInput>(
+      { cmd: 'authPasswordResetConfirmation' },
+      args
+    );
   }
 
   @Mutation()
   async authRegister(@Args('data') args: AuthRegisterInput) {
-    if (!this.config.publicRegistration)
-      throw new UnauthorizedException('No public registrations allowed');
-
-    if (await this.getUserByUsername(args.username, this.prisma))
-      throw new HttpException(ApiError.AuthRegister.USERNAME_TAKEN, 400);
-
-    if (await this.getUserByEmail(args.email, this.prisma))
-      throw new HttpException(ApiError.AuthRegister.EMAIL_TAKEN, 400);
-
-    const hashedPassword = await this.hashPassword(args.password);
-
-    const user = await this.prisma.user.create({
-      data: {
-        username: args.username,
-        email: args.email,
-        password: hashedPassword,
-      },
-    });
-
-    if (this.config.production) {
-      this.mail.sendGeneral({
-        to: user.email,
-        subject: 'Sign Up Confirmed',
-        context: {
-          siteUrl: this.config.siteUrl,
-          hiddenPreheaderText: `Sign up confirmed for ${user.username}`,
-          header: 'Welcome',
-          subHeading: 'Sign Up Confirmed',
-          body: `Thank you for signing up ${user.username}!`,
-          footerHeader: '',
-          footerBody: '',
-        },
-      });
-    }
-
-    Logger.log(`Registered new user: ${user.username}`);
-
-    return this.auth.getAuthSession(user);
+    return this.client.send<AccountInfo, AuthRegisterInput>({ cmd: 'authRegister' }, args);
   }
 
   @Mutation()
-  @UseGuards(RolesGuard())
-  async authPasswordChange(
-    @Args('data') args: AuthPasswordChangeInput,
-    @CurrentUser() reqUser: RequestUser
-  ) {
-    const user = await this.prisma.user.findUnique({ where: { id: reqUser.id } });
-    if (!user) throw new UnauthorizedException('User not found');
-
-    const correctPassword = await bcryptVerify({
-      password: args.oldPassword,
-      hash: user.password as string,
-    });
-    if (!correctPassword) throw new HttpException(ApiError.AuthPasswordChange.WRONG_PASSWORD, 400);
-
-    const hashedPassword = await this.hashPassword(args.newPassword);
-
-    await this.prisma.user.update({
-      where: { id: user.id },
-      data: { password: hashedPassword },
-    });
-  }
-
-  private async getUserByUsername(username: string, prisma: PrismaClient) {
-    return prisma.user.findFirst({
-      where: {
-        username: {
-          mode: 'insensitive',
-          equals: username,
-        },
-      },
-    });
-  }
-
-  private async getUserByEmail(email: string, prisma: PrismaClient) {
-    return prisma.user.findFirst({
-      where: {
-        email: {
-          mode: 'insensitive',
-          equals: email,
-        },
-      },
-    });
-  }
-
-  private async hashPassword(password: string) {
-    return bcrypt({
-      costFactor: this.config.bcryptCost,
-      password,
-      salt: crypto.getRandomValues(new Uint8Array(16)),
-    });
+  authPasswordChange(@Args('data') args: AuthPasswordChangeInput) {
+    return this.client.send<true, AuthPasswordChangeInput>({ cmd: 'authPasswordChange' }, args);
   }
 }

@@ -1,7 +1,9 @@
-import { EnvironmentBase } from './environment.base';
+import { EnvironmentBase, serviceName } from './environment.base';
 
 export const environment: EnvironmentBase = {
+  serviceName,
   siteUrl: 'https://site.com/#',
+  broker: { url: process.env.BROKER_URL || 'amqp://rabbitmq:5672' },
   production: true,
   expressPort: process.env.PORT as string,
   publicRegistration: true,
@@ -13,18 +15,6 @@ export const environment: EnvironmentBase = {
     uploads: {
       maxFileSize: 20_000_000, // 20 MB
       maxFiles: 5,
-    },
-  },
-  jwtOptions: {
-    secret: process.env.JWT_PRIVATE_KEY,
-    publicKey: process.env.JWT_PUBLIC_KEY,
-    signOptions: {
-      algorithm: 'ES256',
-      /**
-       * The client will exchange the token every 30 minutes during active sessions
-       * @see `libs\common\src\lib\environment` for `EnvironmentProd.jwtExchangeInterval`
-       */
-      expiresIn: 3600, // 1 hour (in seconds)
     },
   },
   expiresInRememberMe: 7_776_000, // 90 days (in seconds)
@@ -56,6 +46,13 @@ export const environment: EnvironmentBase = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       callbackURL: 'https://api.site.com/auth/google/redirect',
       scope: ['email'],
+    },
+  },
+  openTelemetry: {
+    serviceName,
+    exporters: { enableOtlp: true },
+    collectorOptions: {
+      url: 'http://localhost:4317',
     },
   },
 };

@@ -9,3 +9,5 @@ export * from './lib/decorators/current-user.decorator';
 export * from './lib/guards/casl.guard';
 export * from './lib/models/jwt-payload';
 export * from './lib/nest-auth.module';
+export * from './lib/exceptions/rpc-forbidden.exception';
+export * from './lib/client-rmq-ext';
