@@ -44,3 +44,6 @@ Thumbs.db
 
 .angular
 **/logs/*
+
+apps/iam/data/*
+!apps/iam/data/grafana-data

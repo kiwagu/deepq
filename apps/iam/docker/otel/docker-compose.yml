@@ -5,8 +5,8 @@ services:
     image: grafana/tempo:2.0.1
     command: ["-config.file=/etc/tempo.yaml"]
     volumes:
-      - ./etc/tempo-local.yaml:/etc/tempo.yaml
-      - ../../data/tempo-data:/tmp/tempo
+      - ./docker/otel/etc/tempo-local.yaml:/etc/tempo.yaml
+      - ./data/tempo-data:/tmp/tempo
     ports:
       - "14268:14268"     # jaeger ingest, Jaeger - Thrift HTTP
       - "14250:14250"     # Jaeger - GRPC
@@ -25,29 +25,29 @@ services:
       - JAEGER_SAMPLER_TYPE=const
       - JAEGER_SAMPLER_PARAM=1
     volumes:
-      - ./etc/loki-local.yaml:/etc/loki/loki-local.yaml
-      - ../../data/loki-data:/tmp/loki
+      - ./docker/otel/etc/loki-local.yaml:/etc/loki/loki-local.yaml
+      - ./data/loki-data:/tmp/loki
   promtail:
     image: grafana/promtail:2.7.4
     command: -config.file=/etc/promtail/promtail-local.yaml
     volumes:
-      - ./etc/promtail-local.yaml:/etc/promtail/promtail-local.yaml
-      - ../../data/logs:/app/logs
+      - ./docker/otel/etc/promtail-local.yaml:/etc/promtail/promtail-local.yaml
+      - ./data/logs:/app/logs
     depends_on:
       - loki
   volume_exporter:
     image: mnadeem/volume_exporter
     command: ["--volume-dir=tempo:/tmp/tempo", "--volume-dir=logs:/app/logs", "--volume-dir=loki:/tmp/loki"]
     volumes:
-      - ../../data/logs:/app/logs
-      - ../../data/tempo-data:/tmp/tempo
-      - ../../data/loki-data:/tmp/loki
+      - ./data/logs:/app/logs
+      - ./data/tempo-data:/tmp/tempo
+      - ./data/loki-data:/tmp/loki
     ports:
       - 9889:9888
   prometheus:
     image: prom/prometheus:v2.42.0
     volumes:
-      - ./etc/prometheus.yaml:/etc/prometheus.yaml
+      - ./docker/otel/etc/prometheus.yaml:/etc/prometheus.yaml
     entrypoint:
       - /bin/prometheus
       - --config.file=/etc/prometheus.yaml
@@ -57,9 +57,9 @@ services:
   grafana:
     image: grafana/grafana:9.4.3-ubuntu
     volumes:
-      - ../../data/grafana-data/datasources:/etc/grafana/provisioning/datasources
-      - ../../data/grafana-data/dashboards-provisioning:/etc/grafana/provisioning/dashboards
-      - ../../data/grafana-data/dashboards:/var/lib/grafana/dashboards
+      - ./data/grafana-data/datasources:/etc/grafana/provisioning/datasources
+      - ./data/grafana-data/dashboards-provisioning:/etc/grafana/provisioning/dashboards
+      - ./data/grafana-data/dashboards:/var/lib/grafana/dashboards
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
@@ -75,7 +75,7 @@ services:
     image: otel/opentelemetry-collector:0.73.0
     command: ["--config=/etc/otel-collector-config.yaml"]
     volumes:
-      - ./etc/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+      - ./docker/otel/etc/otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
       - "1888:1888"   # pprof extension
       - "8888:8888"   # Prometheus metrics exposed by the collector

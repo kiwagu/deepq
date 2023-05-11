@@ -6,7 +6,8 @@
     "start": "pnpm -r start",
     "start:api": "pnpm -r start:api",
     "start:iam": "pnpm -r start:iam",
-    "start:notifications": "pnpm -r start:notifications"
+    "start:notifications": "pnpm -r start:notifications",
+    "start:containers": "docker compose -p deepq -f ./apps/iam/docker-compose.yml -f ./apps/iam/docker/otel/docker-compose.yml up -d"
   },
   "private": true,
   "dependencies": {
