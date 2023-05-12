@@ -6,7 +6,6 @@ services:
     command: ["-config.file=/etc/tempo.yaml"]
     volumes:
       - ./docker/otel/etc/tempo-local.yaml:/etc/tempo.yaml
-      - ./data/tempo-data:/tmp/tempo
     ports:
       - "14268:14268"     # jaeger ingest, Jaeger - Thrift HTTP
       - "14250:14250"     # Jaeger - GRPC
@@ -15,7 +14,7 @@ services:
       - "6831:6831/udp"   # Jaeger - Thrift Compact
       - "6832:6832/udp"   # Jaeger - Thrift Binary
   loki:
-    image: grafana/loki:2.7.4
+    image: grafana/loki:2.8.2
     command: -config.file=/etc/loki/loki-local.yaml
     ports:
       - "3101:3100"                                   # loki needs to be exposed so it receives logs
@@ -26,7 +25,6 @@ services:
       - JAEGER_SAMPLER_PARAM=1
     volumes:
       - ./docker/otel/etc/loki-local.yaml:/etc/loki/loki-local.yaml
-      - ./data/loki-data:/tmp/loki
   promtail:
     image: grafana/promtail:2.7.4
     command: -config.file=/etc/promtail/promtail-local.yaml
@@ -35,15 +33,6 @@ services:
       - ./data/logs:/app/logs
     depends_on:
       - loki
-  volume_exporter:
-    image: mnadeem/volume_exporter
-    command: ["--volume-dir=tempo:/tmp/tempo", "--volume-dir=logs:/app/logs", "--volume-dir=loki:/tmp/loki"]
-    volumes:
-      - ./data/logs:/app/logs
-      - ./data/tempo-data:/tmp/tempo
-      - ./data/loki-data:/tmp/loki
-    ports:
-      - 9889:9888
   prometheus:
     image: prom/prometheus:v2.42.0
     volumes:
@@ -70,7 +59,6 @@ services:
       - prometheus
       - tempo
       - loki
-      - volume_exporter
   otel-collector:
     image: otel/opentelemetry-collector:0.73.0
     command: ["--config=/etc/otel-collector-config.yaml"]
