@@ -1,5 +1,5 @@
 {
-  "name": "iam",
+  "name": "iam-srv",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/iam/src",
   "projectType": "application",
@@ -27,14 +27,14 @@
       "executor": "@nrwl/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "iam:build"
+        "buildTarget": "iam-srv:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "iam:build:development"
+          "buildTarget": "iam-srv:build:development"
         },
         "production": {
-          "buildTarget": "iam:build:production"
+          "buildTarget": "iam-srv:build:production"
         }
       }
     },

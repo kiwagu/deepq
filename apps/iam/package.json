@@ -1,13 +1,13 @@
 {
-  "name": "api",
+  "name": "iam",
   "version": "0.0.1",
   "license": "MIT",
   "private": true,
   "scripts": {
     "start": "nx serve portal --host=127.0.0.1",
     "start:portal": "nx serve portal --host=127.0.0.1",
-    "start:api": "nx serve api",
-    "start:iam": "nx serve iam",
+    "start:api": "nx serve api-srv",
+    "start:iam": "nx serve iam-srv",
     "start:notifications": "nx serve notifications",
     "start:e2e": "nx e2e portal-e2e --watch",
     "gen:frontend": "graphql-codegen -c tools/apollo-angular.yml && graphql-codegen -c tools/apollo-possible-types.yml",

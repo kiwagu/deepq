@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "api-srv",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/api/src",
   "projectType": "application",
@@ -45,11 +45,14 @@
     "serve": {
       "executor": "@nrwl/js:node",
       "options": {
-        "buildTarget": "api:build"
+        "buildTarget": "api-srv:build"
       },
       "configurations": {
+        "development": {
+          "buildTarget": "api-srv:build:development"
+        },
         "production": {
-          "buildTarget": "api:build:production"
+          "buildTarget": "api-srv:build:production"
         }
       }
     },

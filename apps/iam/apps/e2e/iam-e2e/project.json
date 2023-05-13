@@ -1,7 +1,7 @@
 {
   "name": "iam-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "implicitDependencies": ["iam"],
+  "implicitDependencies": ["iam-srv"],
   "targets": {
     "e2e": {
       "executor": "@nrwl/jest:jest",
