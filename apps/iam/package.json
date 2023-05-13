@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "start": "nx serve portal --host=127.0.0.1",
+    "start:portal": "nx serve portal --host=127.0.0.1",
     "start:api": "nx serve api",
     "start:iam": "nx serve iam",
     "start:notifications": "nx serve notifications",
