@@ -7,20 +7,22 @@
     "start:api": "pnpm -r start:api",
     "start:iam": "pnpm -r start:iam",
     "start:notifications": "pnpm -r start:notifications",
-    "start:containers": "docker compose -p deepq -f ./apps/iam/docker-compose.yml -f ./apps/iam/docker/otel/docker-compose.yml up -d",
-    "start:all": "stmux [ [ \"pnpm start:api\" : \"pnpm start:notifications\" ] .. [ \"pnpm start:iam\" : \"pnpm start:portal\" ] ] -M"
+    "start:ticket-app": "pnpm -r start:ticket-app",
+    "start:all": "stmux [ [ \"pnpm start:api\" : \"pnpm start:notifications\" ] .. [ \"pnpm start:iam\" : \"pnpm start:portal\" ] ] -M",
+    "start:containers": "docker compose -p deepq -f ./apps/iam/docker-compose.yml -f ./apps/iam/docker/otel/docker-compose.yml up -d"
   },
   "private": true,
-  "dependencies": {
-  },
   "devDependencies": {
     "cz-customizable": "^7.0.0",
     "nx": "16.1.1",
-    "stmux": "^1.8.7"
+    "prettier": "^2.6.2",
+    "stmux": "^1.8.7",
+    "typescript": "~5.0.4"
   },
   "config": {
     "commitizen": {
       "path": "node_modules/cz-customizable"
     }
-  }
+  },
+  "dependencies": {}
 }
