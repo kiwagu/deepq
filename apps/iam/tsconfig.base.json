@@ -28,6 +28,9 @@
       "@zen/main": ["libs/main/src/index.ts"],
       "@zen/nest-api": ["libs/nest-api/src/index.ts"],
       "@zen/nest-api/*": ["libs/nest-api/src/lib/*"],
+      "@zen/nest-api/prisma": ["libs/nest-api/src/lib/prisma"],
+      "@zen/nest-api/auth": ["libs/nest-api/src/lib/auth"],
+      "@zen/nest-api/graphql": ["libs/nest-api/src/lib/graphql"],
       "@zen/nest-auth": ["libs/nest-auth/src/index.ts"]
     }
   },
