@@ -23,7 +23,7 @@ import type {
 import { DefaultFields, PrismaSelectService, ${name} } from '@zen/nest-api/prisma';
 import { CaslFactory, CaslGuard } from '@zen/nest-auth';
 
-import { DEFAULT_FIELDS_TOKEN } from '../../auth';
+import { DEFAULT_FIELDS_TOKEN } from '../default-fields';
 
 export const typeDefs = null;
 // export const typeDefs = gql\`
