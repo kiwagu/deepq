@@ -1,7 +1,7 @@
 import { GraphQLResolveInfo } from 'graphql';
 
 import { Inject, UseGuards } from '@nestjs/common';
-import { Args, Info, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import { Args, Info, Mutation, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { ClientProxy } from '@nestjs/microservices';
 
 import type { NonNullableFields } from '@zen/common';
@@ -48,12 +48,6 @@ export class SpotResolver {
   @ResolveField()
   password() {
     return null;
-  }
-
-  @ResolveField()
-  async rules(@Parent() parent: Spot) {
-    const ability = await this.caslFactory.createAbility(parent);
-    return ability.rules;
   }
 
   @Query()
