@@ -30,4 +30,4 @@ import { defaultFieldsProvider } from './default-fields';
     ...NEST_RESOLVERS,
   ],
 })
-export class ZenGraphQLModule {}
+export class TicketGraphQLModule {}

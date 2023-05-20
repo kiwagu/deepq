@@ -49,11 +49,6 @@ export class ${name}Resolver {
   ) {}
 
   @ResolveField()
-  password() {
-    return null;
-  }
-
-  @ResolveField()
   async rules(@Parent() parent: ${name}) {
     const ability = await this.caslFactory.createAbility(parent);
     return ability.rules;

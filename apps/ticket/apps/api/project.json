@@ -5,30 +5,45 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nx/rspack:rspack",
+      "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
       "options": {
         "target": "node",
+        "compiler": "tsc",
         "outputPath": "dist/apps/api",
         "main": "apps/api/src/main.ts",
         "tsConfig": "apps/api/tsconfig.app.json",
-        "rspackConfig": "apps/api/rspack.config.js",
-        "assets": ["apps/api/src/assets"]
+        "assets": ["apps/api/src/assets"],
+        "webpackConfig": "apps/api/webpack.config.js",
+        "isolatedConfig": true,
+        "babelUpwardRootMode": true
       },
       "configurations": {
-        "development": {
-          "mode": "development"
-        },
         "production": {
-          "mode": "production",
-          "sourceMap": false
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/api/src/environments/environment.ts",
+              "with": "apps/api/src/environments/environment.prod.ts"
+            }
+          ]
         }
+      }
+    },
+    "compodoc": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx @compodoc/compodoc -p apps/api/tsconfig.app.json -d doc-api -s --port 8088"
+          }
+        ]
       }
     },
     "serve": {
       "executor": "@nx/js:node",
-      "defaultConfiguration": "development",
       "options": {
         "buildTarget": "ticket-app:build"
       },
@@ -54,12 +69,6 @@
       "options": {
         "jestConfig": "apps/api/jest.config.ts",
         "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
       }
     }
   },

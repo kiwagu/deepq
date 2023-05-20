@@ -8,13 +8,14 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2022",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": ["es2022", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "paths": {
       "@zen/auth": ["libs/auth/src/index.ts"],
       "@zen/common": ["libs/common/src/index.ts"],
@@ -27,9 +28,9 @@
       "@zen/main": ["libs/main/src/index.ts"],
       "@zen/nest-api": ["libs/nest-api/src/index.ts"],
       "@zen/nest-api/*": ["libs/nest-api/src/lib/*"],
-      "@zen/nest-api/prisma": ["libs/nest-api/src/lib/prisma"],
       "@zen/nest-api/auth": ["libs/nest-api/src/lib/auth"],
       "@zen/nest-api/graphql": ["libs/nest-api/src/lib/graphql"],
+      "@zen/nest-api/prisma": ["libs/nest-api/src/lib/prisma"],
       "@zen/nest-auth": ["libs/nest-auth/src/index.ts"]
     }
   },

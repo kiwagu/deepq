@@ -9,7 +9,7 @@ export const environment: EnvironmentBase = {
   siteUrl: 'http://localhost:4200/#',
   broker: { url: process.env.BROKER_URL || 'amqp://rabbitmq:5672' },
   production: false,
-  expressPort: 7080,
+  expressPort: 7081,
   publicRegistration: true,
   cors: { credentials: true, origin: true },
   graphql: {
@@ -22,7 +22,17 @@ export const environment: EnvironmentBase = {
       maxFiles: 5,
     },
   },
-  expiresInRememberMe: 7_776_000, // 90 days (in seconds)
+  jwtOptions: {
+    secret: process.env.JWT_PRIVATE_KEY,
+    signOptions: {
+      algorithm: 'HS256',
+      /**
+       * The client will exchange the token every 30 minutes during active sessions
+       * @see `libs\common\src\lib\environment` for `EnvironmentDev.jwtExchangeInterval`
+       */
+      expiresIn: 3600, // 1 hour (in seconds)
+    },
+  },
   mail: {
     // Docs: https://nodemailer.com/smtp/
     transport: {

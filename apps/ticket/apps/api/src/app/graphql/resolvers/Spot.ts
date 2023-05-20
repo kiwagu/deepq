@@ -45,11 +45,6 @@ export class SpotResolver {
     @Inject('IAM_SERVICE') private client: ClientProxy
   ) {}
 
-  @ResolveField()
-  password() {
-    return null;
-  }
-
   @Query()
   findUniqueSpot(
     @Args() args: NonNullableFields<FindUniqueSpotArgs>,
