@@ -50,13 +50,13 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     TicketGraphQLModule,
     ClientsModule.registerAsync([
       {
-        name: 'IAM_SERVICE',
+        name: 'TICKET_SERVICE',
         useFactory: (config: ConfigService) => ({
           customClass: ClientRMQExt,
           transport: Transport.RMQ,
           options: {
             urls: [config.broker.url],
-            queue: 'iam-queue',
+            queue: 'ticket-queue',
             queueOptions: {
               durable: true,
             },

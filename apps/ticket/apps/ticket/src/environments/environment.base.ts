@@ -6,7 +6,7 @@ import { ThrottlerModuleOptions } from '@nestjs/throttler';
 import { OTLPExporterNodeConfigBase } from '@opentelemetry/otlp-exporter-base';
 import { UploadOptions } from 'graphql-upload/graphqlUploadExpress.js';
 
-export const serviceName = 'ticket-api';
+export const serviceName = 'ticket-srv';
 
 export abstract class EnvironmentBase {
   readonly serviceName: string;
@@ -16,7 +16,6 @@ export abstract class EnvironmentBase {
   readonly siteUrl: string;
   readonly production: boolean;
   readonly expressPort: string | number;
-  readonly jwtOptions: JwtModuleOptions;
   readonly cors?: NestApplicationOptions['cors'];
   readonly graphql: {
     readonly subscriptions?: boolean;
@@ -26,8 +25,11 @@ export abstract class EnvironmentBase {
     readonly uploads?: UploadOptions;
   };
   readonly publicRegistration: boolean;
+  readonly jwtOptions: JwtModuleOptions;
+  readonly expiresInRememberMe: number;
   readonly mail: Omit<MailerOptions, 'template'>;
   readonly throttle: ThrottlerModuleOptions;
+  readonly bcryptCost: number;
   readonly openTelemetry?:
     | false
     | {
