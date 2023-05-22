@@ -1,4 +1,3 @@
-import * as rfs from 'rotating-file-stream';
 import { MailerOptions } from '@nestjs-modules/mailer';
 import { NestApplicationOptions } from '@nestjs/common';
 import { JwtModuleOptions } from '@nestjs/jwt';
@@ -38,8 +37,4 @@ export abstract class EnvironmentBase {
         };
         collectorOptions?: OTLPExporterNodeConfigBase;
       };
-  readonly ogma?: {
-    readonly logFilePath: string;
-    readonly options?: rfs.Options;
-  };
 }

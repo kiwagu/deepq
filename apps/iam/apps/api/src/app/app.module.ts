@@ -7,7 +7,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ThrottlerModule } from '@nestjs/throttler';
 
 import { ClientRMQExt } from '@zen/nest-auth';
-import { GqlWithBodyParser, LoggerModule, loggerInterceptor } from '@zen/logger';
+import { GqlWithBodyParser, LoggerModule, loggerInterceptor } from '@deepq/nest-logger';
 import { PrismaModule } from '@zen/nest-api/prisma';
 
 import { environment } from '../environments/environment';

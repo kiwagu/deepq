@@ -3,7 +3,7 @@ import './tracing';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { LoggerService } from '@zen/logger';
+import { LoggerService } from '@deepq/nest-logger';
 
 import { AppModule } from './app/app.module';
 import { ConfigModule, ConfigService } from './app/config';

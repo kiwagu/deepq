@@ -8,7 +8,7 @@ import { RpcError } from '@zen/common';
 
 @Injectable()
 export class RabbitMqWithBodyParser extends RabbitMqParser {
-  getSuccessContext(
+  override getSuccessContext(
     data: unknown,
     context: ExecutionContext,
     startTime: number,
@@ -36,7 +36,7 @@ export class RabbitMqWithBodyParser extends RabbitMqParser {
     };
   }
 
-  getErrorContext(
+  override getErrorContext(
     error: Error | RpcException,
     context: ExecutionContext,
     startTime: number,

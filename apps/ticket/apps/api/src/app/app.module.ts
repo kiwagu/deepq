@@ -11,7 +11,7 @@ import {
   GqlWithBodyParser,
   LoggerModule,
   loggerInterceptor,
-} from '@zen/logger';
+} from '@deepq/nest-logger';
 import { PrismaModule } from '@zen/nest-api/prisma';
 import { JwtModule } from './jwt';
 

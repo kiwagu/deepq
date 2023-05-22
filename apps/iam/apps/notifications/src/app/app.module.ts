@@ -1,7 +1,7 @@
 import { BullModule } from '@nestjs/bull';
 import { Module } from '@nestjs/common';
 
-import { LoggerModule, RabbitMqWithBodyParser, loggerInterceptor } from '@zen/logger';
+import { LoggerModule, RabbitMqWithBodyParser, loggerInterceptor } from '@deepq/nest-logger';
 
 import { environment } from '../environments/environment';
 import { AppController } from './app.controller';

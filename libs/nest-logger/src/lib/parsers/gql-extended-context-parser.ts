@@ -1,34 +1,35 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
-import { RmqContext, RpcException } from '@nestjs/microservices';
+import { ExecutionContext, HttpException, Injectable } from '@nestjs/common';
+import { GqlExecutionContext } from '@nestjs/graphql';
 import { OgmaInterceptorServiceOptions } from '@ogma/nestjs-module';
 import { LogObject } from '@ogma/nestjs-module/src/interceptor/interfaces/log.interface';
-import { RabbitMqParser } from '@ogma/platform-rabbitmq';
+import { GraphQLParser } from '@ogma/platform-graphql';
 import * as otelApi from '@opentelemetry/api';
 import { RpcError } from '@zen/common';
 
 @Injectable()
-export class RabbitMqWithBodyParser extends RabbitMqParser {
-  getSuccessContext(
+export class GqlWithBodyParser extends GraphQLParser {
+  override getSuccessContext(
     data: unknown,
     context: ExecutionContext,
     startTime: number,
     options: OgmaInterceptorServiceOptions
   ): LogObject & {
-    message: Record<string, any>;
+    body: unknown;
     responseType: string;
     response?: unknown;
+    userId: string | null;
     traceId?: string;
     spanId?: string;
   } {
     const span = otelApi.trace.getActiveSpan();
-    const rmqContext = context.switchToRpc().getContext<RmqContext>();
-    const { content } = rmqContext.getMessage();
-    const message = JSON.parse(content.toString());
+    const { req } = GqlExecutionContext.create(context).getContext();
+    const userId = (req.user as { id: string })?.id || null;
     const successContext = super.getSuccessContext(data, context, startTime, options);
 
     return {
       ...successContext,
-      message,
+      userId,
+      body: req.body,
       responseType: typeof data,
       response: successContext.contentLength < 128 ? data : undefined,
       traceId: span?.spanContext().traceId,
@@ -36,25 +37,20 @@ export class RabbitMqWithBodyParser extends RabbitMqParser {
     };
   }
 
-  getErrorContext(
-    error: Error | RpcException,
+  override getErrorContext(
+    error: Error | HttpException | RpcError,
     context: ExecutionContext,
     startTime: number,
     options: OgmaInterceptorServiceOptions
-  ): LogObject & { message: Record<string, any>; traceId?: string; spanId?: string } {
+  ): LogObject & { error: Error | HttpException; traceId?: string; spanId?: string } {
     const span = otelApi.trace.getActiveSpan();
-    const rmqContext = context.switchToRpc().getContext<RmqContext>();
-    const { content } = rmqContext.getMessage();
-    const message = JSON.parse(content.toString());
     const logObject = super.getErrorContext(error, context, startTime, options);
-    const rpcError =
-      error instanceof RpcException ? (error.getError() as RpcError) : { status: null };
-    const status = rpcError.status;
+    const status = (error as RpcError).status;
 
     return {
       ...logObject,
       status: status ? `${status}` : logObject.status,
-      message,
+      error,
       traceId: span?.spanContext().traceId,
       spanId: span?.spanContext().spanId,
     };

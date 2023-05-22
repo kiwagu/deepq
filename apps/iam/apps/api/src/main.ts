@@ -4,7 +4,7 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import helmet from 'helmet';
 
-import { LoggerService } from '@zen/logger';
+import { LoggerService } from '@deepq/nest-logger';
 import { PrismaService } from '@zen/nest-api/prisma';
 
 import { AppModule } from './app/app.module';
@@ -24,7 +24,7 @@ async function bootstrap() {
   const port = process.env.PORT || environment.expressPort;
 
   await app.listen(port, () => {
-    Logger.log(`GraphQL server running at http://localhost:${port}/graphql`);
+    Logger.log(`IAM GraphQL server running at http://localhost:${port}/graphql`);
   });
 }
 

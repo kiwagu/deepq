@@ -74,11 +74,4 @@ export const environment: EnvironmentBase = {
       url: 'http://localhost:4317',
     },
   },
-  ogma: {
-    logFilePath: join(process.cwd(), `data/logs/${serviceName}.log`),
-    options: {
-      size: '10M', // rotate every 10 MegaBytes written
-      compress: 'gzip', // compress rotated files
-    },
-  },
 };

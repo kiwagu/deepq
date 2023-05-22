@@ -4,7 +4,7 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import helmet from 'helmet';
 
-import { LoggerService } from '@zen/logger';
+import { LoggerService } from '@deepq/nest-logger';
 import { PrismaService } from '@zen/nest-api/prisma';
 
 import { AppModule } from './app/app.module';

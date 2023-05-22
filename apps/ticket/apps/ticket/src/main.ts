@@ -5,7 +5,7 @@ import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 import { AppModule } from './app/app.module';
-import { LoggerService } from '@zen/logger';
+import { LoggerService } from '@deepq/nest-logger';
 import { ConfigModule, ConfigService } from './app/config';
 
 async function bootstrap() {
