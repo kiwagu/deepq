@@ -1,5 +1,5 @@
 import { RpcException } from '@nestjs/microservices';
-import { ApiError } from '@zen/common';
+import { ApiError } from '@deepq/common';
 
 export class RpcForbiddenException extends RpcException {
   constructor() {

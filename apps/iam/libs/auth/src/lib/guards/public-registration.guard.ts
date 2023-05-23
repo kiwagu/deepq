@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { Environment } from '@zen/common';
+import { Environment } from '@deepq/common';
 
 @Injectable({
   providedIn: 'root',

@@ -1,4 +1,4 @@
-import { EnvironmentProd } from '@zen/common';
+import { EnvironmentProd } from '@deepq/common';
 
 class EnvironmentImpl extends EnvironmentProd {}
 

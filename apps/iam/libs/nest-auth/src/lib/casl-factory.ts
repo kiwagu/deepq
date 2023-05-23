@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 
 import { PrismaQuery } from '@zen/nest-api/auth/casl/casl-prisma';
 import { PrismaSubjects } from '@zen/nest-api/auth/casl/generated';
-import { Action } from '@zen/common';
+import { Action } from '@deepq/common';
 
 import { RequestUser } from './models/request-user';
 

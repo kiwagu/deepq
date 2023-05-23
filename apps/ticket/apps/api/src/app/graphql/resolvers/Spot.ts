@@ -4,7 +4,7 @@ import { Inject, UseGuards } from '@nestjs/common';
 import { Args, Info, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ClientProxy } from '@nestjs/microservices';
 
-import type { NonNullableFields } from '@zen/common';
+import type { NonNullableFields } from '@deepq/common';
 import type {
   AggregateSpotArgs,
   CreateOneSpotArgs,

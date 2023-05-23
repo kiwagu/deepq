@@ -7,7 +7,7 @@ import { Inject, UseGuards } from '@nestjs/common';
 import { Args, Info, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { ClientProxy } from '@nestjs/microservices';
 
-import type { NonNullableFields } from '@zen/common';
+import type { NonNullableFields } from '@deepq/common';
 import type {
   Aggregate${name}Args,
   CreateOne${name}Args,

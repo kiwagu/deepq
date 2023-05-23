@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Ability } from '@casl/ability';
 import { createPrismaAbility } from '@casl/prisma';
-import { Environment, EnvironmentDev } from '@zen/common';
+import { Environment, EnvironmentDev } from '@deepq/common';
 import {
   AuthExchangeTokenGQL,
   AuthLogin,

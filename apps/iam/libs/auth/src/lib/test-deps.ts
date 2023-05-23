@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Ability } from '@casl/ability';
 import { createPrismaAbility } from '@casl/prisma';
-import { Environment, EnvironmentDev } from '@zen/common';
+import { Environment, EnvironmentDev } from '@deepq/common';
 import { ZenComponentsModule } from '@zen/components';
 import { AuthExchangeTokenGQL, AuthLoginGQL, GetAccountInfoGQL } from '@zen/graphql';
 import { ApolloTestingModule } from 'apollo-angular/testing';

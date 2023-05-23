@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, CanMatch, Router } from '@angular/router';
 import { Ability, Subject } from '@casl/ability';
-import { Action } from '@zen/common';
+import { Action } from '@deepq/common';
 
 export class CaslGuard {
   static can(action: Action, subject: Subject) {

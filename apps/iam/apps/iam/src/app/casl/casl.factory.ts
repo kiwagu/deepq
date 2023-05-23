@@ -1,6 +1,6 @@
 import { AbilityBuilder, PureAbility } from '@casl/ability';
 import { Injectable } from '@nestjs/common';
-import { Action, Role } from '@zen/common';
+import { Action, Role } from '@deepq/common';
 import { PrismaQuery, createPrismaAbility } from '@zen/nest-api/auth/casl/casl-prisma';
 import { PrismaSubjects } from '@zen/nest-api/auth/casl/generated';
 import { CaslFactory, RequestUser } from '@zen/nest-auth';

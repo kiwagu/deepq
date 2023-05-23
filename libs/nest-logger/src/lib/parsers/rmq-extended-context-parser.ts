@@ -4,7 +4,7 @@ import { OgmaInterceptorServiceOptions } from '@ogma/nestjs-module';
 import { LogObject } from '@ogma/nestjs-module/src/interceptor/interfaces/log.interface';
 import { RabbitMqParser } from '@ogma/platform-rabbitmq';
 import * as otelApi from '@opentelemetry/api';
-import { RpcError } from '@zen/common';
+import { RpcError } from '@deepq/common';
 
 @Injectable()
 export class RabbitMqWithBodyParser extends RabbitMqParser {

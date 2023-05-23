@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApolloError } from '@apollo/client/errors';
 import { Ability } from '@casl/ability';
-import { Environment } from '@zen/common';
+import { Environment } from '@deepq/common';
 import {
   AuthExchangeTokenGQL,
   AuthLoginGQL,

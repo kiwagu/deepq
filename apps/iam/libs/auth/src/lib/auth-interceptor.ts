@@ -1,6 +1,6 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Environment } from '@zen/common';
+import { Environment } from '@deepq/common';
 import { Observable } from 'rxjs';
 
 import { tokenVar } from './token-var';

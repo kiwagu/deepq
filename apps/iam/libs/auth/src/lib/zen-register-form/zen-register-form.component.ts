@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ApolloError } from '@apollo/client/errors';
-import { Environment } from '@zen/common';
+import { Environment } from '@deepq/common';
 import {
   ApiError,
   AuthRegister,

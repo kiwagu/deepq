@@ -4,7 +4,7 @@ import { Reflector } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { RpcException } from '@nestjs/microservices';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiError, Role, RpcError } from '@zen/common';
+import { ApiError, Role, RpcError } from '@deepq/common';
 import { ClsService } from 'nestjs-cls';
 
 import { ALLOW_ANONYMOUS_KEY } from '../decorators/allow-anonymous.decorator';

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Environment } from '@zen/common';
+import { Environment } from '@deepq/common';
 import { ZenSnackbarError } from '@zen/components';
 import { AuthExchangeTokenGQL } from '@zen/graphql';
 

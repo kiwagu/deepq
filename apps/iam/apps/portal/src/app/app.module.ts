@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { Ability, PureAbility } from '@casl/ability';
 import { createPrismaAbility } from '@casl/prisma';
 import { AuthInterceptor, ZenAuthModule, tokenVar } from '@zen/auth';
-import { Environment } from '@zen/common';
+import { Environment } from '@deepq/common';
 import { ZenGraphQLModule } from '@zen/graphql';
 import { possibleTypes, typePolicies } from '@zen/graphql/client';
 import { ZenLayoutModule } from '@zen/layout';

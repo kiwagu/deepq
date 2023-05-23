@@ -1,5 +1,5 @@
 import { Directive, EmbeddedViewRef, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-import { Environment } from '@zen/common';
+import { Environment } from '@deepq/common';
 
 @Directive({
   selector: '[ifPublicRegistration]',

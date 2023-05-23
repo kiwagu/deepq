@@ -13,7 +13,7 @@ import {
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ApolloError } from '@apollo/client/errors';
-import { Environment } from '@zen/common';
+import { Environment } from '@deepq/common';
 import { ApiError, AuthLoginInput } from '@zen/graphql';
 import { Subscription, map } from 'rxjs';
 

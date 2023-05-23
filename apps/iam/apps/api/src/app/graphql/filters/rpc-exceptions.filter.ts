@@ -1,5 +1,5 @@
 import { Catch, ExceptionFilter, HttpException } from '@nestjs/common';
-import { RpcError } from '@zen/common';
+import { RpcError } from '@deepq/common';
 
 @Catch()
 export class RpcExceptionFilter implements ExceptionFilter {

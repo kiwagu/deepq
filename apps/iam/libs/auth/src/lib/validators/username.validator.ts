@@ -1,5 +1,5 @@
 import { ValidatorFn } from '@angular/forms';
-import { ApiConstants } from '@zen/common';
+import { ApiConstants } from '@deepq/common';
 
 interface UsernameErrors {
   includesSpace?: boolean;

@@ -6,7 +6,7 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { Role } from '@zen/common';
+import { Role } from '@deepq/common';
 import { UserRolesGQL } from '@zen/graphql';
 import { Subscription } from 'rxjs';
 

@@ -4,4 +4,4 @@ export * from './lib/guards';
 export * from './lib/token-var';
 export * from './lib/validators';
 export * from './lib/zen-auth.module';
-export { Action } from '@zen/common';
+export { Action } from '@deepq/common';

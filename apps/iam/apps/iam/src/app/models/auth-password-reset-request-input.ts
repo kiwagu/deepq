@@ -1,4 +1,4 @@
-import { ApiConstants } from '@zen/common';
+import { ApiConstants } from '@deepq/common';
 import { MaxLength } from 'class-validator';
 
 const LONGEST = ApiConstants.USERNAME_MAX_LENGTH > 254 ? ApiConstants.USERNAME_MAX_LENGTH : 254;

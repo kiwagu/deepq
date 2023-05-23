@@ -18,7 +18,6 @@
     "forceConsistentCasingInFileNames": true,
     "paths": {
       "@zen/auth": ["libs/auth/src/index.ts"],
-      "@zen/common": ["libs/common/src/index.ts"],
       "@zen/components": ["libs/components/src/index.ts"],
       "@zen/graphql": ["libs/graphql/src/index.ts"],
       "@zen/graphql/client": ["libs/graphql/src/lib/client/index.ts"],

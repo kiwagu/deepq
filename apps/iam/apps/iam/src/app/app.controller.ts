@@ -4,7 +4,7 @@ import { ClientProxy, MessagePattern, Payload, RpcException } from '@nestjs/micr
 import { bcryptVerify } from 'hash-wasm';
 
 import { CurrentUser, JwtPayload, RequestUser, RolesGuard } from '@zen/nest-auth';
-import { ApiError, RpcError } from '@zen/common';
+import { ApiError, RpcError } from '@deepq/common';
 import { PrismaService, User } from '@zen/nest-api/prisma';
 
 import { AppService } from './app.service';

@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ApolloError } from '@apollo/client/errors';
-import { ApiConstants, ApiError } from '@zen/common';
+import { ApiConstants, ApiError } from '@deepq/common';
 import { AuthPasswordResetRequestInput, AuthPasswordResetRequestQueryGQL } from '@zen/graphql';
 import { Subscription } from 'rxjs';
 

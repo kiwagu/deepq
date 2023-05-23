@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Environment } from '@zen/common';
+import { Environment } from '@deepq/common';
 
 import { verticalAccordion } from '../animations';
 

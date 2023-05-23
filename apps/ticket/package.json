@@ -17,6 +17,7 @@
     "@casl/ability": "~6.4.0",
     "@casl/prisma": "~1.3.3",
     "@deepq/nest-logger": "workspace:*",
+    "@deepq/common": "workspace:*",
     "@graphql-tools/merge": "^8.4.0",
     "@nestjs-modules/mailer": "^1.8.1",
     "@nestjs/apollo": "^11.0.4",

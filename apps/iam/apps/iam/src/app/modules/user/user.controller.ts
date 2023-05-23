@@ -3,7 +3,7 @@ import { subject } from '@casl/ability';
 import { Controller, Inject, UseGuards } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 
-import { NonNullableFields, Role } from '@zen/common';
+import { NonNullableFields, Role } from '@deepq/common';
 import {
   AggregateUserArgs,
   CreateOneUserArgs,
