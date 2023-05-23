@@ -8,6 +8,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "esModuleInterop": true,
     "target": "es2015",
     "module": "esnext",
     "lib": ["es2020", "dom"],
@@ -17,19 +18,7 @@
     "paths": {
       "@deepq/nest-logger": ["libs/nest-logger/src/index.ts"],
       "@deepq/common": ["libs/common/src/index.ts"],
-      "@zen/auth": ["apps/iam/libs/auth/src/index.ts"],
-      "@zen/components": ["apps/iam/libs/components/src/index.ts"],
-      "@zen/graphql": ["apps/iam/libs/graphql/src/index.ts"],
-      "@zen/graphql/client": ["apps/iam/libs/graphql/src/lib/client/index.ts"],
-      "@zen/graphql/fields": ["apps/iam/libs/graphql/src/lib/fields/index.ts"],
-      "@zen/layout": ["apps/iam/libs/layout/src/index.ts"],
-      "@zen/main": ["apps/iam/libs/main/src/index.ts"],
-      "@zen/nest-api": ["apps/iam/libs/nest-api/src/index.ts"],
-      "@zen/nest-api/*": ["apps/iam/libs/nest-api/src/lib/*"],
-      "@zen/nest-api/prisma": ["apps/iam/libs/nest-api/src/lib/prisma"],
-      "@zen/nest-api/auth": ["apps/iam/libs/nest-api/src/lib/auth"],
-      "@zen/nest-api/graphql": ["apps/iam/libs/nest-api/src/lib/graphql"],
-      "@zen/nest-auth": ["apps/iam/libs/nest-auth/src/index.ts"]
+      "@deepq/nest-auth": ["libs/nest-auth/src/index.ts"],
     }
   },
   "exclude": ["node_modules", "tmp"]

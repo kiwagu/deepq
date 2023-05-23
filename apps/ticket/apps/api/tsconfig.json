@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../../../tsconfig.base.json",
   "files": [],
   "include": [],
   "references": [
@@ -11,6 +11,14 @@
     }
   ],
   "compilerOptions": {
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "@zen/nest-api": ["apps/ticket/libs/nest-api/src/index.ts"],
+      "@zen/nest-api/*": ["apps/ticket/libs/nest-api/src/lib/*"],
+      "@zen/nest-api/prisma": ["apps/ticket/libs/nest-api/src/lib/prisma"],
+      "@zen/nest-api/auth": ["apps/ticket/libs/nest-api/src/lib/auth"],
+      "@zen/nest-api/graphql": ["apps/ticket/libs/nest-api/src/lib/graphql"],
+      "@zen/nest-auth": ["apps/ticket/libs/nest-auth/src/index.ts"]
+    }
   }
 }
