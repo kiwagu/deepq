@@ -3,7 +3,7 @@ import { createWriteStream, existsSync, mkdirSync } from 'fs';
 import { Inject, Logger, OnModuleInit, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Resolver, Subscription } from '@nestjs/graphql';
 import { ClientProxy } from '@nestjs/microservices';
-import { CurrentUser, RequestUser, RolesGuard } from '@zen/nest-auth';
+import { CurrentUser, RequestUser, RolesGuard } from '@deepq/nest-auth';
 import { PubSub } from 'graphql-subscriptions';
 import gql from 'graphql-tag';
 import GraphQLUpload from 'graphql-upload/GraphQLUpload.js';

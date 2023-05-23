@@ -22,7 +22,7 @@ import {
   PrismaService,
   Spot,
 } from '@zen/nest-api/prisma';
-import { CaslAbility, CaslGuard, RpcForbiddenException } from '@zen/nest-auth';
+import { CaslAbility, CaslGuard, RpcForbiddenException } from '@deepq/nest-auth';
 
 import { AppAbility } from '../../casl/casl.factory';
 import { DEFAULT_FIELDS_TOKEN } from '../../casl/default-fields';

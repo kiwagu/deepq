@@ -17,7 +17,7 @@ import {
   UpsertOneUserArgs,
 } from '@zen/nest-api/graphql/resolversTypes';
 import { DefaultFields, PrismaClient, PrismaService, User } from '@zen/nest-api/prisma';
-import { CaslAbility, CaslGuard, RpcForbiddenException } from '@zen/nest-auth';
+import { CaslAbility, CaslGuard, RpcForbiddenException } from '@deepq/nest-auth';
 
 import { AppAbility, AppCaslFactory } from '../../casl/casl.factory';
 import { DEFAULT_FIELDS_TOKEN } from '../../casl/default-fields';

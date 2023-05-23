@@ -1,7 +1,7 @@
 import { Global, Module, Provider } from '@nestjs/common';
 
 import { LoggerModule, RabbitMqWithBodyParser, loggerInterceptor } from '@deepq/nest-logger';
-import { NestAuthModule } from '@zen/nest-auth';
+import { NestAuthModule } from '@deepq/nest-auth';
 import { PrismaModule } from '@zen/nest-api/prisma';
 
 import { environment } from '../environments/environment';

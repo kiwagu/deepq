@@ -21,7 +21,7 @@ import type {
   UpsertOne${name}Args,
 } from '@zen/nest-api/graphql/resolversTypes';
 import { DefaultFields, PrismaSelectService, ${name} } from '@zen/nest-api/prisma';
-import { CaslFactory, CaslGuard } from '@zen/nest-auth';
+import { CaslFactory, CaslGuard } from '@deepq/nest-auth';
 
 import { DEFAULT_FIELDS_TOKEN } from '../../auth';
 

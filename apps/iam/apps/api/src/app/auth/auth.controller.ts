@@ -7,7 +7,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 import { firstValueFrom } from 'rxjs';
 
-import { CurrentUser, RequestUser } from '@zen/nest-auth';
+import { CurrentUser, RequestUser } from '@deepq/nest-auth';
 
 import { ConfigService } from '../config';
 import { AuthExchangeTokenInput, AuthSession } from '../graphql/models';

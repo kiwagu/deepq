@@ -1,5 +1,5 @@
 import { Controller, Get, Header, Logger, UseGuards } from '@nestjs/common';
-import { RolesGuard } from '@zen/nest-auth';
+import { RolesGuard } from '@deepq/nest-auth';
 
 import { Prisma, PrismaService } from '@zen/nest-api/prisma';
 

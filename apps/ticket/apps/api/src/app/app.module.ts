@@ -6,7 +6,7 @@ import { Global, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ThrottlerModule } from '@nestjs/throttler';
 
-import { ClientRMQExt, NestAuthModule } from '@zen/nest-auth';
+import { ClientRMQExt, NestAuthModule } from '@deepq/nest-auth';
 import {
   GqlWithBodyParser,
   LoggerModule,

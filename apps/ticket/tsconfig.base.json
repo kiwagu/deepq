@@ -31,7 +31,6 @@
       "@zen/nest-api/auth": ["libs/nest-api/src/lib/auth"],
       "@zen/nest-api/graphql": ["libs/nest-api/src/lib/graphql"],
       "@zen/nest-api/prisma": ["libs/nest-api/src/lib/prisma"],
-      "@zen/nest-auth": ["libs/nest-auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

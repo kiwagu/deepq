@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Action, Role } from '@deepq/common';
 import { PrismaQuery, createPrismaAbility } from '@zen/nest-api/auth/casl/casl-prisma';
 import { PrismaSubjects } from '@zen/nest-api/auth/casl/generated';
-import { CaslFactory, RequestUser } from '@zen/nest-auth';
+import { CaslFactory, RequestUser } from '@deepq/nest-auth';
 
 /** A union of subjects to extend the ability beyond just Prisma models */
 type ExtendedSubjects = 'all';

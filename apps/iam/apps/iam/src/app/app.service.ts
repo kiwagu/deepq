@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import crypto from 'crypto';
 import { bcrypt } from 'hash-wasm';
 
-import { CaslFactory, JwtPayload, RequestUser } from '@zen/nest-auth';
+import { CaslFactory, JwtPayload, RequestUser } from '@deepq/nest-auth';
 import { PrismaClient } from '@zen/nest-api/prisma';
 
 import { ConfigService } from './config';
