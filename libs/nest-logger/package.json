@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve nest-logger",
-    "build": "tsc --build"
+    "build": "tsc --build && cp package.json dist && cp README.md dist"
   },
   "main": "dist/libs/nest-logger/src/index.js",
   "types": "dist/libs/nest-logger/src/index.d.ts",
