@@ -4,13 +4,14 @@ import { GraphQLResolveInfo } from 'graphql';
 
 import { PalDefaultFields } from './default-fields';
 import { Prisma } from './generated';
+import { DMMF } from './generated/runtime';
 
 @Injectable()
 export class PrismaSelectService {
   getArgs<Args>(info: GraphQLResolveInfo, args: Args, defaultFields?: PalDefaultFields): Args {
     const result = new PrismaSelect(info, {
       defaultFields: defaultFields as any,
-      dmmf: [Prisma.dmmf],
+      dmmf: [Prisma.dmmf as Pick<DMMF.Document, 'datamodel' | 'mappings'>],
     }).value;
 
     if (!result.select || Object.keys(result.select).length > 0) {
