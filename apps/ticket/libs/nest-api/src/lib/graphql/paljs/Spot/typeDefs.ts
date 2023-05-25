@@ -6,6 +6,15 @@ export default gql`
     title: String!
     address: String
     createdAt: DateTime!
+    tickets(
+      where: TicketWhereInput
+      orderBy: TicketOrderByWithRelationInput
+      cursor: TicketWhereUniqueInput
+      take: Int
+      skip: Int
+      distinct: TicketScalarFieldEnum
+    ): [Ticket!]!
+    _count: SpotCountOutputType!
   }
 
   type Query {

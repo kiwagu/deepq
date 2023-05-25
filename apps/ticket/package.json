@@ -9,6 +9,7 @@
     "build:ticket-srv": "nx build ticket-srv",
     "gen:api": "prisma generate --schema libs/nest-api/prisma/schema.prisma && ts-node --project tools/tsconfig.json tools/generate.ts",
     "prisma:migrate": "prisma migrate dev --schema libs/nest-api/prisma/schema.prisma && ts-node --project tools/tsconfig.json tools/generate.ts",
+    "prisma:push": "prisma db push --schema libs/nest-api/prisma/schema.prisma && ts-node --project tools/tsconfig.json tools/generate.ts",
     "prisma:studio": "prisma studio --schema libs/nest-api/prisma/schema.prisma"
   },
   "private": true,

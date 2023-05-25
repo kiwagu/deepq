@@ -13,6 +13,7 @@
     "gen:frontend": "graphql-codegen -c tools/apollo-angular.yml && graphql-codegen -c tools/apollo-possible-types.yml",
     "gen:api": "prisma generate --schema libs/nest-api/prisma/schema.prisma && ts-node --project tools/tsconfig.json tools/generate.ts",
     "prisma:migrate": "prisma migrate dev --schema libs/nest-api/prisma/schema.prisma && ts-node --project tools/tsconfig.json tools/generate.ts",
+    "prisma:push": "prisma db push --schema libs/nest-api/prisma/schema.prisma && ts-node --project tools/tsconfig.json tools/generate.ts",
     "prisma:studio": "prisma studio --schema libs/nest-api/prisma/schema.prisma",
     "prod:portal": "nx build portal --prod",
     "prod:api": "nx build api --prod && npm run docker:build:api",

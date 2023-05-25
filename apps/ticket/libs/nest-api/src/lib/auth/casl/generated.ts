@@ -3,8 +3,10 @@ import { Subjects } from '@casl/prisma';
   
 import {
   Spot,
+  Ticket,
 } from '../../prisma';
 
 export type PrismaSubjects = Subjects<{
   Spot: Spot;
+  Ticket: Ticket;
 }>;

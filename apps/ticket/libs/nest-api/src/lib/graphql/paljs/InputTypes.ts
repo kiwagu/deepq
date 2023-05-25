@@ -23,6 +23,13 @@ export default gql`
     createdAt
   }
 
+  enum TicketScalarFieldEnum {
+    id
+    userId
+    spotId
+    createdAt
+  }
+
   enum TransactionIsolationLevel {
     ReadUncommitted
     ReadCommitted
@@ -38,6 +45,7 @@ export default gql`
     title: StringFilter
     address: StringNullableFilter
     createdAt: DateTimeFilter
+    tickets: TicketListRelationFilter
   }
 
   input SpotOrderByWithRelationInput {
@@ -45,6 +53,7 @@ export default gql`
     title: SortOrder
     address: SortOrder
     createdAt: SortOrder
+    tickets: TicketOrderByRelationAggregateInput
   }
 
   input SpotWhereUniqueInput {
@@ -72,11 +81,55 @@ export default gql`
     createdAt: DateTimeWithAggregatesFilter
   }
 
+  input TicketWhereInput {
+    AND: [TicketWhereInput!]
+    OR: [TicketWhereInput!]
+    NOT: [TicketWhereInput!]
+    id: StringFilter
+    userId: StringNullableFilter
+    spotId: StringFilter
+    createdAt: DateTimeFilter
+    spot: SpotWhereInput
+  }
+
+  input TicketOrderByWithRelationInput {
+    id: SortOrder
+    userId: SortOrder
+    spotId: SortOrder
+    createdAt: SortOrder
+    spot: SpotOrderByWithRelationInput
+  }
+
+  input TicketWhereUniqueInput {
+    id: String
+  }
+
+  input TicketOrderByWithAggregationInput {
+    id: SortOrder
+    userId: SortOrder
+    spotId: SortOrder
+    createdAt: SortOrder
+    _count: TicketCountOrderByAggregateInput
+    _max: TicketMaxOrderByAggregateInput
+    _min: TicketMinOrderByAggregateInput
+  }
+
+  input TicketScalarWhereWithAggregatesInput {
+    AND: [TicketScalarWhereWithAggregatesInput!]
+    OR: [TicketScalarWhereWithAggregatesInput!]
+    NOT: [TicketScalarWhereWithAggregatesInput!]
+    id: StringWithAggregatesFilter
+    userId: StringNullableWithAggregatesFilter
+    spotId: StringWithAggregatesFilter
+    createdAt: DateTimeWithAggregatesFilter
+  }
+
   input SpotCreateInput {
     id: String
     title: String!
     address: String
     createdAt: DateTime
+    tickets: TicketCreateNestedManyWithoutSpotInput
   }
 
   input SpotUncheckedCreateInput {
@@ -84,6 +137,7 @@ export default gql`
     title: String!
     address: String
     createdAt: DateTime
+    tickets: TicketUncheckedCreateNestedManyWithoutSpotInput
   }
 
   input SpotUpdateInput {
@@ -91,6 +145,7 @@ export default gql`
     title: String
     address: String
     createdAt: DateTime
+    tickets: TicketUpdateManyWithoutSpotNestedInput
   }
 
   input SpotUncheckedUpdateInput {
@@ -98,6 +153,7 @@ export default gql`
     title: String
     address: String
     createdAt: DateTime
+    tickets: TicketUncheckedUpdateManyWithoutSpotNestedInput
   }
 
   input SpotCreateManyInput {
@@ -118,6 +174,51 @@ export default gql`
     id: String
     title: String
     address: String
+    createdAt: DateTime
+  }
+
+  input TicketCreateInput {
+    id: String
+    createdAt: DateTime
+    spot: SpotCreateNestedOneWithoutTicketsInput!
+  }
+
+  input TicketUncheckedCreateInput {
+    id: String
+    userId: String
+    spotId: String!
+    createdAt: DateTime
+  }
+
+  input TicketUpdateInput {
+    id: String
+    createdAt: DateTime
+    spot: SpotUpdateOneRequiredWithoutTicketsNestedInput
+  }
+
+  input TicketUncheckedUpdateInput {
+    id: String
+    userId: String
+    spotId: String
+    createdAt: DateTime
+  }
+
+  input TicketCreateManyInput {
+    id: String
+    userId: String
+    spotId: String!
+    createdAt: DateTime
+  }
+
+  input TicketUpdateManyMutationInput {
+    id: String
+    createdAt: DateTime
+  }
+
+  input TicketUncheckedUpdateManyInput {
+    id: String
+    userId: String
+    spotId: String
     createdAt: DateTime
   }
 
@@ -160,6 +261,16 @@ export default gql`
     gt: DateTime
     gte: DateTime
     not: NestedDateTimeFilter
+  }
+
+  input TicketListRelationFilter {
+    every: TicketWhereInput
+    some: TicketWhereInput
+    none: TicketWhereInput
+  }
+
+  input TicketOrderByRelationAggregateInput {
+    _count: SortOrder
   }
 
   input SpotCountOrderByAggregateInput {
@@ -233,6 +344,46 @@ export default gql`
     _max: NestedDateTimeFilter
   }
 
+  input SpotRelationFilter {
+    is: SpotWhereInput
+    isNot: SpotWhereInput
+  }
+
+  input TicketCountOrderByAggregateInput {
+    id: SortOrder
+    userId: SortOrder
+    spotId: SortOrder
+    createdAt: SortOrder
+  }
+
+  input TicketMaxOrderByAggregateInput {
+    id: SortOrder
+    userId: SortOrder
+    spotId: SortOrder
+    createdAt: SortOrder
+  }
+
+  input TicketMinOrderByAggregateInput {
+    id: SortOrder
+    userId: SortOrder
+    spotId: SortOrder
+    createdAt: SortOrder
+  }
+
+  input TicketCreateNestedManyWithoutSpotInput {
+    create: [TicketCreateWithoutSpotInput!]
+    connectOrCreate: [TicketCreateOrConnectWithoutSpotInput!]
+    createMany: TicketCreateManySpotInputEnvelope
+    connect: [TicketWhereUniqueInput!]
+  }
+
+  input TicketUncheckedCreateNestedManyWithoutSpotInput {
+    create: [TicketCreateWithoutSpotInput!]
+    connectOrCreate: [TicketCreateOrConnectWithoutSpotInput!]
+    createMany: TicketCreateManySpotInputEnvelope
+    connect: [TicketWhereUniqueInput!]
+  }
+
   input StringFieldUpdateOperationsInput {
     set: String
   }
@@ -243,6 +394,48 @@ export default gql`
 
   input DateTimeFieldUpdateOperationsInput {
     set: DateTime
+  }
+
+  input TicketUpdateManyWithoutSpotNestedInput {
+    create: [TicketCreateWithoutSpotInput!]
+    connectOrCreate: [TicketCreateOrConnectWithoutSpotInput!]
+    upsert: [TicketUpsertWithWhereUniqueWithoutSpotInput!]
+    createMany: TicketCreateManySpotInputEnvelope
+    set: [TicketWhereUniqueInput!]
+    disconnect: [TicketWhereUniqueInput!]
+    delete: [TicketWhereUniqueInput!]
+    connect: [TicketWhereUniqueInput!]
+    update: [TicketUpdateWithWhereUniqueWithoutSpotInput!]
+    updateMany: [TicketUpdateManyWithWhereWithoutSpotInput!]
+    deleteMany: [TicketScalarWhereInput!]
+  }
+
+  input TicketUncheckedUpdateManyWithoutSpotNestedInput {
+    create: [TicketCreateWithoutSpotInput!]
+    connectOrCreate: [TicketCreateOrConnectWithoutSpotInput!]
+    upsert: [TicketUpsertWithWhereUniqueWithoutSpotInput!]
+    createMany: TicketCreateManySpotInputEnvelope
+    set: [TicketWhereUniqueInput!]
+    disconnect: [TicketWhereUniqueInput!]
+    delete: [TicketWhereUniqueInput!]
+    connect: [TicketWhereUniqueInput!]
+    update: [TicketUpdateWithWhereUniqueWithoutSpotInput!]
+    updateMany: [TicketUpdateManyWithWhereWithoutSpotInput!]
+    deleteMany: [TicketScalarWhereInput!]
+  }
+
+  input SpotCreateNestedOneWithoutTicketsInput {
+    create: SpotUncheckedCreateWithoutTicketsInput
+    connectOrCreate: SpotCreateOrConnectWithoutTicketsInput
+    connect: SpotWhereUniqueInput
+  }
+
+  input SpotUpdateOneRequiredWithoutTicketsNestedInput {
+    create: SpotUncheckedCreateWithoutTicketsInput
+    connectOrCreate: SpotCreateOrConnectWithoutTicketsInput
+    upsert: SpotUpsertWithoutTicketsInput
+    connect: SpotWhereUniqueInput
+    update: SpotUncheckedUpdateWithoutTicketsInput
   }
 
   input NestedStringFilter {
@@ -354,10 +547,128 @@ export default gql`
     _max: NestedDateTimeFilter
   }
 
+  input TicketCreateWithoutSpotInput {
+    id: String
+    createdAt: DateTime
+  }
+
+  input TicketUncheckedCreateWithoutSpotInput {
+    id: String
+    userId: String
+    createdAt: DateTime
+  }
+
+  input TicketCreateOrConnectWithoutSpotInput {
+    where: TicketWhereUniqueInput!
+    create: TicketUncheckedCreateWithoutSpotInput!
+  }
+
+  input TicketCreateManySpotInputEnvelope {
+    data: [TicketCreateManySpotInput!]!
+    skipDuplicates: Boolean
+  }
+
+  input TicketUpsertWithWhereUniqueWithoutSpotInput {
+    where: TicketWhereUniqueInput!
+    update: TicketUncheckedUpdateWithoutSpotInput!
+    create: TicketUncheckedCreateWithoutSpotInput!
+  }
+
+  input TicketUpdateWithWhereUniqueWithoutSpotInput {
+    where: TicketWhereUniqueInput!
+    data: TicketUncheckedUpdateWithoutSpotInput!
+  }
+
+  input TicketUpdateManyWithWhereWithoutSpotInput {
+    where: TicketScalarWhereInput!
+    data: TicketUncheckedUpdateManyWithoutTicketsInput!
+  }
+
+  input TicketScalarWhereInput {
+    AND: [TicketScalarWhereInput!]
+    OR: [TicketScalarWhereInput!]
+    NOT: [TicketScalarWhereInput!]
+    id: StringFilter
+    userId: StringNullableFilter
+    spotId: StringFilter
+    createdAt: DateTimeFilter
+  }
+
+  input SpotCreateWithoutTicketsInput {
+    id: String
+    title: String!
+    address: String
+    createdAt: DateTime
+  }
+
+  input SpotUncheckedCreateWithoutTicketsInput {
+    id: String
+    title: String!
+    address: String
+    createdAt: DateTime
+  }
+
+  input SpotCreateOrConnectWithoutTicketsInput {
+    where: SpotWhereUniqueInput!
+    create: SpotUncheckedCreateWithoutTicketsInput!
+  }
+
+  input SpotUpsertWithoutTicketsInput {
+    update: SpotUncheckedUpdateWithoutTicketsInput!
+    create: SpotUncheckedCreateWithoutTicketsInput!
+  }
+
+  input SpotUpdateWithoutTicketsInput {
+    id: String
+    title: String
+    address: String
+    createdAt: DateTime
+  }
+
+  input SpotUncheckedUpdateWithoutTicketsInput {
+    id: String
+    title: String
+    address: String
+    createdAt: DateTime
+  }
+
+  input TicketCreateManySpotInput {
+    id: String
+    userId: String
+    createdAt: DateTime
+  }
+
+  input TicketUpdateWithoutSpotInput {
+    id: String
+    createdAt: DateTime
+  }
+
+  input TicketUncheckedUpdateWithoutSpotInput {
+    id: String
+    userId: String
+    createdAt: DateTime
+  }
+
+  input TicketUncheckedUpdateManyWithoutTicketsInput {
+    id: String
+    userId: String
+    createdAt: DateTime
+  }
+
   type AggregateSpot {
     _count: SpotCountAggregateOutputType
     _min: SpotMinAggregateOutputType
     _max: SpotMaxAggregateOutputType
+  }
+
+  type AggregateTicket {
+    _count: TicketCountAggregateOutputType
+    _min: TicketMinAggregateOutputType
+    _max: TicketMaxAggregateOutputType
+  }
+
+  type SpotCountOutputType {
+    tickets: Int!
   }
 
   type SpotCountAggregateOutputType {
@@ -379,6 +690,28 @@ export default gql`
     id: String
     title: String
     address: String
+    createdAt: DateTime
+  }
+
+  type TicketCountAggregateOutputType {
+    id: Int!
+    userId: Int!
+    spotId: Int!
+    createdAt: Int!
+    _all: Int!
+  }
+
+  type TicketMinAggregateOutputType {
+    id: String
+    userId: String
+    spotId: String
+    createdAt: DateTime
+  }
+
+  type TicketMaxAggregateOutputType {
+    id: String
+    userId: String
+    spotId: String
     createdAt: DateTime
   }
 `;

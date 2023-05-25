@@ -3,6 +3,7 @@ import { Prisma } from './generated';
 
 export type DefaultFields = {
   readonly Spot?: Prisma.SpotSelect;
+  readonly Ticket?: Prisma.TicketSelect;
 };
 
 type WithFuncSelect<T> = {

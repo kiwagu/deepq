@@ -1,7 +1,7 @@
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  schemas = ["ticket"]
+  schemas = ["ticket", "iam"]
 }
 
 generator client {
@@ -11,10 +11,33 @@ generator client {
   previewFeatures = ["tracing", "metrics", "clientExtensions", "multiSchema"]
 }
 
+model User {
+  id            String   @id @default(uuid())
+  tickets       Ticket[]
+
+  @@ignore
+  @@schema("iam")
+}
+
 model Spot {
   id            String   @id @default(uuid())
   title         String   @unique
   address       String?
+  createdAt     DateTime @default(now())
+  tickets       Ticket[]
+
+  @@schema("ticket")
+}
+
+model Ticket {
+  id            String   @id @default(uuid())
+
+  user          User?    @relation(fields: [userId], references: [id]) @ignore
+  userId        String?
+
+  spot          Spot     @relation(fields: [spotId], references: [id])
+  spotId        String
+
   createdAt     DateTime @default(now())
 
   @@schema("ticket")
