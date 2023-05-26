@@ -13,6 +13,7 @@ import { ConfigModule } from './config';
 import { JwtModule } from './jwt';
 import { SpotModule } from './modules/spot/spot.module';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { TicketModule } from './modules/ticket/ticket.module';
 
 const oauthProviders: Provider[] = [];
 
@@ -28,6 +29,7 @@ const oauthProviders: Provider[] = [];
     NestAuthModule.register(AppCaslFactory),
     JwtModule,
     SpotModule,
+    TicketModule,
   ],
   exports: [JwtModule, NestAuthModule, defaultFieldsProvider],
   controllers: [AppController],
