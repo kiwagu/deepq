@@ -1,7 +1,7 @@
 import { GraphQLResolveInfo } from 'graphql';
 
 import { Inject, UseGuards } from '@nestjs/common';
-import { Args, Info, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import { Args, Info, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ClientProxy } from '@nestjs/microservices';
 
 import type { NonNullableFields } from '@deepq/common';
@@ -42,14 +42,8 @@ export class TicketResolver {
     @Inject(DEFAULT_FIELDS_TOKEN) private readonly defaultFields: DefaultFields,
     private readonly prismaSelect: PrismaSelectService,
     private readonly caslFactory: CaslFactory,
-    @Inject('IAM_SERVICE') private client: ClientProxy
+    @Inject('TICKET_SERVICE') private client: ClientProxy
   ) {}
-
-  @ResolveField()
-  async rules(@Parent() parent: Ticket) {
-    const ability = await this.caslFactory.createAbility(parent);
-    return ability.rules;
-  }
 
   @Query()
   findUniqueTicket(
