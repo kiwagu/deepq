@@ -21,7 +21,7 @@ import type {
   UpsertOne${name}Args,
 } from '@zen/nest-api/graphql/resolversTypes';
 import { DefaultFields, PrismaSelectService, ${name} } from '@zen/nest-api/prisma';
-import { CaslFactory, CaslGuard } from '@deepq/nest-auth';
+import { CaslGuard } from '@deepq/nest-auth';
 
 import { DEFAULT_FIELDS_TOKEN } from '../default-fields';
 
@@ -44,15 +44,8 @@ export class ${name}Resolver {
   constructor(
     @Inject(DEFAULT_FIELDS_TOKEN) private readonly defaultFields: DefaultFields,
     private readonly prismaSelect: PrismaSelectService,
-    private readonly caslFactory: CaslFactory,
-    @Inject('IAM_SERVICE') private client: ClientProxy
+    @Inject(<PUT_NAME>_SERVICE) private client: ClientProxy
   ) {}
-
-  @ResolveField()
-  async rules(@Parent() parent: ${name}) {
-    const ability = await this.caslFactory.createAbility(parent);
-    return ability.rules;
-  }
 
   @Query()
   findUnique${name}(
