@@ -26,5 +26,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["portal"]
+  "implicitDependencies": ["iam-portal"]
 }

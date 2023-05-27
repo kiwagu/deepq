@@ -1,5 +1,5 @@
 {
-  "name": "nest-api",
+  "name": "ticket-api-lib",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/nest-api/src",
   "projectType": "library",

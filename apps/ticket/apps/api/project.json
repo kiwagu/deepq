@@ -1,5 +1,5 @@
 {
-  "name": "ticket-app",
+  "name": "ticket-api",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/api/src",
   "projectType": "application",
@@ -45,14 +45,14 @@
     "serve": {
       "executor": "@nx/js:node",
       "options": {
-        "buildTarget": "ticket-app:build"
+        "buildTarget": "ticket-api:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "ticket-app:build:development"
+          "buildTarget": "ticket-api:build:development"
         },
         "production": {
-          "buildTarget": "ticket-app:build:production"
+          "buildTarget": "ticket-api:build:production"
         }
       }
     },

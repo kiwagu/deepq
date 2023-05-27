@@ -1,5 +1,5 @@
 {
-  "name": "api-srv",
+  "name": "iam-api",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/api/src",
   "projectType": "application",
@@ -45,14 +45,14 @@
     "serve": {
       "executor": "@nrwl/js:node",
       "options": {
-        "buildTarget": "api-srv:build"
+        "buildTarget": "iam-api:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "api-srv:build:development"
+          "buildTarget": "iam-api:build:development"
         },
         "production": {
-          "buildTarget": "api-srv:build:production"
+          "buildTarget": "iam-api:build:production"
         }
       }
     },

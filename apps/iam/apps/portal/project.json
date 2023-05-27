@@ -1,5 +1,5 @@
 {
-  "name": "portal",
+  "name": "iam-portal",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/portal/src",
@@ -56,10 +56,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "portal:build:production"
+          "browserTarget": "iam-portal:build:production"
         },
         "development": {
-          "browserTarget": "portal:build:development"
+          "browserTarget": "iam-portal:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -67,7 +67,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "portal:build"
+        "browserTarget": "iam-portal:build"
       }
     },
     "lint": {

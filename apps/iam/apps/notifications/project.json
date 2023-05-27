@@ -1,5 +1,5 @@
 {
-  "name": "notifications",
+  "name": "notif-srv",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/notifications/src",
   "projectType": "application",
@@ -27,14 +27,14 @@
       "executor": "@nrwl/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "notifications:build"
+        "buildTarget": "notif-srv:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "notifications:build:development"
+          "buildTarget": "notif-srv:build:development"
         },
         "production": {
-          "buildTarget": "notifications:build:production"
+          "buildTarget": "notif-srv:build:production"
         }
       }
     },
