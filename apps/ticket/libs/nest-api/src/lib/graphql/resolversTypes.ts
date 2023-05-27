@@ -476,7 +476,7 @@ export interface DeleteManySpotArgs {
 }
 
 export interface CreateOneTicketArgs {
-  data: TicketCreateInput;
+  data: TicketUncheckedCreateInput;
 }
 
 export interface UpsertOneTicketArgs {

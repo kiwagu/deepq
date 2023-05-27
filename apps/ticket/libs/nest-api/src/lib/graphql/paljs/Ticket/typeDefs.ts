@@ -45,7 +45,7 @@ export default gql`
   }
 
   type Mutation {
-    createOneTicket(data: TicketCreateInput!): Ticket!
+    createOneTicket(data: TicketUncheckedCreateInput!): Ticket!
     updateOneTicket(
       data: TicketUpdateInput!
       where: TicketWhereUniqueInput!
