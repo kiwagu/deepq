@@ -18,6 +18,7 @@ repo - the pnpm monorepo with workspaces
 | | |- apps
 | | | |- api - graphql api gateway to rabbitmq bus
 | | | |- srv - service with rabbitmq clients
+| | | |- portal - a frontend application (possible as microfrontend)
 | | |- libs
 | | | |- api-lib
 | | | |- srv-lib

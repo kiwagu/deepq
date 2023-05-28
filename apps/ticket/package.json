@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start:ticket-app": "nx serve ticket-app",
-    "start:ticket-srv": "nx serve ticket-srv",
+    "start:dev:api": "nx serve ticket-api",
+    "start:dev:srv": "nx serve ticket-srv",
     "build:ticket-app": "nx build ticket-app",
     "build:ticket-srv": "nx build ticket-srv",
     "gen:api": "prisma generate --schema libs/nest-api/prisma/schema.prisma && ts-node --project tools/tsconfig.json tools/generate.ts",
