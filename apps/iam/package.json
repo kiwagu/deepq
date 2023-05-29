@@ -8,7 +8,7 @@
     "start:dev:portal": "nx serve iam-portal --host=127.0.0.1",
     "start:dev:api": "nx serve iam-api",
     "start:dev:srv": "nx serve iam-srv",
-    "start:dev:srv:notif": "nx serve notif-srv",
+    "start:dev:notif-srv": "nx serve notif-srv",
     "start:e2e": "nx e2e iam-portal-e2e --watch",
     "gen:frontend": "graphql-codegen -c tools/apollo-angular.yml && graphql-codegen -c tools/apollo-possible-types.yml",
     "gen:api": "prisma generate --schema libs/nest-api/prisma/schema.prisma && ts-node --project tools/tsconfig.json tools/generate.ts",
