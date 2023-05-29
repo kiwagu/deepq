@@ -476,7 +476,7 @@ export interface DeleteManySpotArgs {
 }
 
 export interface CreateOneTicketArgs {
-  data: TicketUncheckedCreateInput;
+  data: TicketCreateInput;
 }
 
 export interface UpsertOneTicketArgs {
@@ -660,6 +660,7 @@ export interface SpotUncheckedUpdateManyInput {
 
 export interface TicketCreateInput {
   id?: string;
+  userId?: string | null;
   createdAt?: Date;
   spot: SpotCreateNestedOneWithoutTicketsInput;
 }
@@ -673,6 +674,7 @@ export interface TicketUncheckedCreateInput {
 
 export interface TicketUpdateInput {
   id?: string;
+  userId?: string | null;
   createdAt?: Date;
   spot?: SpotUpdateOneRequiredWithoutTicketsNestedInput;
 }
@@ -693,6 +695,7 @@ export interface TicketCreateManyInput {
 
 export interface TicketUpdateManyMutationInput {
   id?: string;
+  userId?: string | null;
   createdAt?: Date;
 }
 
@@ -1030,6 +1033,7 @@ export interface NestedDateTimeWithAggregatesFilter {
 
 export interface TicketCreateWithoutSpotInput {
   id?: string;
+  userId?: string | null;
   createdAt?: Date;
 }
 
@@ -1121,6 +1125,7 @@ export interface TicketCreateManySpotInput {
 
 export interface TicketUpdateWithoutSpotInput {
   id?: string;
+  userId?: string | null;
   createdAt?: Date;
 }
 

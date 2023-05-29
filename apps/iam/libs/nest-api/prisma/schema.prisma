@@ -1,3 +1,6 @@
+// It uses only for module specific Prisma's client generation
+// For migrations and referencing see full schema in the repo's project
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")

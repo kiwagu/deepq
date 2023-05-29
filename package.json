@@ -14,6 +14,8 @@
     "dev:ticket:srv": "pnpm -r --filter ticket start:dev:srv",
     "dev:ticket:all": "stmux [ \"pnpm dev:ticket:api\" .. \"pnpm dev:ticket:srv\" ] -M",
     "------MISC-----": "",
+    "gen:api": "pnpm -r gen:api",
+    "prisma:migrate": "npx prisma migrate dev --skip-generate",
     "dev:containers": "docker compose -p deepq -f ./apps/iam/docker-compose.yml -f ./apps/iam/docker/otel/docker-compose.yml up -d"
   },
   "private": true,

@@ -179,6 +179,7 @@ export default gql`
 
   input TicketCreateInput {
     id: String
+    userId: String
     createdAt: DateTime
     spot: SpotCreateNestedOneWithoutTicketsInput!
   }
@@ -192,6 +193,7 @@ export default gql`
 
   input TicketUpdateInput {
     id: String
+    userId: String
     createdAt: DateTime
     spot: SpotUpdateOneRequiredWithoutTicketsNestedInput
   }
@@ -212,6 +214,7 @@ export default gql`
 
   input TicketUpdateManyMutationInput {
     id: String
+    userId: String
     createdAt: DateTime
   }
 
@@ -549,6 +552,7 @@ export default gql`
 
   input TicketCreateWithoutSpotInput {
     id: String
+    userId: String
     createdAt: DateTime
   }
 
@@ -640,6 +644,7 @@ export default gql`
 
   input TicketUpdateWithoutSpotInput {
     id: String
+    userId: String
     createdAt: DateTime
   }
 
