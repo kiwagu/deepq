@@ -15,7 +15,7 @@ generator client {
 }
 
 model User {
-  id            String   @id @default(uuid())
+  id            String   @id @db.Uuid @default(uuid())
   createdAt     DateTime @default(now())
   username      String?  @unique
   password      String?
@@ -30,7 +30,7 @@ model User {
 }
 
 model Spot {
-  id            String   @id @default(uuid())
+  id            String   @id @db.Uuid @default(uuid())
   title         String   @unique
   address       String?
   createdAt     DateTime @default(now())
@@ -40,17 +40,32 @@ model Spot {
 }
 
 model Ticket {
-  id            String   @id @default(uuid())
+  id            String   @id @db.Uuid @default(uuid())
 
-  user          User?    @relation(fields: [userId], references: [id])
-  userId        String?  @db.VarChar(255)
+  user          User?    @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  userId        String?  @db.Uuid
 
-  spot          Spot     @relation(fields: [spotId], references: [id])
-  spotId        String   @db.VarChar(255)
+  spot          Spot     @relation(fields: [spotId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  spotId        String   @db.Uuid
 
+  status        TicketStatus    @default(OPEN)
+
+  updatedAt     DateTime @default(now())
   createdAt     DateTime @default(now())
 
   @@index([userId])
   @@index([spotId])
+  @@index([status])
+  @@schema("ticket")
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  SUCCESS
+  REJECT
+  // FORWARD - TODO
+  WAIT_TIMEOUT
+
   @@schema("ticket")
 }

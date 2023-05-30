@@ -245,7 +245,7 @@ export interface UserWhereInput {
   AND?: UserWhereInput[];
   OR?: UserWhereInput[];
   NOT?: UserWhereInput[];
-  id?: StringFilter;
+  id?: UuidFilter;
   createdAt?: DateTimeFilter;
   username?: StringNullableFilter | null;
   password?: StringNullableFilter | null;
@@ -294,7 +294,7 @@ export interface UserScalarWhereWithAggregatesInput {
   AND?: UserScalarWhereWithAggregatesInput[];
   OR?: UserScalarWhereWithAggregatesInput[];
   NOT?: UserScalarWhereWithAggregatesInput[];
-  id?: StringWithAggregatesFilter;
+  id?: UuidWithAggregatesFilter;
   createdAt?: DateTimeWithAggregatesFilter;
   username?: StringNullableWithAggregatesFilter | null;
   password?: StringNullableWithAggregatesFilter | null;
@@ -389,7 +389,7 @@ export interface UserUncheckedUpdateManyInput {
   googleProfile?: NullableJsonNullValueInput;
 }
 
-export interface StringFilter {
+export interface UuidFilter {
   equals?: string;
   in?: string[];
   notIn?: string[];
@@ -397,11 +397,8 @@ export interface StringFilter {
   lte?: string;
   gt?: string;
   gte?: string;
-  contains?: string;
-  startsWith?: string;
-  endsWith?: string;
   mode?: QueryMode;
-  not?: NestedStringFilter;
+  not?: NestedUuidFilter;
 }
 
 export interface DateTimeFilter {
@@ -428,6 +425,21 @@ export interface StringNullableFilter {
   endsWith?: string;
   mode?: QueryMode;
   not?: NestedStringNullableFilter | null;
+}
+
+export interface StringFilter {
+  equals?: string;
+  in?: string[];
+  notIn?: string[];
+  lt?: string;
+  lte?: string;
+  gt?: string;
+  gte?: string;
+  contains?: string;
+  startsWith?: string;
+  endsWith?: string;
+  mode?: QueryMode;
+  not?: NestedStringFilter;
 }
 
 export interface StringNullableListFilter {
@@ -492,7 +504,7 @@ export interface UserMinOrderByAggregateInput {
   googleId?: SortOrder;
 }
 
-export interface StringWithAggregatesFilter {
+export interface UuidWithAggregatesFilter {
   equals?: string;
   in?: string[];
   notIn?: string[];
@@ -500,11 +512,8 @@ export interface StringWithAggregatesFilter {
   lte?: string;
   gt?: string;
   gte?: string;
-  contains?: string;
-  startsWith?: string;
-  endsWith?: string;
   mode?: QueryMode;
-  not?: NestedStringWithAggregatesFilter;
+  not?: NestedUuidWithAggregatesFilter;
   _count?: NestedIntFilter;
   _min?: NestedStringFilter;
   _max?: NestedStringFilter;
@@ -540,6 +549,24 @@ export interface StringNullableWithAggregatesFilter {
   _count?: NestedIntNullableFilter;
   _min?: NestedStringNullableFilter;
   _max?: NestedStringNullableFilter;
+}
+
+export interface StringWithAggregatesFilter {
+  equals?: string;
+  in?: string[];
+  notIn?: string[];
+  lt?: string;
+  lte?: string;
+  gt?: string;
+  gte?: string;
+  contains?: string;
+  startsWith?: string;
+  endsWith?: string;
+  mode?: QueryMode;
+  not?: NestedStringWithAggregatesFilter;
+  _count?: NestedIntFilter;
+  _min?: NestedStringFilter;
+  _max?: NestedStringFilter;
 }
 
 export interface JsonNullableWithAggregatesFilter {
@@ -591,7 +618,7 @@ export interface UserUpdaterulesInput {
   push?: any;
 }
 
-export interface NestedStringFilter {
+export interface NestedUuidFilter {
   equals?: string;
   in?: string[];
   notIn?: string[];
@@ -599,10 +626,7 @@ export interface NestedStringFilter {
   lte?: string;
   gt?: string;
   gte?: string;
-  contains?: string;
-  startsWith?: string;
-  endsWith?: string;
-  not?: NestedStringFilter;
+  not?: NestedUuidFilter;
 }
 
 export interface NestedDateTimeFilter {
@@ -630,7 +654,7 @@ export interface NestedStringNullableFilter {
   not?: NestedStringNullableFilter | null;
 }
 
-export interface NestedStringWithAggregatesFilter {
+export interface NestedStringFilter {
   equals?: string;
   in?: string[];
   notIn?: string[];
@@ -641,7 +665,18 @@ export interface NestedStringWithAggregatesFilter {
   contains?: string;
   startsWith?: string;
   endsWith?: string;
-  not?: NestedStringWithAggregatesFilter;
+  not?: NestedStringFilter;
+}
+
+export interface NestedUuidWithAggregatesFilter {
+  equals?: string;
+  in?: string[];
+  notIn?: string[];
+  lt?: string;
+  lte?: string;
+  gt?: string;
+  gte?: string;
+  not?: NestedUuidWithAggregatesFilter;
   _count?: NestedIntFilter;
   _min?: NestedStringFilter;
   _max?: NestedStringFilter;
@@ -698,6 +733,23 @@ export interface NestedIntNullableFilter {
   gt?: number;
   gte?: number;
   not?: NestedIntNullableFilter | null;
+}
+
+export interface NestedStringWithAggregatesFilter {
+  equals?: string;
+  in?: string[];
+  notIn?: string[];
+  lt?: string;
+  lte?: string;
+  gt?: string;
+  gte?: string;
+  contains?: string;
+  startsWith?: string;
+  endsWith?: string;
+  not?: NestedStringWithAggregatesFilter;
+  _count?: NestedIntFilter;
+  _min?: NestedStringFilter;
+  _max?: NestedStringFilter;
 }
 
 export interface NestedJsonNullableFilter {
