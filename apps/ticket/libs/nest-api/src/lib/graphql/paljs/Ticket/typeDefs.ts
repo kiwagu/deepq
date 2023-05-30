@@ -5,6 +5,8 @@ export default gql`
     id: String!
     userId: String
     spotId: String!
+    status: TicketStatus!
+    updatedAt: DateTime!
     createdAt: DateTime!
     spot: Spot!
   }

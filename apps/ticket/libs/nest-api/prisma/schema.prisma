@@ -32,7 +32,24 @@ model Ticket {
   spot          Spot     @relation(fields: [spotId], references: [id])
   spotId        String   @db.VarChar(255)
 
+  status        TicketStatus    @default(OPEN)
+
+  updatedAt     DateTime @default(now())
   createdAt     DateTime @default(now())
+
+  @@index([userId])
+  @@index([spotId])
+  @@index([status])
+  @@schema("ticket")
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  SUCCESS
+  REJECT
+  // FORWARD - TODO
+  WAIT_TIMEOUT
 
   @@schema("ticket")
 }

@@ -45,6 +45,8 @@ export type Ticket = { [key: string]: Resolver<any, any, any> } & {
   id?: Resolver<Client.Ticket, {}, string>;
   userId?: Resolver<Client.Ticket, {}, string | null>;
   spotId?: Resolver<Client.Ticket, {}, string>;
+  status?: Resolver<Client.Ticket, {}, Client.TicketStatus>;
+  updatedAt?: Resolver<Client.Ticket, {}, Date>;
   createdAt?: Resolver<Client.Ticket, {}, Date>;
   spot?: Resolver<Client.Ticket, {}, Client.Spot>;
 };
@@ -197,6 +199,12 @@ export type TicketGroupByOutputType = {
   id?: Resolver<Client.Prisma.TicketGroupByOutputType, {}, string>;
   userId?: Resolver<Client.Prisma.TicketGroupByOutputType, {}, string | null>;
   spotId?: Resolver<Client.Prisma.TicketGroupByOutputType, {}, string>;
+  status?: Resolver<
+    Client.Prisma.TicketGroupByOutputType,
+    {},
+    Client.TicketStatus
+  >;
+  updatedAt?: Resolver<Client.Prisma.TicketGroupByOutputType, {}, Date>;
   createdAt?: Resolver<Client.Prisma.TicketGroupByOutputType, {}, Date>;
   _count?: Resolver<
     Client.Prisma.TicketGroupByOutputType,
@@ -273,6 +281,12 @@ export type TicketCountAggregateOutputType = {
   id?: Resolver<Client.Prisma.TicketCountAggregateOutputType, {}, number>;
   userId?: Resolver<Client.Prisma.TicketCountAggregateOutputType, {}, number>;
   spotId?: Resolver<Client.Prisma.TicketCountAggregateOutputType, {}, number>;
+  status?: Resolver<Client.Prisma.TicketCountAggregateOutputType, {}, number>;
+  updatedAt?: Resolver<
+    Client.Prisma.TicketCountAggregateOutputType,
+    {},
+    number
+  >;
   createdAt?: Resolver<
     Client.Prisma.TicketCountAggregateOutputType,
     {},
@@ -295,6 +309,16 @@ export type TicketMinAggregateOutputType = {
     {},
     string | null
   >;
+  status?: Resolver<
+    Client.Prisma.TicketMinAggregateOutputType,
+    {},
+    Client.TicketStatus | null
+  >;
+  updatedAt?: Resolver<
+    Client.Prisma.TicketMinAggregateOutputType,
+    {},
+    Date | null
+  >;
   createdAt?: Resolver<
     Client.Prisma.TicketMinAggregateOutputType,
     {},
@@ -315,6 +339,16 @@ export type TicketMaxAggregateOutputType = {
     Client.Prisma.TicketMaxAggregateOutputType,
     {},
     string | null
+  >;
+  status?: Resolver<
+    Client.Prisma.TicketMaxAggregateOutputType,
+    {},
+    Client.TicketStatus | null
+  >;
+  updatedAt?: Resolver<
+    Client.Prisma.TicketMaxAggregateOutputType,
+    {},
+    Date | null
   >;
   createdAt?: Resolver<
     Client.Prisma.TicketMaxAggregateOutputType,
@@ -569,6 +603,8 @@ export interface TicketWhereInput {
   id?: UuidFilter;
   userId?: StringNullableFilter | null;
   spotId?: StringFilter;
+  status?: EnumTicketStatusFilter;
+  updatedAt?: DateTimeFilter;
   createdAt?: DateTimeFilter;
   spot?: SpotWhereInput;
 }
@@ -577,6 +613,8 @@ export interface TicketOrderByWithRelationInput {
   id?: SortOrder;
   userId?: SortOrder;
   spotId?: SortOrder;
+  status?: SortOrder;
+  updatedAt?: SortOrder;
   createdAt?: SortOrder;
   spot?: SpotOrderByWithRelationInput;
 }
@@ -589,6 +627,8 @@ export interface TicketOrderByWithAggregationInput {
   id?: SortOrder;
   userId?: SortOrder;
   spotId?: SortOrder;
+  status?: SortOrder;
+  updatedAt?: SortOrder;
   createdAt?: SortOrder;
   _count?: TicketCountOrderByAggregateInput;
   _max?: TicketMaxOrderByAggregateInput;
@@ -602,6 +642,8 @@ export interface TicketScalarWhereWithAggregatesInput {
   id?: UuidWithAggregatesFilter;
   userId?: StringNullableWithAggregatesFilter | null;
   spotId?: StringWithAggregatesFilter;
+  status?: EnumTicketStatusWithAggregatesFilter;
+  updatedAt?: DateTimeWithAggregatesFilter;
   createdAt?: DateTimeWithAggregatesFilter;
 }
 
@@ -661,6 +703,8 @@ export interface SpotUncheckedUpdateManyInput {
 export interface TicketCreateInput {
   id?: string;
   userId?: string | null;
+  status?: TicketStatus;
+  updatedAt?: Date;
   createdAt?: Date;
   spot: SpotCreateNestedOneWithoutTicketsInput;
 }
@@ -669,12 +713,16 @@ export interface TicketUncheckedCreateInput {
   id?: string;
   userId?: string | null;
   spotId: string;
+  status?: TicketStatus;
+  updatedAt?: Date;
   createdAt?: Date;
 }
 
 export interface TicketUpdateInput {
   id?: string;
   userId?: string | null;
+  status?: TicketStatus;
+  updatedAt?: Date;
   createdAt?: Date;
   spot?: SpotUpdateOneRequiredWithoutTicketsNestedInput;
 }
@@ -683,6 +731,8 @@ export interface TicketUncheckedUpdateInput {
   id?: string;
   userId?: string | null;
   spotId?: string;
+  status?: TicketStatus;
+  updatedAt?: Date;
   createdAt?: Date;
 }
 
@@ -690,12 +740,16 @@ export interface TicketCreateManyInput {
   id?: string;
   userId?: string | null;
   spotId: string;
+  status?: TicketStatus;
+  updatedAt?: Date;
   createdAt?: Date;
 }
 
 export interface TicketUpdateManyMutationInput {
   id?: string;
   userId?: string | null;
+  status?: TicketStatus;
+  updatedAt?: Date;
   createdAt?: Date;
 }
 
@@ -703,6 +757,8 @@ export interface TicketUncheckedUpdateManyInput {
   id?: string;
   userId?: string | null;
   spotId?: string;
+  status?: TicketStatus;
+  updatedAt?: Date;
   createdAt?: Date;
 }
 
@@ -855,6 +911,13 @@ export interface DateTimeWithAggregatesFilter {
   _max?: NestedDateTimeFilter;
 }
 
+export interface EnumTicketStatusFilter {
+  equals?: TicketStatus;
+  in?: TicketStatus[];
+  notIn?: TicketStatus[];
+  not?: NestedEnumTicketStatusFilter;
+}
+
 export interface SpotRelationFilter {
   is?: SpotWhereInput;
   isNot?: SpotWhereInput;
@@ -864,6 +927,8 @@ export interface TicketCountOrderByAggregateInput {
   id?: SortOrder;
   userId?: SortOrder;
   spotId?: SortOrder;
+  status?: SortOrder;
+  updatedAt?: SortOrder;
   createdAt?: SortOrder;
 }
 
@@ -871,6 +936,8 @@ export interface TicketMaxOrderByAggregateInput {
   id?: SortOrder;
   userId?: SortOrder;
   spotId?: SortOrder;
+  status?: SortOrder;
+  updatedAt?: SortOrder;
   createdAt?: SortOrder;
 }
 
@@ -878,7 +945,19 @@ export interface TicketMinOrderByAggregateInput {
   id?: SortOrder;
   userId?: SortOrder;
   spotId?: SortOrder;
+  status?: SortOrder;
+  updatedAt?: SortOrder;
   createdAt?: SortOrder;
+}
+
+export interface EnumTicketStatusWithAggregatesFilter {
+  equals?: TicketStatus;
+  in?: TicketStatus[];
+  notIn?: TicketStatus[];
+  not?: NestedEnumTicketStatusWithAggregatesFilter;
+  _count?: NestedIntFilter;
+  _min?: NestedEnumTicketStatusFilter;
+  _max?: NestedEnumTicketStatusFilter;
 }
 
 export interface TicketCreateNestedManyWithoutSpotInput {
@@ -939,6 +1018,10 @@ export interface SpotCreateNestedOneWithoutTicketsInput {
   create?: SpotUncheckedCreateWithoutTicketsInput;
   connectOrCreate?: SpotCreateOrConnectWithoutTicketsInput;
   connect?: SpotWhereUniqueInput;
+}
+
+export interface EnumTicketStatusFieldUpdateOperationsInput {
+  set?: TicketStatus;
 }
 
 export interface SpotUpdateOneRequiredWithoutTicketsNestedInput {
@@ -1083,15 +1166,36 @@ export interface NestedDateTimeWithAggregatesFilter {
   _max?: NestedDateTimeFilter;
 }
 
+export interface NestedEnumTicketStatusFilter {
+  equals?: TicketStatus;
+  in?: TicketStatus[];
+  notIn?: TicketStatus[];
+  not?: NestedEnumTicketStatusFilter;
+}
+
+export interface NestedEnumTicketStatusWithAggregatesFilter {
+  equals?: TicketStatus;
+  in?: TicketStatus[];
+  notIn?: TicketStatus[];
+  not?: NestedEnumTicketStatusWithAggregatesFilter;
+  _count?: NestedIntFilter;
+  _min?: NestedEnumTicketStatusFilter;
+  _max?: NestedEnumTicketStatusFilter;
+}
+
 export interface TicketCreateWithoutSpotInput {
   id?: string;
   userId?: string | null;
+  status?: TicketStatus;
+  updatedAt?: Date;
   createdAt?: Date;
 }
 
 export interface TicketUncheckedCreateWithoutSpotInput {
   id?: string;
   userId?: string | null;
+  status?: TicketStatus;
+  updatedAt?: Date;
   createdAt?: Date;
 }
 
@@ -1128,6 +1232,8 @@ export interface TicketScalarWhereInput {
   id?: UuidFilter;
   userId?: StringNullableFilter | null;
   spotId?: StringFilter;
+  status?: EnumTicketStatusFilter;
+  updatedAt?: DateTimeFilter;
   createdAt?: DateTimeFilter;
 }
 
@@ -1172,24 +1278,32 @@ export interface SpotUncheckedUpdateWithoutTicketsInput {
 export interface TicketCreateManySpotInput {
   id?: string;
   userId?: string | null;
+  status?: TicketStatus;
+  updatedAt?: Date;
   createdAt?: Date;
 }
 
 export interface TicketUpdateWithoutSpotInput {
   id?: string;
   userId?: string | null;
+  status?: TicketStatus;
+  updatedAt?: Date;
   createdAt?: Date;
 }
 
 export interface TicketUncheckedUpdateWithoutSpotInput {
   id?: string;
   userId?: string | null;
+  status?: TicketStatus;
+  updatedAt?: Date;
   createdAt?: Date;
 }
 
 export interface TicketUncheckedUpdateManyWithoutTicketsInput {
   id?: string;
   userId?: string | null;
+  status?: TicketStatus;
+  updatedAt?: Date;
   createdAt?: Date;
 }
 
@@ -1211,6 +1325,8 @@ export enum TicketScalarFieldEnum {
   id = 'id',
   userId = 'userId',
   spotId = 'spotId',
+  status = 'status',
+  updatedAt = 'updatedAt',
   createdAt = 'createdAt',
 }
 export enum TransactionIsolationLevel {
@@ -1218,4 +1334,11 @@ export enum TransactionIsolationLevel {
   ReadCommitted = 'ReadCommitted',
   RepeatableRead = 'RepeatableRead',
   Serializable = 'Serializable',
+}
+export enum TicketStatus {
+  OPEN = 'OPEN',
+  IN_PROGRESS = 'IN_PROGRESS',
+  SUCCESS = 'SUCCESS',
+  REJECT = 'REJECT',
+  WAIT_TIMEOUT = 'WAIT_TIMEOUT',
 }

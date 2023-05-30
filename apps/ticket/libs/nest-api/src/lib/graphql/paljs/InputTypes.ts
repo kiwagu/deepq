@@ -27,6 +27,8 @@ export default gql`
     id
     userId
     spotId
+    status
+    updatedAt
     createdAt
   }
 
@@ -35,6 +37,14 @@ export default gql`
     ReadCommitted
     RepeatableRead
     Serializable
+  }
+
+  enum TicketStatus {
+    OPEN
+    IN_PROGRESS
+    SUCCESS
+    REJECT
+    WAIT_TIMEOUT
   }
 
   input SpotWhereInput {
@@ -88,6 +98,8 @@ export default gql`
     id: UuidFilter
     userId: StringNullableFilter
     spotId: StringFilter
+    status: EnumTicketStatusFilter
+    updatedAt: DateTimeFilter
     createdAt: DateTimeFilter
     spot: SpotWhereInput
   }
@@ -96,6 +108,8 @@ export default gql`
     id: SortOrder
     userId: SortOrder
     spotId: SortOrder
+    status: SortOrder
+    updatedAt: SortOrder
     createdAt: SortOrder
     spot: SpotOrderByWithRelationInput
   }
@@ -108,6 +122,8 @@ export default gql`
     id: SortOrder
     userId: SortOrder
     spotId: SortOrder
+    status: SortOrder
+    updatedAt: SortOrder
     createdAt: SortOrder
     _count: TicketCountOrderByAggregateInput
     _max: TicketMaxOrderByAggregateInput
@@ -121,6 +137,8 @@ export default gql`
     id: UuidWithAggregatesFilter
     userId: StringNullableWithAggregatesFilter
     spotId: StringWithAggregatesFilter
+    status: EnumTicketStatusWithAggregatesFilter
+    updatedAt: DateTimeWithAggregatesFilter
     createdAt: DateTimeWithAggregatesFilter
   }
 
@@ -180,6 +198,8 @@ export default gql`
   input TicketCreateInput {
     id: String
     userId: String
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
     spot: SpotCreateNestedOneWithoutTicketsInput!
   }
@@ -188,12 +208,16 @@ export default gql`
     id: String
     userId: String
     spotId: String!
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
   }
 
   input TicketUpdateInput {
     id: String
     userId: String
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
     spot: SpotUpdateOneRequiredWithoutTicketsNestedInput
   }
@@ -202,6 +226,8 @@ export default gql`
     id: String
     userId: String
     spotId: String
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
   }
 
@@ -209,12 +235,16 @@ export default gql`
     id: String
     userId: String
     spotId: String!
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
   }
 
   input TicketUpdateManyMutationInput {
     id: String
     userId: String
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
   }
 
@@ -222,6 +252,8 @@ export default gql`
     id: String
     userId: String
     spotId: String
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
   }
 
@@ -374,6 +406,13 @@ export default gql`
     _max: NestedDateTimeFilter
   }
 
+  input EnumTicketStatusFilter {
+    equals: TicketStatus
+    in: [TicketStatus!]
+    notIn: [TicketStatus!]
+    not: NestedEnumTicketStatusFilter
+  }
+
   input SpotRelationFilter {
     is: SpotWhereInput
     isNot: SpotWhereInput
@@ -383,6 +422,8 @@ export default gql`
     id: SortOrder
     userId: SortOrder
     spotId: SortOrder
+    status: SortOrder
+    updatedAt: SortOrder
     createdAt: SortOrder
   }
 
@@ -390,6 +431,8 @@ export default gql`
     id: SortOrder
     userId: SortOrder
     spotId: SortOrder
+    status: SortOrder
+    updatedAt: SortOrder
     createdAt: SortOrder
   }
 
@@ -397,7 +440,19 @@ export default gql`
     id: SortOrder
     userId: SortOrder
     spotId: SortOrder
+    status: SortOrder
+    updatedAt: SortOrder
     createdAt: SortOrder
+  }
+
+  input EnumTicketStatusWithAggregatesFilter {
+    equals: TicketStatus
+    in: [TicketStatus!]
+    notIn: [TicketStatus!]
+    not: NestedEnumTicketStatusWithAggregatesFilter
+    _count: NestedIntFilter
+    _min: NestedEnumTicketStatusFilter
+    _max: NestedEnumTicketStatusFilter
   }
 
   input TicketCreateNestedManyWithoutSpotInput {
@@ -458,6 +513,10 @@ export default gql`
     create: SpotUncheckedCreateWithoutTicketsInput
     connectOrCreate: SpotCreateOrConnectWithoutTicketsInput
     connect: SpotWhereUniqueInput
+  }
+
+  input EnumTicketStatusFieldUpdateOperationsInput {
+    set: TicketStatus
   }
 
   input SpotUpdateOneRequiredWithoutTicketsNestedInput {
@@ -602,15 +661,36 @@ export default gql`
     _max: NestedDateTimeFilter
   }
 
+  input NestedEnumTicketStatusFilter {
+    equals: TicketStatus
+    in: [TicketStatus!]
+    notIn: [TicketStatus!]
+    not: NestedEnumTicketStatusFilter
+  }
+
+  input NestedEnumTicketStatusWithAggregatesFilter {
+    equals: TicketStatus
+    in: [TicketStatus!]
+    notIn: [TicketStatus!]
+    not: NestedEnumTicketStatusWithAggregatesFilter
+    _count: NestedIntFilter
+    _min: NestedEnumTicketStatusFilter
+    _max: NestedEnumTicketStatusFilter
+  }
+
   input TicketCreateWithoutSpotInput {
     id: String
     userId: String
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
   }
 
   input TicketUncheckedCreateWithoutSpotInput {
     id: String
     userId: String
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
   }
 
@@ -647,6 +727,8 @@ export default gql`
     id: UuidFilter
     userId: StringNullableFilter
     spotId: StringFilter
+    status: EnumTicketStatusFilter
+    updatedAt: DateTimeFilter
     createdAt: DateTimeFilter
   }
 
@@ -691,24 +773,32 @@ export default gql`
   input TicketCreateManySpotInput {
     id: String
     userId: String
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
   }
 
   input TicketUpdateWithoutSpotInput {
     id: String
     userId: String
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
   }
 
   input TicketUncheckedUpdateWithoutSpotInput {
     id: String
     userId: String
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
   }
 
   input TicketUncheckedUpdateManyWithoutTicketsInput {
     id: String
     userId: String
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
   }
 
@@ -754,6 +844,8 @@ export default gql`
     id: Int!
     userId: Int!
     spotId: Int!
+    status: Int!
+    updatedAt: Int!
     createdAt: Int!
     _all: Int!
   }
@@ -762,6 +854,8 @@ export default gql`
     id: String
     userId: String
     spotId: String
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
   }
 
@@ -769,6 +863,8 @@ export default gql`
     id: String
     userId: String
     spotId: String
+    status: TicketStatus
+    updatedAt: DateTime
     createdAt: DateTime
   }
 `;

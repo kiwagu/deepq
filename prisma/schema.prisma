@@ -48,9 +48,24 @@ model Ticket {
   spot          Spot     @relation(fields: [spotId], references: [id], onDelete: Restrict, onUpdate: Cascade)
   spotId        String   @db.Uuid
 
+  status        TicketStatus    @default(OPEN)
+
+  updatedAt     DateTime @default(now())
   createdAt     DateTime @default(now())
 
   @@index([userId])
   @@index([spotId])
+  @@index([status])
+  @@schema("ticket")
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  SUCCESS
+  REJECT
+  // FORWARD - TODO
+  WAIT_TIMEOUT
+
   @@schema("ticket")
 }
