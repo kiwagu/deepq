@@ -11,10 +11,10 @@
     "start:dev:notif-srv": "nx serve notif-srv",
     "start:e2e": "nx e2e iam-portal-e2e --watch",
     "gen:frontend": "graphql-codegen -c tools/apollo-angular.yml && graphql-codegen -c tools/apollo-possible-types.yml",
-    "gen:api": "prisma generate --schema libs/nest-api/prisma/schema.prisma && ts-node --project tools/tsconfig.json tools/generate.ts",
-    "prisma:migrate": "prisma migrate dev --schema libs/nest-api/prisma/schema.prisma && ts-node --project tools/tsconfig.json tools/generate.ts",
-    "prisma:push": "prisma db push --schema libs/nest-api/prisma/schema.prisma && ts-node --project tools/tsconfig.json tools/generate.ts",
-    "prisma:studio": "prisma studio --schema libs/nest-api/prisma/schema.prisma",
+    "gen:api": "prisma generate && ts-node --project tools/tsconfig.json tools/generate.ts",
+    "prisma:migrate": "prisma migrate dev && ts-node --project tools/tsconfig.json tools/generate.ts",
+    "prisma:push": "prisma db push && ts-node --project tools/tsconfig.json tools/generate.ts",
+    "prisma:studio": "prisma studio",
     "prod:portal": "nx build iam-portal --prod",
     "prod:api": "nx build api --prod && npm run docker:build:api",
     "docker:build:api": "docker build -f deploy/api/Dockerfile -t zen-api .",
@@ -179,5 +179,8 @@
       "style": "module",
       "parser": "typescript"
     }
+  },
+  "prisma": {
+    "schema": "libs/nest-api/prisma/schema.prisma"
   }
 }
