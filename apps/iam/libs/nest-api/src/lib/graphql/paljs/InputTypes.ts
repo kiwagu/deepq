@@ -50,7 +50,7 @@ export default gql`
     AND: [UserWhereInput!]
     OR: [UserWhereInput!]
     NOT: [UserWhereInput!]
-    id: StringFilter
+    id: UuidFilter
     createdAt: DateTimeFilter
     username: StringNullableFilter
     password: StringNullableFilter
@@ -99,7 +99,7 @@ export default gql`
     AND: [UserScalarWhereWithAggregatesInput!]
     OR: [UserScalarWhereWithAggregatesInput!]
     NOT: [UserScalarWhereWithAggregatesInput!]
-    id: StringWithAggregatesFilter
+    id: UuidWithAggregatesFilter
     createdAt: DateTimeWithAggregatesFilter
     username: StringNullableWithAggregatesFilter
     password: StringNullableWithAggregatesFilter
@@ -194,7 +194,7 @@ export default gql`
     googleProfile: Json
   }
 
-  input StringFilter {
+  input UuidFilter {
     equals: String
     in: [String!]
     notIn: [String!]
@@ -202,11 +202,8 @@ export default gql`
     lte: String
     gt: String
     gte: String
-    contains: String
-    startsWith: String
-    endsWith: String
     mode: QueryMode
-    not: NestedStringFilter
+    not: NestedUuidFilter
   }
 
   input DateTimeFilter {
@@ -233,6 +230,21 @@ export default gql`
     endsWith: String
     mode: QueryMode
     not: NestedStringNullableFilter
+  }
+
+  input StringFilter {
+    equals: String
+    in: [String!]
+    notIn: [String!]
+    lt: String
+    lte: String
+    gt: String
+    gte: String
+    contains: String
+    startsWith: String
+    endsWith: String
+    mode: QueryMode
+    not: NestedStringFilter
   }
 
   input StringNullableListFilter {
@@ -297,7 +309,7 @@ export default gql`
     googleId: SortOrder
   }
 
-  input StringWithAggregatesFilter {
+  input UuidWithAggregatesFilter {
     equals: String
     in: [String!]
     notIn: [String!]
@@ -305,11 +317,8 @@ export default gql`
     lte: String
     gt: String
     gte: String
-    contains: String
-    startsWith: String
-    endsWith: String
     mode: QueryMode
-    not: NestedStringWithAggregatesFilter
+    not: NestedUuidWithAggregatesFilter
     _count: NestedIntFilter
     _min: NestedStringFilter
     _max: NestedStringFilter
@@ -345,6 +354,24 @@ export default gql`
     _count: NestedIntNullableFilter
     _min: NestedStringNullableFilter
     _max: NestedStringNullableFilter
+  }
+
+  input StringWithAggregatesFilter {
+    equals: String
+    in: [String!]
+    notIn: [String!]
+    lt: String
+    lte: String
+    gt: String
+    gte: String
+    contains: String
+    startsWith: String
+    endsWith: String
+    mode: QueryMode
+    not: NestedStringWithAggregatesFilter
+    _count: NestedIntFilter
+    _min: NestedStringFilter
+    _max: NestedStringFilter
   }
 
   input JsonNullableWithAggregatesFilter {
@@ -396,7 +423,7 @@ export default gql`
     push: [Json!]
   }
 
-  input NestedStringFilter {
+  input NestedUuidFilter {
     equals: String
     in: [String!]
     notIn: [String!]
@@ -404,10 +431,7 @@ export default gql`
     lte: String
     gt: String
     gte: String
-    contains: String
-    startsWith: String
-    endsWith: String
-    not: NestedStringFilter
+    not: NestedUuidFilter
   }
 
   input NestedDateTimeFilter {
@@ -435,7 +459,7 @@ export default gql`
     not: NestedStringNullableFilter
   }
 
-  input NestedStringWithAggregatesFilter {
+  input NestedStringFilter {
     equals: String
     in: [String!]
     notIn: [String!]
@@ -446,7 +470,18 @@ export default gql`
     contains: String
     startsWith: String
     endsWith: String
-    not: NestedStringWithAggregatesFilter
+    not: NestedStringFilter
+  }
+
+  input NestedUuidWithAggregatesFilter {
+    equals: String
+    in: [String!]
+    notIn: [String!]
+    lt: String
+    lte: String
+    gt: String
+    gte: String
+    not: NestedUuidWithAggregatesFilter
     _count: NestedIntFilter
     _min: NestedStringFilter
     _max: NestedStringFilter
@@ -503,6 +538,23 @@ export default gql`
     gt: Int
     gte: Int
     not: NestedIntNullableFilter
+  }
+
+  input NestedStringWithAggregatesFilter {
+    equals: String
+    in: [String!]
+    notIn: [String!]
+    lt: String
+    lte: String
+    gt: String
+    gte: String
+    contains: String
+    startsWith: String
+    endsWith: String
+    not: NestedStringWithAggregatesFilter
+    _count: NestedIntFilter
+    _min: NestedStringFilter
+    _max: NestedStringFilter
   }
 
   input NestedJsonNullableFilter {

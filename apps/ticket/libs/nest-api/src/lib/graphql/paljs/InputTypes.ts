@@ -41,7 +41,7 @@ export default gql`
     AND: [SpotWhereInput!]
     OR: [SpotWhereInput!]
     NOT: [SpotWhereInput!]
-    id: StringFilter
+    id: UuidFilter
     title: StringFilter
     address: StringNullableFilter
     createdAt: DateTimeFilter
@@ -75,7 +75,7 @@ export default gql`
     AND: [SpotScalarWhereWithAggregatesInput!]
     OR: [SpotScalarWhereWithAggregatesInput!]
     NOT: [SpotScalarWhereWithAggregatesInput!]
-    id: StringWithAggregatesFilter
+    id: UuidWithAggregatesFilter
     title: StringWithAggregatesFilter
     address: StringNullableWithAggregatesFilter
     createdAt: DateTimeWithAggregatesFilter
@@ -85,7 +85,7 @@ export default gql`
     AND: [TicketWhereInput!]
     OR: [TicketWhereInput!]
     NOT: [TicketWhereInput!]
-    id: StringFilter
+    id: UuidFilter
     userId: StringNullableFilter
     spotId: StringFilter
     createdAt: DateTimeFilter
@@ -118,7 +118,7 @@ export default gql`
     AND: [TicketScalarWhereWithAggregatesInput!]
     OR: [TicketScalarWhereWithAggregatesInput!]
     NOT: [TicketScalarWhereWithAggregatesInput!]
-    id: StringWithAggregatesFilter
+    id: UuidWithAggregatesFilter
     userId: StringNullableWithAggregatesFilter
     spotId: StringWithAggregatesFilter
     createdAt: DateTimeWithAggregatesFilter
@@ -225,6 +225,18 @@ export default gql`
     createdAt: DateTime
   }
 
+  input UuidFilter {
+    equals: String
+    in: [String!]
+    notIn: [String!]
+    lt: String
+    lte: String
+    gt: String
+    gte: String
+    mode: QueryMode
+    not: NestedUuidFilter
+  }
+
   input StringFilter {
     equals: String
     in: [String!]
@@ -295,6 +307,21 @@ export default gql`
     title: SortOrder
     address: SortOrder
     createdAt: SortOrder
+  }
+
+  input UuidWithAggregatesFilter {
+    equals: String
+    in: [String!]
+    notIn: [String!]
+    lt: String
+    lte: String
+    gt: String
+    gte: String
+    mode: QueryMode
+    not: NestedUuidWithAggregatesFilter
+    _count: NestedIntFilter
+    _min: NestedStringFilter
+    _max: NestedStringFilter
   }
 
   input StringWithAggregatesFilter {
@@ -441,6 +468,17 @@ export default gql`
     update: SpotUncheckedUpdateWithoutTicketsInput
   }
 
+  input NestedUuidFilter {
+    equals: String
+    in: [String!]
+    notIn: [String!]
+    lt: String
+    lte: String
+    gt: String
+    gte: String
+    not: NestedUuidFilter
+  }
+
   input NestedStringFilter {
     equals: String
     in: [String!]
@@ -480,6 +518,31 @@ export default gql`
     not: NestedDateTimeFilter
   }
 
+  input NestedUuidWithAggregatesFilter {
+    equals: String
+    in: [String!]
+    notIn: [String!]
+    lt: String
+    lte: String
+    gt: String
+    gte: String
+    not: NestedUuidWithAggregatesFilter
+    _count: NestedIntFilter
+    _min: NestedStringFilter
+    _max: NestedStringFilter
+  }
+
+  input NestedIntFilter {
+    equals: Int
+    in: [Int!]
+    notIn: [Int!]
+    lt: Int
+    lte: Int
+    gt: Int
+    gte: Int
+    not: NestedIntFilter
+  }
+
   input NestedStringWithAggregatesFilter {
     equals: String
     in: [String!]
@@ -495,17 +558,6 @@ export default gql`
     _count: NestedIntFilter
     _min: NestedStringFilter
     _max: NestedStringFilter
-  }
-
-  input NestedIntFilter {
-    equals: Int
-    in: [Int!]
-    notIn: [Int!]
-    lt: Int
-    lte: Int
-    gt: Int
-    gte: Int
-    not: NestedIntFilter
   }
 
   input NestedStringNullableWithAggregatesFilter {
@@ -592,7 +644,7 @@ export default gql`
     AND: [TicketScalarWhereInput!]
     OR: [TicketScalarWhereInput!]
     NOT: [TicketScalarWhereInput!]
-    id: StringFilter
+    id: UuidFilter
     userId: StringNullableFilter
     spotId: StringFilter
     createdAt: DateTimeFilter

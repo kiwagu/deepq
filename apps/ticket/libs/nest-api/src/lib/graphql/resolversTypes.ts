@@ -522,7 +522,7 @@ export interface SpotWhereInput {
   AND?: SpotWhereInput[];
   OR?: SpotWhereInput[];
   NOT?: SpotWhereInput[];
-  id?: StringFilter;
+  id?: UuidFilter;
   title?: StringFilter;
   address?: StringNullableFilter | null;
   createdAt?: DateTimeFilter;
@@ -556,7 +556,7 @@ export interface SpotScalarWhereWithAggregatesInput {
   AND?: SpotScalarWhereWithAggregatesInput[];
   OR?: SpotScalarWhereWithAggregatesInput[];
   NOT?: SpotScalarWhereWithAggregatesInput[];
-  id?: StringWithAggregatesFilter;
+  id?: UuidWithAggregatesFilter;
   title?: StringWithAggregatesFilter;
   address?: StringNullableWithAggregatesFilter | null;
   createdAt?: DateTimeWithAggregatesFilter;
@@ -566,7 +566,7 @@ export interface TicketWhereInput {
   AND?: TicketWhereInput[];
   OR?: TicketWhereInput[];
   NOT?: TicketWhereInput[];
-  id?: StringFilter;
+  id?: UuidFilter;
   userId?: StringNullableFilter | null;
   spotId?: StringFilter;
   createdAt?: DateTimeFilter;
@@ -599,7 +599,7 @@ export interface TicketScalarWhereWithAggregatesInput {
   AND?: TicketScalarWhereWithAggregatesInput[];
   OR?: TicketScalarWhereWithAggregatesInput[];
   NOT?: TicketScalarWhereWithAggregatesInput[];
-  id?: StringWithAggregatesFilter;
+  id?: UuidWithAggregatesFilter;
   userId?: StringNullableWithAggregatesFilter | null;
   spotId?: StringWithAggregatesFilter;
   createdAt?: DateTimeWithAggregatesFilter;
@@ -706,6 +706,18 @@ export interface TicketUncheckedUpdateManyInput {
   createdAt?: Date;
 }
 
+export interface UuidFilter {
+  equals?: string;
+  in?: string[];
+  notIn?: string[];
+  lt?: string;
+  lte?: string;
+  gt?: string;
+  gte?: string;
+  mode?: QueryMode;
+  not?: NestedUuidFilter;
+}
+
 export interface StringFilter {
   equals?: string;
   in?: string[];
@@ -776,6 +788,21 @@ export interface SpotMinOrderByAggregateInput {
   title?: SortOrder;
   address?: SortOrder;
   createdAt?: SortOrder;
+}
+
+export interface UuidWithAggregatesFilter {
+  equals?: string;
+  in?: string[];
+  notIn?: string[];
+  lt?: string;
+  lte?: string;
+  gt?: string;
+  gte?: string;
+  mode?: QueryMode;
+  not?: NestedUuidWithAggregatesFilter;
+  _count?: NestedIntFilter;
+  _min?: NestedStringFilter;
+  _max?: NestedStringFilter;
 }
 
 export interface StringWithAggregatesFilter {
@@ -922,6 +949,17 @@ export interface SpotUpdateOneRequiredWithoutTicketsNestedInput {
   update?: SpotUncheckedUpdateWithoutTicketsInput;
 }
 
+export interface NestedUuidFilter {
+  equals?: string;
+  in?: string[];
+  notIn?: string[];
+  lt?: string;
+  lte?: string;
+  gt?: string;
+  gte?: string;
+  not?: NestedUuidFilter;
+}
+
 export interface NestedStringFilter {
   equals?: string;
   in?: string[];
@@ -961,6 +999,31 @@ export interface NestedDateTimeFilter {
   not?: NestedDateTimeFilter;
 }
 
+export interface NestedUuidWithAggregatesFilter {
+  equals?: string;
+  in?: string[];
+  notIn?: string[];
+  lt?: string;
+  lte?: string;
+  gt?: string;
+  gte?: string;
+  not?: NestedUuidWithAggregatesFilter;
+  _count?: NestedIntFilter;
+  _min?: NestedStringFilter;
+  _max?: NestedStringFilter;
+}
+
+export interface NestedIntFilter {
+  equals?: number;
+  in?: number[];
+  notIn?: number[];
+  lt?: number;
+  lte?: number;
+  gt?: number;
+  gte?: number;
+  not?: NestedIntFilter;
+}
+
 export interface NestedStringWithAggregatesFilter {
   equals?: string;
   in?: string[];
@@ -976,17 +1039,6 @@ export interface NestedStringWithAggregatesFilter {
   _count?: NestedIntFilter;
   _min?: NestedStringFilter;
   _max?: NestedStringFilter;
-}
-
-export interface NestedIntFilter {
-  equals?: number;
-  in?: number[];
-  notIn?: number[];
-  lt?: number;
-  lte?: number;
-  gt?: number;
-  gte?: number;
-  not?: NestedIntFilter;
 }
 
 export interface NestedStringNullableWithAggregatesFilter {
@@ -1073,7 +1125,7 @@ export interface TicketScalarWhereInput {
   AND?: TicketScalarWhereInput[];
   OR?: TicketScalarWhereInput[];
   NOT?: TicketScalarWhereInput[];
-  id?: StringFilter;
+  id?: UuidFilter;
   userId?: StringNullableFilter | null;
   spotId?: StringFilter;
   createdAt?: DateTimeFilter;
