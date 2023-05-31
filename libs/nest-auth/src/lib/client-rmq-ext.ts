@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ClientRMQ, RmqOptions, RmqRecordBuilder } from '@nestjs/microservices';
 import { ClsService, ClsServiceManager } from 'nestjs-cls';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 
 @Injectable()
 export class ClientRMQExt extends ClientRMQ {
@@ -23,6 +23,6 @@ export class ClientRMQExt extends ClientRMQ {
 
     const record = new RmqRecordBuilder(data).setOptions(options).build();
 
-    return super.send(pattern, record);
+    return super.send(pattern, record).pipe(catchError((err) => of(err)));
   }
 }
