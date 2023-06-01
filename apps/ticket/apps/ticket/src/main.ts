@@ -7,6 +7,7 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app/app.module';
 import { LoggerService } from '@deepq/nest-logger';
 import { ConfigModule, ConfigService } from './app/config';
+import { ErrorsInterceptor } from './app/interceptors/rpc-exception.interceptor';
 
 async function bootstrap() {
   const config = await NestFactory.createApplicationContext(ConfigModule);
@@ -25,6 +26,7 @@ async function bootstrap() {
   const logger = app.get(LoggerService, { strict: false });
 
   app.useLogger(logger);
+  app.useGlobalInterceptors(new ErrorsInterceptor());
 
   await config.close();
   await app.listen();
