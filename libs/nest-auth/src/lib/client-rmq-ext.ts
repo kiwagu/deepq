@@ -23,6 +23,6 @@ export class ClientRMQExt extends ClientRMQ {
 
     const record = new RmqRecordBuilder(data).setOptions(options).build();
 
-    return super.send(pattern, record).pipe(catchError((err) => of(err)));
+    return super.send(pattern, record);
   }
 }

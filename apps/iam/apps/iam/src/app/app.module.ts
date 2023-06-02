@@ -1,8 +1,9 @@
 import { Global, Module, Provider } from '@nestjs/common';
+import { APP_FILTER } from '@nestjs/core';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
 import { LoggerModule, RabbitMqWithBodyParser, loggerInterceptor } from '@deepq/nest-logger';
-import { ClientRMQExt, NestAuthModule } from '@deepq/nest-auth';
+import { ClientRMQwGqlErrors, NestAuthModule } from '@deepq/nest-auth';
 import { PrismaModule } from '@zen/nest-api/prisma';
 
 import { environment } from '../environments/environment';
@@ -11,6 +12,7 @@ import { AppService } from './app.service';
 import { AppCaslFactory } from './casl/casl.factory';
 import { defaultFieldsProvider } from './casl/default-fields';
 import { ConfigModule, ConfigService } from './config';
+import { ExceptionMapper } from './filters/exception-mapper.filter';
 import { JwtModule } from './jwt';
 import { UserModule } from './modules/user/user.module';
 import { GoogleOAuthStrategy } from './strategies/google-oauth.strategy';
@@ -34,7 +36,7 @@ if (environment.oauth?.google?.clientID) oauthProviders.push(GoogleOAuthStrategy
       {
         name: 'MAIL_SERVICE',
         useFactory: (config: ConfigService) => ({
-          customClass: ClientRMQExt,
+          customClass: ClientRMQwGqlErrors,
           options: {
             transport: Transport.RMQ,
             urls: [config.broker.url],
@@ -51,6 +53,16 @@ if (environment.oauth?.google?.clientID) oauthProviders.push(GoogleOAuthStrategy
   ],
   exports: [JwtModule, NestAuthModule, defaultFieldsProvider],
   controllers: [AppController],
-  providers: [JwtStrategy, AppService, loggerInterceptor, defaultFieldsProvider, ...oauthProviders],
+  providers: [
+    JwtStrategy,
+    AppService,
+    loggerInterceptor,
+    defaultFieldsProvider,
+    {
+      provide: APP_FILTER,
+      useClass: ExceptionMapper,
+    },
+    ...oauthProviders,
+  ],
 })
 export class AppModule {}

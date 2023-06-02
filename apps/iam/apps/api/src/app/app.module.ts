@@ -6,7 +6,7 @@ import { Global, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ThrottlerModule } from '@nestjs/throttler';
 
-import { ClientRMQExt } from '@deepq/nest-auth';
+import { ClientRMQwGqlErrors } from '@deepq/nest-auth';
 import { GqlWithBodyParser, LoggerModule, loggerInterceptor } from '@deepq/nest-logger';
 import { PrismaModule } from '@zen/nest-api/prisma';
 
@@ -45,7 +45,7 @@ import { ZenGraphQLModule } from './graphql';
       {
         name: 'IAM_SERVICE',
         useFactory: (config: ConfigService) => ({
-          customClass: ClientRMQExt,
+          customClass: ClientRMQwGqlErrors,
           transport: Transport.RMQ,
           options: {
             urls: [config.broker.url],
