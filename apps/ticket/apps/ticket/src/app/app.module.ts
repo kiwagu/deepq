@@ -1,6 +1,11 @@
 import { Global, Module, Provider } from '@nestjs/common';
+import { APP_FILTER } from '@nestjs/core';
 
-import { LoggerModule, RabbitMqWithBodyParser, loggerInterceptor } from '@deepq/nest-logger';
+import {
+  LoggerModule,
+  RabbitMqWithBodyParser,
+  loggerInterceptor,
+} from '@deepq/nest-logger';
 import { NestAuthModule } from '@deepq/nest-auth';
 import { PrismaModule } from '@zen/nest-api/prisma';
 
@@ -14,6 +19,7 @@ import { JwtModule } from './jwt';
 import { SpotModule } from './modules/spot/spot.module';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { TicketModule } from './modules/ticket/ticket.module';
+import { ExceptionMapper } from './filters/exception-mapper.filter';
 
 const oauthProviders: Provider[] = [];
 
@@ -33,6 +39,16 @@ const oauthProviders: Provider[] = [];
   ],
   exports: [JwtModule, NestAuthModule, defaultFieldsProvider],
   controllers: [AppController],
-  providers: [JwtStrategy, AppService, loggerInterceptor, defaultFieldsProvider, ...oauthProviders],
+  providers: [
+    JwtStrategy,
+    AppService,
+    loggerInterceptor,
+    defaultFieldsProvider,
+    {
+      provide: APP_FILTER,
+      useClass: ExceptionMapper,
+    },
+    ...oauthProviders,
+  ],
 })
 export class AppModule {}

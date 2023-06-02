@@ -6,7 +6,7 @@ import { Global, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ThrottlerModule } from '@nestjs/throttler';
 
-import { ClientRMQExt, NestAuthModule } from '@deepq/nest-auth';
+import { ClientRMQwGqlErrors, NestAuthModule } from '@deepq/nest-auth';
 import {
   GqlWithBodyParser,
   LoggerModule,
@@ -52,7 +52,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       {
         name: 'TICKET_SERVICE',
         useFactory: (config: ConfigService) => ({
-          customClass: ClientRMQExt,
+          customClass: ClientRMQwGqlErrors,
           transport: Transport.RMQ,
           options: {
             urls: [config.broker.url],
