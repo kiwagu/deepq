@@ -1,10 +1,14 @@
 import { join } from 'path';
+import {
+  OgmaInterceptor,
+  OgmaInterceptorOptions,
+  OgmaModule,
+} from '@ogma/nestjs-module';
+import * as otelApi from '@opentelemetry/api';
+import * as rfs from 'rotating-file-stream';
 
 import { DynamicModule, Module } from '@nestjs/common';
 import { APP_INTERCEPTOR } from '@nestjs/core';
-import { OgmaInterceptor, OgmaInterceptorOptions, OgmaModule } from '@ogma/nestjs-module';
-import * as otelApi from '@opentelemetry/api';
-import * as rfs from 'rotating-file-stream';
 
 import { environment } from '../environments/environment';
 
@@ -23,18 +27,20 @@ export class LoggerModule {
   static forRoot({
     serviceName,
     interceptor,
+    logsPath,
   }: {
     serviceName: string;
     interceptor?: OgmaInterceptorOptions;
+    logsPath?: string;
   }): DynamicModule {
+    const _logsPath =
+      logsPath ||
+      join(process.cwd(), `../../data/logs/${serviceName}-${Date.now()}.log`);
     return OgmaModule.forRootAsync({
       useFactory() {
         const writable =
           environment.ogma &&
-          rfs.createStream(
-            join(process.cwd(), `data/logs/${serviceName}.log`),
-            environment.ogma.options
-          );
+          rfs.createStream(_logsPath, environment.ogma.options);
 
         return {
           interceptor: interceptor || false,
@@ -46,9 +52,9 @@ export class LoggerModule {
                 const parsedLog = JSON.parse(String(msg));
 
                 // A little cleaninig
-                delete parsedLog.ool
+                delete parsedLog.ool;
                 if (parsedLog.correlationId === '') {
-                  delete parsedLog.correlationId
+                  delete parsedLog.correlationId;
                 }
 
                 let traceId = null;
@@ -67,7 +73,11 @@ export class LoggerModule {
 
                 if (writable) {
                   writable.write(
-                    Buffer.from(traceId ? JSON.stringify(parsedLog) + '\n' : (msg as string))
+                    Buffer.from(
+                      traceId
+                        ? JSON.stringify(parsedLog) + '\n'
+                        : (msg as string)
+                    )
                   );
                 }
               },

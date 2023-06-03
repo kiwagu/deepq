@@ -16,7 +16,7 @@
     "------MISC-----": "",
     "gen:api": "pnpm -r gen:api",
     "prisma:migrate": "npx prisma migrate dev --skip-generate",
-    "dev:containers": "docker compose -p deepq -f ./apps/iam/docker-compose.yml -f ./apps/iam/docker/otel/docker-compose.yml up -d"
+    "dev:containers": "docker compose -p deepq -f ./docker-compose.yml -f ./deploy/local/docker/otel/docker-compose.yml up -d"
   },
   "private": true,
   "devDependencies": {

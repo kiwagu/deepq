@@ -4,7 +4,7 @@ import { JwtModuleOptions } from '@nestjs/jwt';
 import { OTLPExporterNodeConfigBase } from '@opentelemetry/otlp-exporter-base';
 import { RedisOptions } from '@nestjs/microservices';
 
-export const serviceName = 'notifications';
+export const serviceName = 'notif-srv';
 
 export abstract class EnvironmentBase {
   readonly production: boolean;
