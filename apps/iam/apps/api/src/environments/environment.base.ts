@@ -5,7 +5,7 @@ import { OTLPExporterNodeConfigBase } from '@opentelemetry/otlp-exporter-base';
 import { UploadOptions } from 'graphql-upload/graphqlUploadExpress.js';
 import { StrategyOptions as GoogleStrategyOptions } from 'passport-google-oauth20';
 
-export const serviceName = 'api';
+export const serviceName = 'iam-api';
 
 export abstract class EnvironmentBase {
   readonly serviceName: string;
