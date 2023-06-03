@@ -5,7 +5,7 @@ services:
     image: grafana/tempo:2.0.1
     command: ["-config.file=/etc/tempo.yaml"]
     volumes:
-      - ./docker/otel/etc/tempo-local.yaml:/etc/tempo.yaml
+      - ./deploy/local/docker/otel/etc/tempo-local.yaml:/etc/tempo.yaml
     ports:
       - "14268:14268"     # jaeger ingest, Jaeger - Thrift HTTP
       - "14250:14250"     # Jaeger - GRPC
@@ -24,19 +24,19 @@ services:
       - JAEGER_SAMPLER_TYPE=const
       - JAEGER_SAMPLER_PARAM=1
     volumes:
-      - ./docker/otel/etc/loki-local.yaml:/etc/loki/loki-local.yaml
+      - ./deploy/local/docker/otel/etc/loki-local.yaml:/etc/loki/loki-local.yaml
   promtail:
     image: grafana/promtail:2.7.4
     command: -config.file=/etc/promtail/promtail-local.yaml
     volumes:
-      - ./docker/otel/etc/promtail-local.yaml:/etc/promtail/promtail-local.yaml
+      - ./deploy/local/docker/otel/etc/promtail-local.yaml:/etc/promtail/promtail-local.yaml
       - ./data/logs:/app/logs
     depends_on:
       - loki
   prometheus:
     image: prom/prometheus:v2.42.0
     volumes:
-      - ./docker/otel/etc/prometheus.yaml:/etc/prometheus.yaml
+      - ./deploy/local/docker/otel/etc/prometheus.yaml:/etc/prometheus.yaml
     entrypoint:
       - /bin/prometheus
       - --config.file=/etc/prometheus.yaml
@@ -63,7 +63,7 @@ services:
     image: otel/opentelemetry-collector:0.73.0
     command: ["--config=/etc/otel-collector-config.yaml"]
     volumes:
-      - ./docker/otel/etc/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+      - ./deploy/local/docker/otel/etc/otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
       - "1888:1888"   # pprof extension
       - "8888:8888"   # Prometheus metrics exposed by the collector
