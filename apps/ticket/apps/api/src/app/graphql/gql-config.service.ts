@@ -36,17 +36,6 @@ export class GqlConfigService implements GqlOptionsFactory {
       allowBatchedHttpRequests: true,
       csrfPrevention: this.config.graphql.csrfPrevention,
       cache: 'bounded',
-      installSubscriptionHandlers: !!this.config.graphql.subscriptions,
-      subscriptions: this.config.graphql.subscriptions
-        ? {
-            'graphql-ws': {
-              onConnect: (context: any) => {
-                const { connectionParams, extra } = context;
-                extra.token = connectionParams.token;
-              },
-            },
-          }
-        : undefined,
       context: (ctx: any): IContext => {
         // Subscriptions pass through JWT token for authentication
         if (ctx.extra) return { req: ctx.extra };

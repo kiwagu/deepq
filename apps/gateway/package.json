@@ -8,8 +8,13 @@
   },
   "private": true,
   "dependencies": {
+    "@apollo/federation": "^0.38.1",
+    "@apollo/gateway": "^2.4.7",
+    "@apollo/subgraph": "^2.4.7",
+    "@nestjs/apollo": "^11.0.6",
     "@nestjs/common": "^9.4.2",
     "@nestjs/core": "^9.4.2",
+    "@nestjs/graphql": "^11.0.6",
     "@nestjs/platform-express": "^9.4.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",

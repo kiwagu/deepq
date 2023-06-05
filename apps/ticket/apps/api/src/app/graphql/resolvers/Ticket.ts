@@ -1,7 +1,7 @@
 import { GraphQLResolveInfo } from 'graphql';
 
 import { Inject, UseGuards } from '@nestjs/common';
-import { Args, Info, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Info, Mutation, Query, ResolveReference, Resolver } from '@nestjs/graphql';
 import { ClientProxy } from '@nestjs/microservices';
 
 import type { NonNullableFields } from '@deepq/common';
@@ -46,13 +46,19 @@ export class TicketResolver {
   ) {}
 
   @Query()
+  @ResolveReference()
   findUniqueTicket(
+    reference: { __typename: string; id: string },
     @Args() args: NonNullableFields<FindUniqueTicketArgs>,
     @Info() info: GraphQLResolveInfo
   ) {
     return this.client.send<Ticket, NonNullableFields<FindUniqueTicketArgs>>(
       { query: 'findUniqueTicket' },
-      this.prismaSelect.getArgs(info, args, this.defaultFields)
+      this.prismaSelect.getArgs(
+        info,
+        reference?.id ? { where: { id: reference?.id } } : args,
+        this.defaultFields
+      )
     );
   }
 
