@@ -1,6 +1,5 @@
 import './tracing';
 
-import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
@@ -31,7 +30,7 @@ async function bootstrap() {
   await config.close();
   await app.listen();
 
-  Logger.log(`🚀 Ticket service is running`);
+  logger.log(`🚀 Ticket service is running`);
 }
 
 bootstrap();

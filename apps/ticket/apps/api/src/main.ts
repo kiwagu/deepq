@@ -1,6 +1,5 @@
 import './tracing';
 
-import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import helmet from 'helmet';
 
@@ -24,7 +23,7 @@ async function bootstrap() {
   const port = process.env.PORT || environment.expressPort;
 
   await app.listen(port, () => {
-    Logger.log(`Ticket GraphQL server running at http://localhost:${port}/graphql`);
+    logger.log(`Ticket GraphQL server running at http://localhost:${port}/graphql`);
   });
 }
 

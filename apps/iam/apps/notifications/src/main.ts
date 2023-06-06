@@ -1,6 +1,5 @@
 import './tracing';
 
-import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { LoggerService } from '@deepq/nest-logger';
@@ -29,7 +28,7 @@ async function bootstrap() {
   await config.close();
   await app.listen();
 
-  Logger.log(`🚀 Notifications service is running`);
+  logger.log(`🚀 Notifications service is running`);
 }
 
 bootstrap();

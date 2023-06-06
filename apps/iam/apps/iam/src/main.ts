@@ -1,6 +1,5 @@
 import './tracing';
 
-import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
@@ -29,7 +28,7 @@ async function bootstrap() {
   await config.close();
   await app.listen();
 
-  Logger.log(`🚀 IAM service is running`);
+  logger.log(`🚀 IAM service is running`);
 }
 
 bootstrap();
