@@ -1,10 +1,19 @@
 import { IntrospectAndCompose, RemoteGraphQLDataSource } from '@apollo/gateway';
+
 import { ApolloGatewayDriver, ApolloGatewayDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
+import { GqlWithBodyParser, LoggerModule, loggerInterceptor } from '@deepq/nest-logger';
+
+import { environment } from '../environments/environment';
+
 @Module({
   imports: [
+    LoggerModule.forRoot({
+      serviceName: environment.serviceName,
+      interceptor: { gql: GqlWithBodyParser },
+    }),
     GraphQLModule.forRoot<ApolloGatewayDriverConfig>({
       driver: ApolloGatewayDriver,
       server: {
@@ -33,5 +42,6 @@ import { GraphQLModule } from '@nestjs/graphql';
       },
     }),
   ],
+  providers: [loggerInterceptor],
 })
 export class AppModule {}
