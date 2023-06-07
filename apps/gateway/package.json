@@ -9,6 +9,7 @@
   "private": true,
   "dependencies": {
     "@apollo/federation": "^0.38.1",
+    "@apollo/server": "^4.7.1",
     "@apollo/gateway": "^2.4.7",
     "@apollo/subgraph": "^2.4.7",
     "@deepq/nest-logger": "workspace:*",

@@ -1,12 +1,18 @@
 import { IntrospectAndCompose, RemoteGraphQLDataSource } from '@apollo/gateway';
 
-import { ApolloGatewayDriver, ApolloGatewayDriverConfig } from '@nestjs/apollo';
+import { ApolloFederationDriverConfig, ApolloGatewayDriver, ApolloGatewayDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
-import { GqlWithBodyParser, LoggerModule, loggerInterceptor } from '@deepq/nest-logger';
+import {
+  GqlWithBodyParser,
+  LoggerModule,
+  loggerInterceptor,
+} from '@deepq/nest-logger';
 
 import { environment } from '../environments/environment';
+import { GqlConfigService } from './gql-config.service';
+import { ConfigModule } from './config';
 
 @Module({
   imports: [
@@ -14,32 +20,10 @@ import { environment } from '../environments/environment';
       serviceName: environment.serviceName,
       interceptor: { gql: GqlWithBodyParser },
     }),
-    GraphQLModule.forRoot<ApolloGatewayDriverConfig>({
+    GraphQLModule.forRootAsync<ApolloGatewayDriverConfig>({
       driver: ApolloGatewayDriver,
-      server: {
-        // ... Apollo server options
-        // cors: true,
-        context: ({ req }) => {
-          if (req && req.headers.authorization) {
-            return { authorization: req.headers.authorization };
-          }
-        },
-      },
-      gateway: {
-        supergraphSdl: new IntrospectAndCompose({
-          subgraphs: [
-            { name: 'ticket', url: 'http://localhost:7081/graphql' },
-          ],
-        }),
-        buildService: ({ /** name, */ url }) => {
-          return new RemoteGraphQLDataSource({
-            url,
-            willSendRequest({ request, context }) {
-              request.http.headers.set('Authorization', context.authorization);
-            },
-          });
-        },
-      },
+      useClass: GqlConfigService,
+      imports: [ConfigModule],
     }),
   ],
   providers: [loggerInterceptor],
