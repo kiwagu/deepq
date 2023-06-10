@@ -18,7 +18,6 @@ export abstract class EnvironmentBase {
   readonly expressPort: string | number;
   readonly cors?: NestApplicationOptions['cors'];
   readonly graphql: {
-    readonly subscriptions?: boolean;
     readonly sandbox?: boolean;
     readonly introspection?: boolean;
     readonly csrfPrevention?: boolean;

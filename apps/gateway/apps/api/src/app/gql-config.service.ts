@@ -40,7 +40,10 @@ export class GqlConfigService
       },
       gateway: {
         supergraphSdl: new IntrospectAndCompose({
-          subgraphs: [{ name: 'ticket', url: 'http://localhost:7081/graphql' }],
+          subgraphs: [
+            { name: 'iam', url: 'http://localhost:7080/graphql' },
+            { name: 'ticket', url: 'http://localhost:7081/graphql' },
+          ],
         }),
         buildService: ({ /** name, */ url }) => {
           return new RemoteGraphQLDataSource({

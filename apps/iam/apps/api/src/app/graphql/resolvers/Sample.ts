@@ -1,13 +1,11 @@
 import { createWriteStream, existsSync, mkdirSync } from 'fs';
 
 import { Inject, Logger, OnModuleInit, UseGuards } from '@nestjs/common';
-import { Args, Mutation, Resolver, Subscription } from '@nestjs/graphql';
+import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { ClientProxy } from '@nestjs/microservices';
-import { CurrentUser, RequestUser, RolesGuard } from '@deepq/nest-auth';
-import { PubSub } from 'graphql-subscriptions';
+import { RolesGuard } from '@deepq/nest-auth';
 import gql from 'graphql-tag';
 import GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
-import { interval } from 'rxjs';
 
 import type { Upload } from '../models';
 
@@ -16,25 +14,7 @@ export const typeDefs = gql`
     sampleUpload(file: Upload!): [String!]!
     sampleUploadMany(files: [Upload!]!): [String!]!
   }
-
-  type SampleSubscriptionResult {
-    message: String!
-  }
-
-  type Subscription {
-    sampleSubscription: SampleSubscriptionResult!
-  }
 `;
-
-const pubSub = new PubSub();
-
-interval(1000).subscribe(i =>
-  pubSub.publish('sampleSubscription', {
-    sampleSubscription: {
-      message: `Server ticker ${i}`,
-    },
-  })
-);
 
 @Resolver()
 @UseGuards(RolesGuard('Super'))
@@ -58,12 +38,6 @@ export class SampleResolver implements OnModuleInit {
   @Mutation()
   async sampleUploadMany(@Args('files', { type: () => [GraphQLUpload] }) files: Promise<Upload>[]) {
     return this.saveFiles(files);
-  }
-
-  @Subscription()
-  async sampleSubscription(@CurrentUser() user: RequestUser) {
-    Logger.log(`sampleSubscription subscribed to by user with id ${user.id}`);
-    return pubSub.asyncIterator('sampleSubscription');
   }
 
   async saveFiles(files: Promise<Upload>[]) {

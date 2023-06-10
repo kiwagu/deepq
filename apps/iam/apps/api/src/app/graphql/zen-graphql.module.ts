@@ -1,4 +1,4 @@
-import { ApolloDriver } from '@nestjs/apollo';
+import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
 import { Global, Module } from '@nestjs/common';
 import { APP_FILTER } from '@nestjs/core';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -15,8 +15,8 @@ import { defaultFieldsProvider } from './default-fields';
 @Module({
   imports: [
     PrismaModule,
-    GraphQLModule.forRootAsync({
-      driver: ApolloDriver,
+    GraphQLModule.forRootAsync<ApolloFederationDriverConfig>({
+      driver: ApolloFederationDriver,
       useClass: GqlConfigService,
       imports: [PrismaModule, ConfigModule],
     }),
