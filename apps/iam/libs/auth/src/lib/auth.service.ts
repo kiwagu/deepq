@@ -13,7 +13,7 @@ import {
 import { loggedInVar, userRolesVar } from '@zen/graphql/client';
 import { Apollo } from 'apollo-angular';
 import ls from 'localstorage-slim';
-import { Subscription, interval, map, share, throwError, timer } from 'rxjs';
+import { map, share, throwError, timer } from 'rxjs';
 import { retry, tap } from 'rxjs/operators';
 
 import { tokenVar } from './token-var';
@@ -31,8 +31,6 @@ export enum LocalStorageKey {
   providedIn: 'root',
 })
 export class AuthService {
-  #exchangeIntervalSubscription?: Subscription;
-
   #userId: AuthSession['userId'] | null = null;
   get userId(): AuthSession['userId'] | null {
     return this.#userId;
@@ -84,7 +82,6 @@ export class AuthService {
             break;
         }
 
-        this.startExchangeInterval();
       } catch (error) {
         console.error('AuthService failed to initialize', error);
         this.logout();
@@ -137,7 +134,6 @@ export class AuthService {
       loggedInVar(true);
     }
 
-    this.startExchangeInterval();
   }
 
   rolesEqual(a: string | string[] | null | undefined, b: string | string[] | null | undefined) {
@@ -209,7 +205,6 @@ export class AuthService {
   }
 
   clearSession() {
-    this.stopExchangeInterval();
     ls.remove(LocalStorageKey.userId);
     ls.remove(LocalStorageKey.token);
     ls.remove(LocalStorageKey.sessionExpiresOn);
@@ -248,24 +243,6 @@ export class AuthService {
           console.error('Exchange token failed', e);
         },
       });
-  }
-
-  private startExchangeInterval() {
-    if (!this.rememberMe && !this.#exchangeIntervalSubscription) {
-      this.#exchangeIntervalSubscription = interval(this.env.auth.jwtExchangeInterval).subscribe(
-        () => {
-          if (this.validSession) this.exchangeToken();
-          else this.logout();
-        }
-      );
-    }
-  }
-
-  private stopExchangeInterval() {
-    if (this.#exchangeIntervalSubscription) {
-      this.#exchangeIntervalSubscription.unsubscribe();
-      this.#exchangeIntervalSubscription = undefined;
-    }
   }
 }
 

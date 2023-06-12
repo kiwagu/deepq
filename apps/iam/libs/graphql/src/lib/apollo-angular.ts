@@ -446,10 +446,6 @@ export enum QueryMode {
   Insensitive = 'insensitive'
 }
 
-export type SampleSubscriptionResult = {
-  __typename?: 'SampleSubscriptionResult';
-  message: Scalars['String'];
-};
 
 export enum SortOrder {
   Asc = 'asc',
@@ -534,10 +530,6 @@ export type StringWithAggregatesFilter = {
   startsWith?: InputMaybe<Scalars['String']>;
 };
 
-export type Subscription = {
-  __typename?: 'Subscription';
-  sampleSubscription: SampleSubscriptionResult;
-};
 
 export enum TransactionIsolationLevel {
   ReadCommitted = 'ReadCommitted',
@@ -932,11 +924,6 @@ export type DeleteManyUserVariables = Exact<{
 
 export type DeleteManyUser = { __typename?: 'Mutation', deleteManyUser?: { __typename?: 'BatchPayload', count: number } | null };
 
-export type SampleSubscriptionVariables = Exact<{ [key: string]: never; }>;
-
-
-export type SampleSubscription = { __typename?: 'Subscription', sampleSubscription: { __typename?: 'SampleSubscriptionResult', message: string } };
-
 export type SampleUploadVariables = Exact<{
   file: Scalars['Upload'];
 }>;
@@ -989,7 +976,7 @@ export const AuthExchangeTokenDocument = /*#__PURE__*/ gql`
   })
   export class AuthExchangeTokenGQL extends Apollo.Query<AuthExchangeToken, AuthExchangeTokenVariables> {
     override document = AuthExchangeTokenDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1007,7 +994,7 @@ export const AuthLoginDocument = /*#__PURE__*/ gql`
   })
   export class AuthLoginGQL extends Apollo.Query<AuthLogin, AuthLoginVariables> {
     override document = AuthLoginDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1025,7 +1012,7 @@ export const GetAccountInfoDocument = /*#__PURE__*/ gql`
   })
   export class GetAccountInfoGQL extends Apollo.Query<GetAccountInfo, GetAccountInfoVariables> {
     override document = GetAccountInfoDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1041,7 +1028,7 @@ export const AuthPasswordChangeDocument = /*#__PURE__*/ gql`
   })
   export class AuthPasswordChangeGQL extends Apollo.Mutation<AuthPasswordChange, AuthPasswordChangeVariables> {
     override document = AuthPasswordChangeDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1059,7 +1046,7 @@ export const AuthPasswordResetConfirmationDocument = /*#__PURE__*/ gql`
   })
   export class AuthPasswordResetConfirmationGQL extends Apollo.Mutation<AuthPasswordResetConfirmation, AuthPasswordResetConfirmationVariables> {
     override document = AuthPasswordResetConfirmationDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1075,7 +1062,7 @@ export const AuthPasswordResetRequestQueryDocument = /*#__PURE__*/ gql`
   })
   export class AuthPasswordResetRequestQueryGQL extends Apollo.Query<AuthPasswordResetRequestQuery, AuthPasswordResetRequestQueryVariables> {
     override document = AuthPasswordResetRequestQueryDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1093,7 +1080,7 @@ export const AuthRegisterDocument = /*#__PURE__*/ gql`
   })
   export class AuthRegisterGQL extends Apollo.Mutation<AuthRegister, AuthRegisterVariables> {
     override document = AuthRegisterDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1109,7 +1096,7 @@ export const LoggedInDocument = /*#__PURE__*/ gql`
   })
   export class LoggedInGQL extends Apollo.Query<LoggedIn, LoggedInVariables> {
     override document = LoggedInDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1125,7 +1112,7 @@ export const UserRolesDocument = /*#__PURE__*/ gql`
   })
   export class UserRolesGQL extends Apollo.Query<UserRoles, UserRolesVariables> {
     override document = UserRolesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1143,7 +1130,7 @@ export const FindUniqueUserDocument = /*#__PURE__*/ gql`
   })
   export class FindUniqueUserGQL extends Apollo.Query<FindUniqueUser, FindUniqueUserVariables> {
     override document = FindUniqueUserDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1168,7 +1155,7 @@ export const FindFirstUserDocument = /*#__PURE__*/ gql`
   })
   export class FindFirstUserGQL extends Apollo.Query<FindFirstUser, FindFirstUserVariables> {
     override document = FindFirstUserDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1193,7 +1180,7 @@ export const FindManyUserDocument = /*#__PURE__*/ gql`
   })
   export class FindManyUserGQL extends Apollo.Query<FindManyUser, FindManyUserVariables> {
     override document = FindManyUserDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1216,7 +1203,7 @@ export const FindManyUserCountDocument = /*#__PURE__*/ gql`
   })
   export class FindManyUserCountGQL extends Apollo.Query<FindManyUserCount, FindManyUserCountVariables> {
     override document = FindManyUserCountDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1234,7 +1221,7 @@ export const CreateOneUserDocument = /*#__PURE__*/ gql`
   })
   export class CreateOneUserGQL extends Apollo.Mutation<CreateOneUser, CreateOneUserVariables> {
     override document = CreateOneUserDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1252,7 +1239,7 @@ export const UpdateOneUserDocument = /*#__PURE__*/ gql`
   })
   export class UpdateOneUserGQL extends Apollo.Mutation<UpdateOneUser, UpdateOneUserVariables> {
     override document = UpdateOneUserDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1270,7 +1257,7 @@ export const UpdateManyUserDocument = /*#__PURE__*/ gql`
   })
   export class UpdateManyUserGQL extends Apollo.Mutation<UpdateManyUser, UpdateManyUserVariables> {
     override document = UpdateManyUserDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1288,7 +1275,7 @@ export const UpsertOneUserDocument = /*#__PURE__*/ gql`
   })
   export class UpsertOneUserGQL extends Apollo.Mutation<UpsertOneUser, UpsertOneUserVariables> {
     override document = UpsertOneUserDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1306,7 +1293,7 @@ export const DeleteOneUserDocument = /*#__PURE__*/ gql`
   })
   export class DeleteOneUserGQL extends Apollo.Mutation<DeleteOneUser, DeleteOneUserVariables> {
     override document = DeleteOneUserDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1324,29 +1311,12 @@ export const DeleteManyUserDocument = /*#__PURE__*/ gql`
   })
   export class DeleteManyUserGQL extends Apollo.Mutation<DeleteManyUser, DeleteManyUserVariables> {
     override document = DeleteManyUserDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const SampleSubscriptionDocument = /*#__PURE__*/ gql`
-    subscription SampleSubscription {
-  sampleSubscription {
-    message
-  }
-}
-    `;
 
-  @Injectable({
-    providedIn: ZenGraphQLModule
-  })
-  export class SampleSubscriptionGQL extends Apollo.Subscription<SampleSubscription, SampleSubscriptionVariables> {
-    override document = SampleSubscriptionDocument;
-    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
+
 export const SampleUploadDocument = /*#__PURE__*/ gql`
     mutation SampleUpload($file: Upload!) {
   sampleUpload(file: $file)
@@ -1358,7 +1328,7 @@ export const SampleUploadDocument = /*#__PURE__*/ gql`
   })
   export class SampleUploadGQL extends Apollo.Mutation<SampleUpload, SampleUploadVariables> {
     override document = SampleUploadDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }

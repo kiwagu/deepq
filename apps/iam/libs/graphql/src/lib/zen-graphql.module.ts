@@ -12,21 +12,17 @@ import {
   NormalizedCacheObject,
   split,
 } from '@apollo/client/core';
-import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
-import { getMainDefinition, getOperationName } from '@apollo/client/utilities';
+import { getOperationName } from '@apollo/client/utilities';
 import { APOLLO_OPTIONS } from 'apollo-angular';
 import { ApolloModule } from 'apollo-angular';
 import { BatchOptions, HttpBatchLink, HttpBatchLinkHandler } from 'apollo-angular/http';
 import { createUploadLink } from 'apollo-upload-client';
-import { OperationDefinitionNode } from 'graphql';
-import { ClientOptions, createClient } from 'graphql-ws';
 
 export abstract class GraphQLOptions {
   resolvers?: ApolloClientOptions<NormalizedCacheObject>['resolvers'];
   cacheOptions?: InMemoryCacheConfig;
   uploadOptions?: createUploadLink.UploadLinkOptions & { mutationNames: string[] };
   batchOptions?: BatchOptions;
-  websocketOptions?: ClientOptions;
 }
 
 @NgModule({
@@ -69,57 +65,26 @@ export function createApollo(
   if (options.batchOptions) batch_link = httpBatchLink.create(options.batchOptions);
   else throw Error('No GraphQLOptions.batchOptions provided. You must set at least the uri.');
 
-  if (!options.websocketOptions) {
-    if (!options.uploadOptions) {
-      link = batch_link;
-    } else {
-      if (!options.uploadOptions.mutationNames)
-        throw new Error(
-          'GraphQLOptions.uploadOptions.mutationNames required when providing uploadOptions to list the mutation names to be sent as multi-part requests.'
-        );
-
-      const upload_link = createUploadLink(options.uploadOptions);
-
-      const upload_batch_link = split(
-        ({ query }) =>
-          (options.uploadOptions?.mutationNames as string[])?.includes(
-            getOperationName(query) as string
-          ),
-        upload_link,
-        batch_link
+  if (!options.uploadOptions) {
+    link = batch_link;
+  } else {
+    if (!options.uploadOptions.mutationNames)
+      throw new Error(
+        'GraphQLOptions.uploadOptions.mutationNames required when providing uploadOptions to list the mutation names to be sent as multi-part requests.'
       );
 
-      link = upload_batch_link;
-    }
-  } else {
-    const wsClient = createClient(options.websocketOptions);
-    const websocket_link = new GraphQLWsLink(wsClient);
+    const upload_link = createUploadLink(options.uploadOptions);
 
-    const websocket_batch_link = split(
-      ({ query }) => {
-        const { kind, operation } = getMainDefinition(query) as OperationDefinitionNode;
-        return kind === 'OperationDefinition' && operation === 'subscription';
-      },
-      websocket_link,
+    const upload_batch_link = split(
+      ({ query }) =>
+        (options.uploadOptions?.mutationNames as string[])?.includes(
+          getOperationName(query) as string
+        ),
+      upload_link,
       batch_link
     );
 
-    if (!options.uploadOptions) {
-      link = websocket_batch_link;
-    } else {
-      const upload_link = createUploadLink(options.uploadOptions);
-
-      const upload_websocket_batch_link = split(
-        ({ query }) =>
-          (options.uploadOptions?.mutationNames as string[])?.includes(
-            getOperationName(query) as string
-          ),
-        upload_link,
-        websocket_batch_link
-      );
-
-      link = upload_websocket_batch_link;
-    }
+    link = upload_batch_link;
   }
 
   return {
