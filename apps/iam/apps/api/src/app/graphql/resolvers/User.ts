@@ -1,11 +1,7 @@
-import { GraphQLResolveInfo } from 'graphql';
-import { gql } from 'graphql-tag';
-
-import { Inject } from '@nestjs/common';
-import { Args, Info, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { ClientProxy } from '@nestjs/microservices';
-
 import type { NonNullableFields } from '@deepq/common';
+import { Inject } from '@nestjs/common';
+import { Args, Info, Mutation, Query, ResolveReference, Resolver } from '@nestjs/graphql';
+import { ClientProxy } from '@nestjs/microservices';
 import type {
   AggregateUserArgs,
   CreateOneUserArgs,
@@ -19,9 +15,10 @@ import type {
   UpsertOneUserArgs,
 } from '@zen/nest-api/graphql/resolversTypes';
 import { DefaultFields, PrismaSelectService, User } from '@zen/nest-api/prisma';
+import { GraphQLResolveInfo } from 'graphql';
+import { gql } from 'graphql-tag';
 
 import { DEFAULT_FIELDS_TOKEN } from '../default-fields';
-
 
 export const typeDefs = gql`
   extend type User {
@@ -38,13 +35,19 @@ export class UserResolver {
   ) {}
 
   @Query()
+  @ResolveReference()
   findUniqueUser(
+    reference: { __typename: string; id: string },
     @Args() args: NonNullableFields<FindUniqueUserArgs>,
     @Info() info: GraphQLResolveInfo
   ) {
     return this.client.send<User, NonNullableFields<FindUniqueUserArgs>>(
       { query: 'findUniqueUser' },
-      this.prismaSelect.getArgs(info, args, this.defaultFields)
+      this.prismaSelect.getArgs(
+        info,
+        reference?.id ? { where: { id: reference?.id } } : args,
+        this.defaultFields
+      )
     );
   }
 

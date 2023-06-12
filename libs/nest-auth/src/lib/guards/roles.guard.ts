@@ -34,7 +34,7 @@ export function RolesGuard(...roles: Array<Role>) {
   @Injectable()
   class MixinRolesGuard extends AuthGuard('jwt') {
     constructor(
-      readonly reflector: Reflector,
+      readonly reflector = new Reflector(), // FIX: undefined by common DI
       readonly clsService: ClsService
     ) {
       super();

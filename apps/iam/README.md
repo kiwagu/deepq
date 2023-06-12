@@ -58,7 +58,6 @@ npm start
 - [x] An Angular `GraphQLModule` to simplify the configuration of the `ApolloClient` to enable/disable the varying `ApolloLink` features.
   - [x] [HttpBatchLink](https://apollo-angular.com/docs/data/network#httpclient-1) for batching several GraphQL requests that occur within a short debounce interval. This really helps to alleviate network congestion.
   - [x] [UploadLink](https://www.npmjs.com/package/apollo-upload-client) to give `ApolloClient` HTTP multi-part form requests capabilities. Enabling the uploading of files via [GraphQLUpload](https://github.com/jaydenseric/graphql-upload).
-  - [x] [GraphQLWsLink](https://www.apollographql.com/docs/react/data/subscriptions/#2-initialize-a-graphqlwslink) for GraphQL subscriptions over websockets.
 
 ---
 
@@ -89,7 +88,6 @@ npm start
 
 - [x] [Electron](https://www.electronjs.org/) branch with new npm script `npm run start:electron` to launch the app within Electron.
 - [ ] [Capacitor](https://capacitorjs.com/) branch - planned
-- [x] [SocketIO](https://socket.io/) branch demonstrates how to implement a Nest WebSocket Gateway with user authentication.
 - [x] [Kendo UI](https://www.telerik.com/kendo-angular-ui/components/grid/) branch - which includes [@zen/grid](https://github.com/ZenSoftware/zen/tree/kendo/libs/grid).  `<zen-grid>` renders robust and reliable data grids over all of the Prisma models within the project, with minimal configuration needed.
 - [x] [OpenTelemetry](https://opentelemetry.io/) branch demonstrates how to integrate and expose telemetry data for the API server.
 

@@ -37,7 +37,6 @@ export class EnvironmentDev implements Environment {
     api: 'http://zen.<IP>.nip.io',
     portal: 'http://localhost:4200/#',
     graphql: 'http://zen.<IP>.nip.io/graphql',
-    graphqlSubscriptions: 'ws://zen.<IP>.nip.io/graphql',
   };
 }
 ```

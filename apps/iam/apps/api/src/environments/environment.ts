@@ -1,7 +1,5 @@
 import 'dotenv/config';
 
-import { join } from 'path';
-
 import { EnvironmentBase, serviceName } from './environment.base';
 
 export const environment: EnvironmentBase = {
@@ -13,7 +11,6 @@ export const environment: EnvironmentBase = {
   publicRegistration: true,
   cors: { credentials: true, origin: true },
   graphql: {
-    subscriptions: true,
     sandbox: true,
     introspection: true,
     csrfPrevention: true,
