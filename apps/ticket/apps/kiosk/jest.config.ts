@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'kiosk',
-  preset: '../../jest.preset.js',
+  displayName: 'ticket-apps-kiosk',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/apps/kiosk',
+  coverageDirectory: '../../../../coverage/apps/ticket/apps/kiosk',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

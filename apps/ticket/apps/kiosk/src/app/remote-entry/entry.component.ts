@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'deepq-kiosk-entry',
-  template: `<deepq-nx-welcome></deepq-nx-welcome>`,
+  selector: 'app-ticket-apps-kiosk-entry',
+  template: `<app-nx-welcome></app-nx-welcome>`,
 })
 export class RemoteEntryComponent {}

@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'deepq-nx-welcome',
+  selector: 'app-nx-welcome',
   template: `
     <!--
      * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -420,7 +420,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
         <div id="welcome">
           <h1>
             <span> Hello there, </span>
-            Welcome kiosk 👋
+            Welcome ticket-apps-kiosk 👋
           </h1>
         </div>
         <!--  HERO  -->

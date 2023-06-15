@@ -1,8 +1,8 @@
 {
-  "name": "kiosk",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "ticket-apps-kiosk",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "deepq",
+  "prefix": "app",
   "sourceRoot": "apps/kiosk/src",
   "tags": [],
   "targets": {
@@ -15,7 +15,10 @@
         "main": "apps/kiosk/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/kiosk/tsconfig.app.json",
-        "assets": ["apps/kiosk/src/favicon.ico", "apps/kiosk/src/assets"],
+        "assets": [
+          "apps/kiosk/src/favicon.ico",
+          "apps/kiosk/src/assets"
+        ],
         "styles": ["apps/kiosk/src/styles.scss"],
         "scripts": [],
         "customWebpackConfig": {
@@ -56,15 +59,14 @@
       "executor": "@nx/angular:webpack-dev-server",
       "options": {
         "port": 4201,
-        "proxyConfig": "apps/kiosk/proxy.conf.json",
         "publicHost": "http://localhost:4201"
       },
       "configurations": {
         "production": {
-          "browserTarget": "kiosk:build:production"
+          "browserTarget": "ticket-apps-kiosk:build:production"
         },
         "development": {
-          "browserTarget": "kiosk:build:development"
+          "browserTarget": "ticket-apps-kiosk:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -72,14 +74,17 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "kiosk:build"
+        "browserTarget": "ticket-apps-kiosk:build"
       }
     },
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/kiosk/**/*.ts", "apps/kiosk/**/*.html"]
+        "lintFilePatterns": [
+          "apps/kiosk/**/*.ts",
+          "apps/kiosk/**/*.html"
+        ]
       }
     },
     "test": {
@@ -100,16 +105,16 @@
       "executor": "@nx/web:file-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "kiosk:build",
+        "buildTarget": "ticket-apps-kiosk:build",
         "port": 4201,
         "watch": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "kiosk:build:development"
+          "buildTarget": "ticket-apps-kiosk:build:development"
         },
         "production": {
-          "buildTarget": "kiosk:build:production"
+          "buildTarget": "ticket-apps-kiosk:build:production"
         }
       }
     }
