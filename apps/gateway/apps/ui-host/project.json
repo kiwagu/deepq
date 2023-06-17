@@ -3,23 +3,23 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "deepq",
-  "sourceRoot": "apps/ui-host/src",
+  "sourceRoot": "apps/gateway/apps/ui-host/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/ui-host",
-        "index": "apps/ui-host/src/index.html",
-        "main": "apps/ui-host/src/main.ts",
+        "outputPath": "dist/apps/gateway/apps/ui-host",
+        "index": "apps/gateway/apps/ui-host/src/index.html",
+        "main": "apps/gateway/apps/ui-host/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/ui-host/tsconfig.app.json",
-        "assets": ["apps/ui-host/src/favicon.ico", "apps/ui-host/src/assets"],
-        "styles": ["apps/ui-host/src/styles.scss"],
+        "tsConfig": "apps/gateway/apps/ui-host/tsconfig.app.json",
+        "assets": ["apps/gateway/apps/ui-host/src/favicon.ico", "apps/gateway/apps/ui-host/src/assets"],
+        "styles": ["apps/gateway/apps/ui-host/src/styles.scss"],
         "scripts": [],
         "customWebpackConfig": {
-          "path": "apps/ui-host/webpack.config.js"
+          "path": "apps/gateway/apps/ui-host/webpack.config.js"
         }
       },
       "configurations": {
@@ -38,7 +38,7 @@
           ],
           "outputHashing": "all",
           "customWebpackConfig": {
-            "path": "apps/ui-host/webpack.prod.config.js"
+            "path": "apps/gateway/apps/ui-host/webpack.prod.config.js"
           }
         },
         "development": {
@@ -78,14 +78,14 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/ui-host/**/*.ts", "apps/ui-host/**/*.html"]
+        "lintFilePatterns": ["apps/gateway/apps/ui-host/**/*.ts", "apps/gateway/apps/ui-host/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/ui-host/jest.config.ts",
+        "jestConfig": "apps/gateway/apps/ui-host/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {

@@ -1,6 +1,6 @@
 module.exports = {
-  name: 'ticket-apps-kiosk',
+  name: 'kiosk',
   exposes: {
-    './Module': './apps/kiosk/src/app/remote-entry/entry.module.ts',
+    './Module': 'apps/ticket/apps/kiosk/src/app/remote-entry/entry.module.ts',
   },
 };

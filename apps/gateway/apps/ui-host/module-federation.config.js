@@ -1,4 +1,4 @@
 module.exports = {
   name: 'ui-host',
-  remotes: [],
+  remotes: ["kiosk"],
 };

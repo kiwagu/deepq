@@ -1,28 +1,28 @@
 {
-  "name": "ticket-apps-kiosk",
+  "name": "kiosk",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/kiosk/src",
+  "sourceRoot": "apps/ticket/apps/kiosk/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/kiosk",
-        "index": "apps/kiosk/src/index.html",
-        "main": "apps/kiosk/src/main.ts",
+        "outputPath": "dist/apps/ticket/apps/kiosk",
+        "index": "apps/ticket/apps/kiosk/src/index.html",
+        "main": "apps/ticket/apps/kiosk/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/kiosk/tsconfig.app.json",
+        "tsConfig": "apps/ticket/apps/kiosk/tsconfig.app.json",
         "assets": [
-          "apps/kiosk/src/favicon.ico",
-          "apps/kiosk/src/assets"
+          "apps/ticket/apps/kiosk/src/favicon.ico",
+          "apps/ticket/apps/kiosk/src/assets"
         ],
-        "styles": ["apps/kiosk/src/styles.scss"],
+        "styles": ["apps/ticket/apps/kiosk/src/styles.scss"],
         "scripts": [],
         "customWebpackConfig": {
-          "path": "apps/kiosk/webpack.config.js"
+          "path": "apps/ticket/apps/kiosk/webpack.config.js"
         }
       },
       "configurations": {
@@ -41,7 +41,7 @@
           ],
           "outputHashing": "all",
           "customWebpackConfig": {
-            "path": "apps/kiosk/webpack.prod.config.js"
+            "path": "apps/ticket/apps/kiosk/webpack.prod.config.js"
           }
         },
         "development": {
@@ -63,10 +63,10 @@
       },
       "configurations": {
         "production": {
-          "browserTarget": "ticket-apps-kiosk:build:production"
+          "browserTarget": "kiosk:build:production"
         },
         "development": {
-          "browserTarget": "ticket-apps-kiosk:build:development"
+          "browserTarget": "kiosk:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "ticket-apps-kiosk:build"
+        "browserTarget": "kiosk:build"
       }
     },
     "lint": {
@@ -82,8 +82,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "apps/kiosk/**/*.ts",
-          "apps/kiosk/**/*.html"
+          "apps/ticket/apps/kiosk/**/*.ts",
+          "apps/ticket/apps/kiosk/**/*.html"
         ]
       }
     },
@@ -91,7 +91,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/kiosk/jest.config.ts",
+        "jestConfig": "apps/ticket/apps/kiosk/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -105,16 +105,16 @@
       "executor": "@nx/web:file-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "ticket-apps-kiosk:build",
+        "buildTarget": "kiosk:build",
         "port": 4201,
         "watch": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "ticket-apps-kiosk:build:development"
+          "buildTarget": "kiosk:build:development"
         },
         "production": {
-          "buildTarget": "ticket-apps-kiosk:build:production"
+          "buildTarget": "kiosk:build:production"
         }
       }
     }

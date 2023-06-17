@@ -7,9 +7,7 @@ export const appRoutes: Route[] = [
   {
     path: 'kiosk',
     loadChildren: () =>
-      loadRemoteModule('ticket-apps-kiosk', './Module').then(
-        (m) => m.RemoteEntryModule
-      ),
+      loadRemoteModule('kiosk', './Module').then((m) => m.RemoteEntryModule),
   },
   {
     path: '',
