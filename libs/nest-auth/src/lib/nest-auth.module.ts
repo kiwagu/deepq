@@ -36,7 +36,7 @@ import { JwtPayload } from './models/jwt-payload';
                     rules: [],
                   };
                   const ability = caslFactory.createAbility(user);
-                  user.rules = ability.rules as never[];
+                  user.rules = ability.rules;
 
                   cls.set('rpcReq', {
                     header: (name: string) => headers[name],

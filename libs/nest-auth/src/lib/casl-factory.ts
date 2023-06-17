@@ -15,5 +15,5 @@ import { RequestUser } from './models/request-user';
  */
 @Injectable()
 export abstract class CaslFactory {
-  abstract createAbility(user: RequestUser): PureAbility;
+  abstract createAbility(user: RequestUser): any;
 }
