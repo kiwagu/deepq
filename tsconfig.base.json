@@ -16,9 +16,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@deepq/nest-logger": ["libs/nest-logger/src/index.ts"],
       "@deepq/common": ["libs/common/src/index.ts"],
       "@deepq/nest-auth": ["libs/nest-auth/src/index.ts"],
+      "@deepq/nest-logger": ["libs/nest-logger/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
