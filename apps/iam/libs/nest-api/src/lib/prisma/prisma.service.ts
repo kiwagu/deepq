@@ -1,6 +1,6 @@
 import { INestApplication, Injectable, Optional } from '@nestjs/common';
 
-import { Prisma, PrismaClient } from './generated';
+import { Prisma, PrismaClient } from '@prisma/client/nest-api';
 
 @Injectable()
 export class PrismaService extends PrismaClient {

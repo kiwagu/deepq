@@ -11,7 +11,7 @@
       "options": {
         "target": "node",
         "compiler": "tsc",
-        "outputPath": "dist/apps/iam",
+        "outputPath": "apps/iam/apps/iam/dist/apps/iam",
         "main": "apps/iam/src/main.ts",
         "tsConfig": "apps/iam/tsconfig.app.json",
         "assets": ["apps/iam/src/assets"],

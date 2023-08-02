@@ -6,7 +6,7 @@
   "scripts": {
     "-----IAM-----": "",
     "dev:iam:portal": "pnpm -r --filter iam start:dev:portal",
-    "dev:iam:api": "pnpm -r --filter iam start:dev:api",
+    "dev:iam:api": "nx serve iam-api",
     "dev:iam:srv": "pnpm -r --filter iam start:dev:srv",
     "dev:iam:notif-srv": "pnpm -r --filter iam start:dev:notif-srv",
     "dev:iam:all": "stmux [ [ \"pnpm dev:iam:portal\" : \"pnpm dev:iam:api\" ] .. [ \"pnpm dev:iam:srv\" : \"pnpm dev:iam:notif-srv\" ] ] -M",

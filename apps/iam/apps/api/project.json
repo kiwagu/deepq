@@ -10,7 +10,7 @@
       "options": {
         "target": "node",
         "compiler": "tsc",
-        "outputPath": "dist/apps/api",
+        "outputPath": "apps/iam/apps/api/dist",
         "main": "apps/iam/apps/api/src/main.ts",
         "tsConfig": "apps/iam/apps/api/tsconfig.app.json",
         "assets": ["apps/iam/apps/api/src/assets"],
