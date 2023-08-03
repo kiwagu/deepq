@@ -23,6 +23,9 @@ importers:
       '@angular/forms':
         specifier: ~16.1.1
         version: 16.1.1(@angular/common@16.1.1)(@angular/core@16.1.1)(@angular/platform-browser@16.1.1)(rxjs@7.8.1)
+      '@angular/material':
+        specifier: ~16.1.1
+        version: 16.1.1(@angular/animations@16.1.1)(@angular/cdk@16.1.1)(@angular/common@16.1.1)(@angular/core@16.1.1)(@angular/forms@16.1.1)(@angular/platform-browser@16.1.1)(rxjs@7.8.1)
       '@angular/platform-browser':
         specifier: ~16.1.1
         version: 16.1.1(@angular/animations@16.1.1)(@angular/common@16.1.1)(@angular/core@16.1.1)
@@ -49,7 +52,7 @@ importers:
         version: 1.8.1(@nestjs/common@9.4.2)(@nestjs/core@9.4.2)(nodemailer@6.9.3)
       '@nestjs/apollo':
         specifier: ^11.0.4
-        version: 11.0.6(@apollo/server@4.7.3)(@nestjs/common@9.4.2)(@nestjs/core@9.4.2)(@nestjs/graphql@11.0.6)(graphql@16.6.0)
+        version: 11.0.6(@apollo/gateway@2.4.7)(@apollo/server@4.7.3)(@apollo/subgraph@2.4.7)(@nestjs/common@9.4.2)(@nestjs/core@9.4.2)(@nestjs/graphql@11.0.6)(graphql@16.6.0)
       '@nestjs/bull':
         specifier: ^0.6.3
         version: 0.6.3(@nestjs/common@9.4.2)(@nestjs/core@9.4.2)(bull@4.10.4)
@@ -61,7 +64,7 @@ importers:
         version: 9.4.2(@nestjs/common@9.4.2)(@nestjs/microservices@9.4.2)(@nestjs/platform-express@9.4.2)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/graphql':
         specifier: ^11.0.6
-        version: 11.0.6(@apollo/subgraph@2.4.8)(@nestjs/common@9.4.2)(@nestjs/core@9.4.2)(graphql@16.6.0)(reflect-metadata@0.1.13)
+        version: 11.0.6(@apollo/subgraph@2.4.7)(@nestjs/common@9.4.2)(@nestjs/core@9.4.2)(graphql@16.6.0)(reflect-metadata@0.1.13)
       '@nestjs/jwt':
         specifier: ^10.0.3
         version: 10.0.3(@nestjs/common@9.4.2)
@@ -991,7 +994,7 @@ importers:
         version: 9.4.2(@nestjs/common@9.4.2)(@nestjs/microservices@9.4.2)(@nestjs/platform-express@9.4.2)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/graphql':
         specifier: ^11.0.6
-        version: 11.0.6(@apollo/subgraph@2.4.8)(@nestjs/common@9.4.2)(@nestjs/core@9.4.2)(graphql@16.6.0)(reflect-metadata@0.1.13)
+        version: 11.0.6(@apollo/subgraph@2.4.8)(@nestjs/common@9.4.2)(@nestjs/core@9.4.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.6.0)(reflect-metadata@0.1.13)
       '@nestjs/jwt':
         specifier: ^10.0.3
         version: 10.0.3(@nestjs/common@9.4.2)
@@ -2228,6 +2231,21 @@ packages:
       parse5: 7.1.2
     dev: true
 
+  /@angular/cdk@16.1.1(@angular/common@16.1.1)(@angular/core@16.1.1)(rxjs@7.8.1):
+    resolution: {integrity: sha512-nVIeooGspNLT8XySfGZ4e8HYO/TsFemrjNVKb3G9+7KxY4tvE5dkGbJjx5TStEQoSzjfNbCscO89lHIaQ7+aMA==}
+    peerDependencies:
+      '@angular/common': ^16.0.0 || ^17.0.0
+      '@angular/core': ^16.0.0 || ^17.0.0
+      rxjs: ^6.5.3 || ^7.4.0
+    dependencies:
+      '@angular/common': 16.1.1(@angular/core@16.1.1)(rxjs@7.8.1)
+      '@angular/core': 16.1.1(rxjs@7.8.1)(zone.js@0.13.1)
+      rxjs: 7.8.1
+      tslib: 2.5.3
+    optionalDependencies:
+      parse5: 7.1.2
+    dev: false
+
   /@angular/cli@16.0.5:
     resolution: {integrity: sha512-ugo0O8Bv5A9ewylOW0h9oeyxbN9om8T+E9yY7gMphlvGFHKHqGPgpHws2Gu3tlAAkJHXpdBndhN0wfKtwHaloQ==}
     engines: {node: ^16.14.0 || >=18.10.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
@@ -2543,6 +2561,74 @@ packages:
       rxjs: 7.8.1
       tslib: 2.5.3
     dev: true
+
+  /@angular/material@16.1.1(@angular/animations@16.1.1)(@angular/cdk@16.1.1)(@angular/common@16.1.1)(@angular/core@16.1.1)(@angular/forms@16.1.1)(@angular/platform-browser@16.1.1)(rxjs@7.8.1):
+    resolution: {integrity: sha512-fVFsxYdCQ9PtDR2Cx6q7XqRFnMKz/OGUaC0pPa/RVuBnUbC+GaapDHd4Suy8NF/skX/xl46rZVEKrRumaWM8FA==}
+    peerDependencies:
+      '@angular/animations': ^16.0.0 || ^17.0.0
+      '@angular/cdk': 16.1.1
+      '@angular/common': ^16.0.0 || ^17.0.0
+      '@angular/core': ^16.0.0 || ^17.0.0
+      '@angular/forms': ^16.0.0 || ^17.0.0
+      '@angular/platform-browser': ^16.0.0 || ^17.0.0
+      rxjs: ^6.5.3 || ^7.4.0
+    dependencies:
+      '@angular/animations': 16.1.1(@angular/core@16.1.1)
+      '@angular/cdk': 16.1.1(@angular/common@16.1.1)(@angular/core@16.1.1)(rxjs@7.8.1)
+      '@angular/common': 16.1.1(@angular/core@16.1.1)(rxjs@7.8.1)
+      '@angular/core': 16.1.1(rxjs@7.8.1)(zone.js@0.13.1)
+      '@angular/forms': 16.1.1(@angular/common@16.1.1)(@angular/core@16.1.1)(@angular/platform-browser@16.1.1)(rxjs@7.8.1)
+      '@angular/platform-browser': 16.1.1(@angular/animations@16.1.1)(@angular/common@16.1.1)(@angular/core@16.1.1)
+      '@material/animation': 15.0.0-canary.90291f2e2.0
+      '@material/auto-init': 15.0.0-canary.90291f2e2.0
+      '@material/banner': 15.0.0-canary.90291f2e2.0
+      '@material/base': 15.0.0-canary.90291f2e2.0
+      '@material/button': 15.0.0-canary.90291f2e2.0
+      '@material/card': 15.0.0-canary.90291f2e2.0
+      '@material/checkbox': 15.0.0-canary.90291f2e2.0
+      '@material/chips': 15.0.0-canary.90291f2e2.0
+      '@material/circular-progress': 15.0.0-canary.90291f2e2.0
+      '@material/data-table': 15.0.0-canary.90291f2e2.0
+      '@material/density': 15.0.0-canary.90291f2e2.0
+      '@material/dialog': 15.0.0-canary.90291f2e2.0
+      '@material/dom': 15.0.0-canary.90291f2e2.0
+      '@material/drawer': 15.0.0-canary.90291f2e2.0
+      '@material/elevation': 15.0.0-canary.90291f2e2.0
+      '@material/fab': 15.0.0-canary.90291f2e2.0
+      '@material/feature-targeting': 15.0.0-canary.90291f2e2.0
+      '@material/floating-label': 15.0.0-canary.90291f2e2.0
+      '@material/form-field': 15.0.0-canary.90291f2e2.0
+      '@material/icon-button': 15.0.0-canary.90291f2e2.0
+      '@material/image-list': 15.0.0-canary.90291f2e2.0
+      '@material/layout-grid': 15.0.0-canary.90291f2e2.0
+      '@material/line-ripple': 15.0.0-canary.90291f2e2.0
+      '@material/linear-progress': 15.0.0-canary.90291f2e2.0
+      '@material/list': 15.0.0-canary.90291f2e2.0
+      '@material/menu': 15.0.0-canary.90291f2e2.0
+      '@material/menu-surface': 15.0.0-canary.90291f2e2.0
+      '@material/notched-outline': 15.0.0-canary.90291f2e2.0
+      '@material/radio': 15.0.0-canary.90291f2e2.0
+      '@material/ripple': 15.0.0-canary.90291f2e2.0
+      '@material/rtl': 15.0.0-canary.90291f2e2.0
+      '@material/segmented-button': 15.0.0-canary.90291f2e2.0
+      '@material/select': 15.0.0-canary.90291f2e2.0
+      '@material/shape': 15.0.0-canary.90291f2e2.0
+      '@material/slider': 15.0.0-canary.90291f2e2.0
+      '@material/snackbar': 15.0.0-canary.90291f2e2.0
+      '@material/switch': 15.0.0-canary.90291f2e2.0
+      '@material/tab': 15.0.0-canary.90291f2e2.0
+      '@material/tab-bar': 15.0.0-canary.90291f2e2.0
+      '@material/tab-indicator': 15.0.0-canary.90291f2e2.0
+      '@material/tab-scroller': 15.0.0-canary.90291f2e2.0
+      '@material/textfield': 15.0.0-canary.90291f2e2.0
+      '@material/theme': 15.0.0-canary.90291f2e2.0
+      '@material/tooltip': 15.0.0-canary.90291f2e2.0
+      '@material/top-app-bar': 15.0.0-canary.90291f2e2.0
+      '@material/touch-target': 15.0.0-canary.90291f2e2.0
+      '@material/typography': 15.0.0-canary.90291f2e2.0
+      rxjs: 7.8.1
+      tslib: 2.5.3
+    dev: false
 
   /@angular/platform-browser-dynamic@16.0.5(@angular/common@16.0.5)(@angular/compiler@16.0.5)(@angular/core@16.0.5)(@angular/platform-browser@16.0.5):
     resolution: {integrity: sha512-P119TZJa2JhkVeAgfDeO01pYcIzUHF/kc+JWYi8nIyWsz/ynx5kfIk1wo3GpOaqCb+iieZYLRgwIMRMpQgkxUg==}
@@ -8398,14 +8484,12 @@ packages:
     resolution: {integrity: sha512-tr1y4KYZ2Ml9lFU9b91r5jivDCbh0N3Zv6VFe0frphztlZO5Lqx7MCxsliQ7NwQjqpXg3MkD6ZusVNvnMyo+LA==}
     dependencies:
       tslib: 2.5.3
-    dev: true
 
   /@material/auto-init@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-ZslBlje2LajaL5d7JCxUoWCKOBOsZYT33CamqPoDeY0Cjl77t3O+8B9YPHF8libytI8j9lrrDrTItQr53PHeHw==}
     dependencies:
       '@material/base': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/banner@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-mVtGop9rBXRD6UYkMD7y+OJwd3MA73w7BJ/oJIKFij2q2fn/5hZba6vQ6d6YGUGv+iJPP/S/HaiMQuRE5yyoqA==}
@@ -8422,13 +8506,11 @@ packages:
       '@material/tokens': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/base@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-DNelmohDScmGvWWS/J05dkIJb/dKOVkA6s0URgPrnTFKXNSavPsmwj7hWzYB5kusz3ZrXJBYBJsE6VqkRRXl0w==}
     dependencies:
       tslib: 2.5.3
-    dev: true
 
   /@material/button@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-m3YqCh33kcPGYehCKviDy7RxQIEM2m8Exo6AswPPsxd95jSN3rAeF+pXopoXW5QTOqyKHqHymTKTRYYvwvZHYg==}
@@ -8446,7 +8528,6 @@ packages:
       '@material/touch-target': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/card@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-8Z8KQDmEIwt5IK0n+9C9Be9p4mWLKBXILbH+c6XcMCTemmUxH6cTTax1MwuAmqBGuIq3WE3g7qDpdzjFLTC2kw==}
@@ -8460,7 +8541,6 @@ packages:
       '@material/theme': 15.0.0-canary.90291f2e2.0
       '@material/tokens': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/checkbox@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-hCilHX0vLedMgeRSOskf+JjdfLIUvEg597LEkTJHnTtJkhwypvol8OwP3eqz3TyJ3qGimIi/sFPKdMBn1Uk4AQ==}
@@ -8476,7 +8556,6 @@ packages:
       '@material/theme': 15.0.0-canary.90291f2e2.0
       '@material/touch-target': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/chips@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-TMtlzuadWP/YMRYg8mpqmaD9M9GzRL5ulHHgYO5F4kaZmI3L+3zvaPvUme/x5qwPkIJUO9S21NxxGAsp9X+ZJQ==}
@@ -8498,7 +8577,6 @@ packages:
       '@material/typography': 15.0.0-canary.90291f2e2.0
       safevalues: 0.3.4
       tslib: 2.5.3
-    dev: true
 
   /@material/circular-progress@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-znCz3cXC8rmC+1k1ZEeZNOhngm7O7kVG2PoANaE79NN9taDtCTyBGGeocJ4Kza3tb01vxJ2/tuQXC39GNFkHFg==}
@@ -8511,7 +8589,6 @@ packages:
       '@material/rtl': 15.0.0-canary.90291f2e2.0
       '@material/theme': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/data-table@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-9YU6KkOeKs2ARPXZdg7Cv6nPwLkEyBIN331ZB92apcbQpTMJMhR3uuW8SSw4p7aXCE6CJjREsCc0KuYAnFSa2A==}
@@ -8535,13 +8612,11 @@ packages:
       '@material/touch-target': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/density@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-z2L49vc5tbIGe7tUHwbmzoPvOugsTNVP24WWwBwtg9PRuK4Td5HIsMGYqSzSuwFJvDWQK9Ugvl37jGZSv4vxog==}
     dependencies:
       tslib: 2.5.3
-    dev: true
 
   /@material/dialog@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-n0o4MELpVqJHbJDPBYeXf3xeL9a8hbzHmfXYLDI1MUhDIr4xgSkckKdCRc2IFda/g7kxjAgcUTga9EFWqns2qA==}
@@ -8561,7 +8636,6 @@ packages:
       '@material/touch-target': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/dom@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-90JKk/Ncnqn2dKopNxs1uruiiQZzgLTZQF3a8jxa/w3RQd3Ac9ET1KqmaJSfzXaxgebm+1RZfL9lL+ANEfLWwQ==}
@@ -8569,7 +8643,6 @@ packages:
       '@material/feature-targeting': 15.0.0-canary.90291f2e2.0
       '@material/rtl': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/drawer@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-7MJbjUxqpQG9J52xWGVKRhSI/0/7Uhf7l2P9VI2WFb5Fz0IeUupXlw2k1Ktb97nxSjMe9OazjtVUgzBNwOad/Q==}
@@ -8586,7 +8659,6 @@ packages:
       '@material/theme': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/elevation@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-4eYbCDc6IfgfguNmRc5GT4QMCfOEwj+K3BAraABcbpuCzEQ5nCClsVrPbRLfPnhWbQrFc2/eBglB8wsrNTjVBw==}
@@ -8597,7 +8669,6 @@ packages:
       '@material/rtl': 15.0.0-canary.90291f2e2.0
       '@material/theme': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/fab@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-YJuJRdqe57DnJ4qyc04flknuGeN+7Nc9ciFZE6snPn84wD6J1khscb21yRARbALDki18kbfnJNrNbzHkYaEMZg==}
@@ -8615,13 +8686,11 @@ packages:
       '@material/touch-target': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/feature-targeting@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-mjUemPnMLXPooDcPHxxc2uhVUzm7X3NDsE0x0QJnsHDwuejakaRLghVcRDX3x1VmL/p52Eu5HrgW2FryFEiVhQ==}
     dependencies:
       tslib: 2.5.3
-    dev: true
 
   /@material/floating-label@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-dYtgNlXkO0H9Vn76oESZZg1KOa2XIOLhVxhV/qPYrhntET534i7TyajmVk54ncuSSoLPZrbrwrhhR2fUJWxZIg==}
@@ -8634,7 +8703,6 @@ packages:
       '@material/theme': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/focus-ring@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-U7ERDgHi33ZRmqsiO6syFaWsCUGneltX2sYVtLpQnxME7pKFzi22GdUUIslhgHOFjSMBFF9av2Y79VFbyj9BaQ==}
@@ -8642,7 +8710,6 @@ packages:
       '@material/dom': 15.0.0-canary.90291f2e2.0
       '@material/feature-targeting': 15.0.0-canary.90291f2e2.0
       '@material/rtl': 15.0.0-canary.90291f2e2.0
-    dev: true
 
   /@material/form-field@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-KTj+EOobLcPUYy4nR+t0c2Cjvs7jCI4F1w8XuV0bbmSa6Sxh02tMKY2Xa7Lx55A/uUrsUfViMdP60OLzi7HgjQ==}
@@ -8654,7 +8721,6 @@ packages:
       '@material/theme': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/icon-button@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-bpqiVPkf/LJEP7iIV5VL9Th0chCIQKTeOuw0mK8HmYucuvqq+k76oPsUcE7mvxRvuKyVh6KJ9fTHAkjse0y7cg==}
@@ -8670,7 +8736,6 @@ packages:
       '@material/theme': 15.0.0-canary.90291f2e2.0
       '@material/touch-target': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/image-list@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-JobM4lWsf9grgbqrLuUtJ5fr8BkG02r9c2oFMl5++dtjtLdXWnUIWbiofna8CeqDFQCKXsCk4Jw8ydSKZvj/3A==}
@@ -8680,13 +8745,11 @@ packages:
       '@material/theme': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/layout-grid@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-f5DSHGf1ka6vHu+8VoTvcU9NkR8fdN2wHmPnITZHQXPVvR6SKoyDzdAf2gacmiTYy69ZFmmJeMcdfNnbcPPUJw==}
     dependencies:
       tslib: 2.5.3
-    dev: true
 
   /@material/line-ripple@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-cWpS7l/pFg6cUzL7Lx3ywF6RYF6ESYPkiGlDo9kFERv8lVA2/3m4NF4d9b4kC9h9OWx1b1CaUFRFGD07okgI+g==}
@@ -8696,7 +8759,6 @@ packages:
       '@material/feature-targeting': 15.0.0-canary.90291f2e2.0
       '@material/theme': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/linear-progress@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-nK5RYn8NFZi/+fznLYoEdY6tSzXiJqOU0tX5by7hStURhP2g/RM5SQaJwyjEmHdorfCUIStgmKsN4rB5aMnxdw==}
@@ -8709,7 +8771,6 @@ packages:
       '@material/rtl': 15.0.0-canary.90291f2e2.0
       '@material/theme': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/list@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-h2c6G5aPH1bhgl2yBYAW4y86pl+yVl3YdqU0ixemQ5/2uB/t92imUbI+gKH5LzlbuJKenk3rZJ5eaV+t5zTS1A==}
@@ -8725,7 +8786,6 @@ packages:
       '@material/tokens': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/menu-surface@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-AkRpOjFOJi2ROZPvFo1z8ik61eEyJEew8NuvlzCE4S3BX/RNFrYVh4W5ylo030S01ALCS5zhVOeekxa/4eokZA==}
@@ -8738,7 +8798,6 @@ packages:
       '@material/shape': 15.0.0-canary.90291f2e2.0
       '@material/theme': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/menu@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-yfpBN4Hg59pHMNplh2LIe8t+/qsfyP0iRAtJoCK90SBwX43kv65u22+3vEJmYzm3Ey/m3S3YRFXTFQRQnn9cmA==}
@@ -8755,7 +8814,6 @@ packages:
       '@material/theme': 15.0.0-canary.90291f2e2.0
       '@material/tokens': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/notched-outline@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-4lpoIoFJ8cb++M1iQpZ+8iypUuTruzyBAkOvoaNjk7EftEV+aS3K6XntGNtlUZoB/fFho3mAUVjT19IHFWD03A==}
@@ -8767,13 +8825,11 @@ packages:
       '@material/shape': 15.0.0-canary.90291f2e2.0
       '@material/theme': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/progress-indicator@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-trQLSstZIA0C64adW/HycycD+PtMfg6iZCIVuTNlZr7PR2Yc1EjuGyA7ts+iXBHZ0TxVshRbDYMwcDogP0rc1w==}
     dependencies:
       tslib: 2.5.3
-    dev: true
 
   /@material/radio@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-Ypl4BZ9w1NdbiiEUV3Xw2pb97prMPGEE+5Lm719sVsaFmI4yCKgtsWNEbCbKixborh2ZDZWGCzgMyUQHf3a8xA==}
@@ -8788,7 +8844,6 @@ packages:
       '@material/theme': 15.0.0-canary.90291f2e2.0
       '@material/touch-target': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/ripple@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-8yCR/V+7SJ9om0cvAOULF/i5+gPQeT+cuPoCZJQRWq9IndfCmQPY3Zmy26reIT/zEyCebAvMG4/WtU4rc+jxyw==}
@@ -8800,14 +8855,12 @@ packages:
       '@material/rtl': 15.0.0-canary.90291f2e2.0
       '@material/theme': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/rtl@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-HkUhD8K03BxWVw21WDViWo01Chi22cZ1rmlsdCtggkxdVjtDhTbYm/3XvRnxt4RVpr6KaYQgRXI/52T5RtBUnw==}
     dependencies:
       '@material/theme': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/segmented-button@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-u1DF+jbysX6wCqt7dDnHgEo2XhNrwkqHq6YsMOFVCoo54PHt3gpwhD89DONqQJKspkdvZuxYHzpqRtV0GIzYDQ==}
@@ -8820,7 +8873,6 @@ packages:
       '@material/touch-target': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/select@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-CCaftyi3eIJl2XqBfHbzj8W2jgTMBzSM2+q4WthA+7z0fYQI4JIHQVHO5YKQG5J9MR1VjYQ0Gy0GNotZLAcoOQ==}
@@ -8844,7 +8896,6 @@ packages:
       '@material/tokens': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/shape@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-UEB168x8ovLvH4eoBtRnoCT9QvnxB/ZMpOKW1+C+xWisis6Wy9AX0wKT5T6wIpffYYCaBJuhI+ExX2134rAxJw==}
@@ -8853,7 +8904,6 @@ packages:
       '@material/rtl': 15.0.0-canary.90291f2e2.0
       '@material/theme': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/slider@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-krbdGHcROlvnZ0X7HT0d+PvJummczeShQeWeV/ZezXnQM7bQoy86qfwtX4ai1dIXYkF9qKTFlta2zZezTJyf5g==}
@@ -8869,7 +8919,6 @@ packages:
       '@material/tokens': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/snackbar@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-f1+HaSaAkALtQqEr6WMUqfwOsJr5nOUjP15GA+sTs9SD7yzwqMeWsVriBdWXVRe0zNgew6sfBM+cLjg2w4VAOQ==}
@@ -8888,7 +8937,6 @@ packages:
       '@material/tokens': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/switch@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-94/+Zp2VjlLVJXY7u8VHPcJMHPRVNAwHydiGrKvnJ+6LfbLxAcILNBP9RVKqqqOWQeDxB4ApUl+0TV2Lj6mOzA==}
@@ -8907,7 +8955,6 @@ packages:
       '@material/tokens': 15.0.0-canary.90291f2e2.0
       safevalues: 0.3.4
       tslib: 2.5.3
-    dev: true
 
   /@material/tab-bar@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-dTC7oGZg6KuDK2OXO7luJWqshtNY2YgImwZbQ9a1vZZrIGMRHdu+ZtP6RVH2srFVlNIWjzcxfLgNrG+U027RdA==}
@@ -8924,7 +8971,6 @@ packages:
       '@material/tokens': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/tab-indicator@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-GXdFO6rO1crXcj+todijzZQVACW4EC72XwLAl6z69TKBgZrhwCoZ6RgzX6vIXSs+KoZ0eIyQLr+yQQx1JjDd4w==}
@@ -8934,7 +8980,6 @@ packages:
       '@material/feature-targeting': 15.0.0-canary.90291f2e2.0
       '@material/theme': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/tab-scroller@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-R6trOZpkfk54VV0w0NjMMDcZPQgbnARxCoHLrWeSzv5KOMoiDyWji7FFpLc4fynX/F2lNg8xHpEolpugNRW/1g==}
@@ -8945,7 +8990,6 @@ packages:
       '@material/feature-targeting': 15.0.0-canary.90291f2e2.0
       '@material/tab': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/tab@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-zju6UP038Ddi3XAfliYy58A3OvkQ+zSlOdNOd5l82oMArLYEFi3t51QTjKVjV1wokr6ZQ3Chs4kcrgwVTElYtg==}
@@ -8961,7 +9005,6 @@ packages:
       '@material/tokens': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/textfield@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-ipxPH8DRh9+cn4MOtAYvGsRLP5RJH/gB/BWh/BiJwjI38Djt4FK4LDHbx7fFo/C8hoj7UNs/BWaSLllyxuWKcg==}
@@ -8981,20 +9024,17 @@ packages:
       '@material/tokens': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/theme@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-rDSZ0bPoJothI8nRPQWB4Cyu7DTmc8qIuvFm3OOD4uI/2n+yIFqktS6X+6YF82LeKt4uMTZE+Ce/l51bb8UJGA==}
     dependencies:
       '@material/feature-targeting': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/tokens@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-ZTis8UeSRrm/4iQ6BujtcTf1J2bs2H+SAEnugtZSQiX8pyf90gQvylEoTuMPdUs1+YJ273cn04ipHdkq3OHaew==}
     dependencies:
       '@material/elevation': 15.0.0-canary.90291f2e2.0
-    dev: true
 
   /@material/tooltip@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-H3XsrctgRriNwt++NN+Zy6/JhyRznWo2pXiTFnOlaYwHOiGIFCNZR0A/0vf/3Kpf0GYhTfkJEFJMosUSZidSDg==}
@@ -9012,7 +9052,6 @@ packages:
       '@material/typography': 15.0.0-canary.90291f2e2.0
       safevalues: 0.3.4
       tslib: 2.5.3
-    dev: true
 
   /@material/top-app-bar@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-ZiJjK4WpIsE0MZTWokP9r4C9/oDqzUhKRn3ef2WCeJEIU3Vjg4t0xBTnST2vIrcBGw1s7WP1gfaxb3DSXSxzpw==}
@@ -9026,7 +9065,6 @@ packages:
       '@material/theme': 15.0.0-canary.90291f2e2.0
       '@material/typography': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/touch-target@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-IpRFf4umZ4ZNxrP+qJkRY9syh7TFZmU4c7EbAlANAJ0/8rlkEo7WJiqa9P1p4nFaT4eMo4n5g+qRI0Dkb9zW5g==}
@@ -9036,7 +9074,6 @@ packages:
       '@material/rtl': 15.0.0-canary.90291f2e2.0
       '@material/theme': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@material/typography@15.0.0-canary.90291f2e2.0:
     resolution: {integrity: sha512-tv1HWkJYi5T0470k8vbBb+nefdPgsaIO04ocWMf7luvmfE+MZIaR13RxdupLJ4k5otrdydL3/wEaCNhQ+Ipnvw==}
@@ -9044,7 +9081,6 @@ packages:
       '@material/feature-targeting': 15.0.0-canary.90291f2e2.0
       '@material/theme': 15.0.0-canary.90291f2e2.0
       tslib: 2.5.3
-    dev: true
 
   /@mdx-js/react@2.3.0(react@18.2.0):
     resolution: {integrity: sha512-zQH//gdOmuu7nt2oJR29vFhDv88oGPmVw6BggmrHeMI+xgEkp1B2dX9/bMBSYtK0dyLX/aOmesKS09g222K1/g==}
@@ -9192,36 +9228,6 @@ packages:
       '@nestjs/common': 9.4.2(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/core': 9.4.2(@nestjs/common@9.4.2)(@nestjs/microservices@9.4.2)(@nestjs/platform-express@9.4.2)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/graphql': 11.0.6(@apollo/subgraph@2.4.7)(@nestjs/common@9.4.2)(@nestjs/core@9.4.2)(graphql@16.6.0)(reflect-metadata@0.1.13)
-      graphql: 16.6.0
-      iterall: 1.3.0
-      lodash.omit: 4.5.0
-      tslib: 2.5.2
-    dev: false
-
-  /@nestjs/apollo@11.0.6(@apollo/server@4.7.3)(@nestjs/common@9.4.2)(@nestjs/core@9.4.2)(@nestjs/graphql@11.0.6)(graphql@16.6.0):
-    resolution: {integrity: sha512-w9I8oZHkHcBdR2sXoag4USe5nCOqWVdINYZTAnsLq8tafIolkGQAI9O+o1cGLyyV+9wwh4GAty5b9+jx/x1sbA==}
-    peerDependencies:
-      '@apollo/gateway': ^2.0.0
-      '@apollo/server': ^4.3.2
-      '@apollo/subgraph': ^2.0.0
-      '@as-integrations/fastify': ^1.3.0 || ^2.0.0
-      '@nestjs/common': ^9.0.0
-      '@nestjs/core': ^9.3.8
-      '@nestjs/graphql': ^11.0.0
-      graphql: ^16.6.0
-    peerDependenciesMeta:
-      '@apollo/gateway':
-        optional: true
-      '@apollo/subgraph':
-        optional: true
-      '@as-integrations/fastify':
-        optional: true
-    dependencies:
-      '@apollo/server': 4.7.3(graphql@16.6.0)
-      '@apollo/server-plugin-landing-page-graphql-playground': 4.0.0(@apollo/server@4.7.3)
-      '@nestjs/common': 9.4.2(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
-      '@nestjs/core': 9.4.2(@nestjs/common@9.4.2)(@nestjs/microservices@9.4.2)(@nestjs/platform-express@9.4.2)(reflect-metadata@0.1.13)(rxjs@7.8.1)
-      '@nestjs/graphql': 11.0.6(@apollo/subgraph@2.4.8)(@nestjs/common@9.4.2)(@nestjs/core@9.4.2)(graphql@16.6.0)(reflect-metadata@0.1.13)
       graphql: 16.6.0
       iterall: 1.3.0
       lodash.omit: 4.5.0
@@ -9429,51 +9435,6 @@ packages:
       chokidar: 3.5.3
       class-transformer: 0.5.1
       class-validator: 0.14.0
-      fast-glob: 3.2.12
-      graphql: 16.6.0
-      graphql-tag: 2.12.6(graphql@16.6.0)
-      graphql-ws: 5.13.1(graphql@16.6.0)
-      lodash: 4.17.21
-      normalize-path: 3.0.0
-      reflect-metadata: 0.1.13
-      subscriptions-transport-ws: 0.11.0(graphql@16.6.0)
-      tslib: 2.5.2
-      uuid: 9.0.0
-      ws: 8.13.0
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-    dev: false
-
-  /@nestjs/graphql@11.0.6(@apollo/subgraph@2.4.8)(@nestjs/common@9.4.2)(@nestjs/core@9.4.2)(graphql@16.6.0)(reflect-metadata@0.1.13):
-    resolution: {integrity: sha512-EGE4fhLHrQLPAAgER+AwIa034IM9FNJto3xg49cZmI6c7s1yo6pLw/JULCn2jE2hUDbg5Q3IORZMMG8EUiUyMw==}
-    peerDependencies:
-      '@apollo/subgraph': ^2.0.0
-      '@nestjs/common': ^9.3.8
-      '@nestjs/core': ^9.3.8
-      class-transformer: '*'
-      class-validator: '*'
-      graphql: ^16.6.0
-      reflect-metadata: ^0.1.13
-      ts-morph: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@apollo/subgraph':
-        optional: true
-      class-transformer:
-        optional: true
-      class-validator:
-        optional: true
-      ts-morph:
-        optional: true
-    dependencies:
-      '@apollo/subgraph': 2.4.8(graphql@16.6.0)
-      '@graphql-tools/merge': 9.0.0(graphql@16.6.0)
-      '@graphql-tools/schema': 10.0.0(graphql@16.6.0)
-      '@graphql-tools/utils': 10.0.0(graphql@16.6.0)
-      '@nestjs/common': 9.4.2(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
-      '@nestjs/core': 9.4.2(@nestjs/common@9.4.2)(@nestjs/microservices@9.4.2)(@nestjs/platform-express@9.4.2)(reflect-metadata@0.1.13)(rxjs@7.8.1)
-      '@nestjs/mapped-types': 1.2.2(@nestjs/common@9.4.2)(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)
-      chokidar: 3.5.3
       fast-glob: 3.2.12
       graphql: 16.6.0
       graphql-tag: 2.12.6(graphql@16.6.0)
@@ -11386,8 +11347,8 @@ packages:
       '@nx/devkit': 16.1.4(nx@16.3.2)
       '@nx/js': 16.1.4(nx@16.3.2)(typescript@5.0.4)
       '@typescript-eslint/parser': 5.59.6(eslint@8.15.0)(typescript@5.0.4)
-      '@typescript-eslint/type-utils': 5.59.6(eslint@8.15.0)(typescript@5.0.4)
-      '@typescript-eslint/utils': 5.59.8(eslint@8.15.0)(typescript@5.0.4)
+      '@typescript-eslint/type-utils': 5.59.11(eslint@8.15.0)(typescript@5.0.4)
+      '@typescript-eslint/utils': 5.59.11(eslint@8.15.0)(typescript@5.0.4)
       chalk: 4.1.2
       confusing-browser-globals: 1.0.11
       eslint-config-prettier: 8.1.0(eslint@8.15.0)
@@ -11416,8 +11377,8 @@ packages:
       '@nx/devkit': 16.1.4(nx@16.3.2)
       '@nx/js': 16.1.4(nx@16.3.2)(typescript@5.0.4)
       '@typescript-eslint/parser': 5.59.8(eslint@8.15.0)(typescript@5.0.4)
-      '@typescript-eslint/type-utils': 5.59.6(eslint@8.15.0)(typescript@5.0.4)
-      '@typescript-eslint/utils': 5.59.8(eslint@8.15.0)(typescript@5.0.4)
+      '@typescript-eslint/type-utils': 5.59.11(eslint@8.15.0)(typescript@5.0.4)
+      '@typescript-eslint/utils': 5.59.11(eslint@8.15.0)(typescript@5.0.4)
       chalk: 4.1.2
       confusing-browser-globals: 1.0.11
       eslint-config-prettier: 8.1.0(eslint@8.15.0)
@@ -17281,6 +17242,7 @@ packages:
 
   /assert-never@1.2.1:
     resolution: {integrity: sha512-TaTivMB6pYI1kXwrFlEhLeGfOqoDNdTxjCdwRfFFkEA30Eu+k48W34nlok2EYWJfFFzqaEmichdNM7th6M5HNw==}
+    requiresBuild: true
     dev: false
 
   /assert-plus@1.0.0:
@@ -17737,6 +17699,7 @@ packages:
   /babel-walk@3.0.0-canary-5:
     resolution: {integrity: sha512-GAwkz0AihzY5bkwIY5QDR+LvsRQgB/B+1foMPvi0FZPMl5fjD7ICiznUiBdLYMH1QYe6vqu4gWYytZOccLouFw==}
     engines: {node: '>= 10.0.0'}
+    requiresBuild: true
     dependencies:
       '@babel/types': 7.22.5
     dev: false
@@ -18299,6 +18262,7 @@ packages:
 
   /character-parser@2.2.0:
     resolution: {integrity: sha512-+UqJQjFEFaTAs3bNsF2j2kEN1baG/zghZbdqoYEDxGZtJo9LBzl1A+m0D4n3qKx8N2FNv8/Xp6yV9mQmBuptaw==}
+    requiresBuild: true
     dependencies:
       is-regex: 1.1.4
     dev: false
@@ -18688,6 +18652,7 @@ packages:
 
   /constantinople@4.0.1:
     resolution: {integrity: sha512-vCrqcSIq4//Gx74TXXCGnHpulY1dskqLTFGDmhrGxzeXL8lF8kvXv6mpNWlJj1uD4DW23D4ljAqbY4RRaaUZIw==}
+    requiresBuild: true
     dependencies:
       '@babel/parser': 7.22.5
       '@babel/types': 7.22.5
@@ -19669,6 +19634,7 @@ packages:
 
   /doctypes@1.1.0:
     resolution: {integrity: sha512-LLBi6pEqS6Do3EKQ3J0NqHWV5hhb78Pi8vvESYwyOy2c31ZEZVdtitdzsQsKb7878PEERhzUk0ftqGhG6Mz+pQ==}
+    requiresBuild: true
     dev: false
 
   /dom-converter@0.2.0:
@@ -22379,6 +22345,7 @@ packages:
 
   /is-expression@4.0.0:
     resolution: {integrity: sha512-zMIXX63sxzG3XrkHkrAPvm/OVZVSCPNkwMHU8oTX7/U3AL78I0QXCEICXUM13BIa8TYGZ68PiTKfQz3yaTNr4A==}
+    requiresBuild: true
     dependencies:
       acorn: 7.4.1
       object-assign: 4.1.1
@@ -22488,6 +22455,7 @@ packages:
 
   /is-promise@2.2.2:
     resolution: {integrity: sha512-+lP4/6lKUBfQjZ2pdxThZvLUAafmZb8OAxFb8XXtiQmS35INgr85hdOGoEs124ez1FCnZJt6jau/T+alh58QFQ==}
+    requiresBuild: true
     dev: false
 
   /is-regex@1.1.4:
@@ -22932,7 +22900,7 @@ packages:
       pretty-format: 29.5.0
       slash: 3.0.0
       strip-json-comments: 3.1.1
-      ts-node: 10.9.1(@types/node@18.7.23)(typescript@5.0.4)
+      ts-node: 10.9.1(@types/node@18.7.23)(typescript@5.1.3)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -23447,6 +23415,7 @@ packages:
 
   /js-stringify@1.0.2:
     resolution: {integrity: sha512-rtS5ATOo2Q5k1G+DADISilDA6lv79zIiwFd6CcjuIxGKLFm5C+RLImRscVap9k55i+MOZwgliw+NejvkLuGD5g==}
+    requiresBuild: true
     dev: false
 
   /js-tokens@4.0.0:
@@ -23735,6 +23704,7 @@ packages:
 
   /jstransformer@1.0.0:
     resolution: {integrity: sha512-C9YK3Rf8q6VAPDCCU9fnqo3mAfOH6vUGnMcP4AQAYIEpWtfGLpwOTmZ+igtdK5y+VvI2n3CyYSzy4Qh34eq24A==}
+    requiresBuild: true
     dependencies:
       is-promise: 2.2.2
       promise: 7.3.1
@@ -25263,6 +25233,7 @@ packages:
   /node-gyp-build-optional-packages@5.0.7:
     resolution: {integrity: sha512-YlCCc6Wffkx0kHkmam79GKvDQ6x+QZkMjFGrIMxgFNILFvGSbCp2fCBC55pGTT9gVaz8Na5CLmxt/urtzRv36w==}
     hasBin: true
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -27016,6 +26987,7 @@ packages:
 
   /prr@1.0.1:
     resolution: {integrity: sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -27029,6 +27001,7 @@ packages:
 
   /pug-attrs@3.0.0:
     resolution: {integrity: sha512-azINV9dUtzPMFQktvTXciNAfAuVh/L/JCl0vtPCwvOA21uZrC08K/UnmrL+SXGEVc1FwzjW62+xw5S/uaLj6cA==}
+    requiresBuild: true
     dependencies:
       constantinople: 4.0.1
       js-stringify: 1.0.2
@@ -27037,6 +27010,7 @@ packages:
 
   /pug-code-gen@3.0.2:
     resolution: {integrity: sha512-nJMhW16MbiGRiyR4miDTQMRWDgKplnHyeLvioEJYbk1RsPI3FuA3saEP8uwnTb2nTJEKBU90NFVWJBk4OU5qyg==}
+    requiresBuild: true
     dependencies:
       constantinople: 4.0.1
       doctypes: 1.1.0
@@ -27050,10 +27024,12 @@ packages:
 
   /pug-error@2.0.0:
     resolution: {integrity: sha512-sjiUsi9M4RAGHktC1drQfCr5C5eriu24Lfbt4s+7SykztEOwVZtbFk1RRq0tzLxcMxMYTBR+zMQaG07J/btayQ==}
+    requiresBuild: true
     dev: false
 
   /pug-filters@4.0.0:
     resolution: {integrity: sha512-yeNFtq5Yxmfz0f9z2rMXGw/8/4i1cCFecw/Q7+D0V2DdtII5UvqE12VaZ2AY7ri6o5RNXiweGH79OCq+2RQU4A==}
+    requiresBuild: true
     dependencies:
       constantinople: 4.0.1
       jstransformer: 1.0.0
@@ -27064,6 +27040,7 @@ packages:
 
   /pug-lexer@5.0.1:
     resolution: {integrity: sha512-0I6C62+keXlZPZkOJeVam9aBLVP2EnbeDw3An+k0/QlqdwH6rv8284nko14Na7c0TtqtogfWXcRoFE4O4Ff20w==}
+    requiresBuild: true
     dependencies:
       character-parser: 2.2.0
       is-expression: 4.0.0
@@ -27072,6 +27049,7 @@ packages:
 
   /pug-linker@4.0.0:
     resolution: {integrity: sha512-gjD1yzp0yxbQqnzBAdlhbgoJL5qIFJw78juN1NpTLt/mfPJ5VgC4BvkoD3G23qKzJtIIXBbcCt6FioLSFLOHdw==}
+    requiresBuild: true
     dependencies:
       pug-error: 2.0.0
       pug-walk: 2.0.0
@@ -27079,6 +27057,7 @@ packages:
 
   /pug-load@3.0.0:
     resolution: {integrity: sha512-OCjTEnhLWZBvS4zni/WUMjH2YSUosnsmjGBB1An7CsKQarYSWQ0GCVyd4eQPMFJqZ8w9xgs01QdiZXKVjk92EQ==}
+    requiresBuild: true
     dependencies:
       object-assign: 4.1.1
       pug-walk: 2.0.0
@@ -27086,6 +27065,7 @@ packages:
 
   /pug-parser@6.0.0:
     resolution: {integrity: sha512-ukiYM/9cH6Cml+AOl5kETtM9NR3WulyVP2y4HOU45DyMim1IeP/OOiyEWRr6qk5I5klpsBnbuHpwKmTx6WURnw==}
+    requiresBuild: true
     dependencies:
       pug-error: 2.0.0
       token-stream: 1.0.0
@@ -27093,16 +27073,19 @@ packages:
 
   /pug-runtime@3.0.1:
     resolution: {integrity: sha512-L50zbvrQ35TkpHwv0G6aLSuueDRwc/97XdY8kL3tOT0FmhgG7UypU3VztfV/LATAvmUfYi4wNxSajhSAeNN+Kg==}
+    requiresBuild: true
     dev: false
 
   /pug-strip-comments@2.0.0:
     resolution: {integrity: sha512-zo8DsDpH7eTkPHCXFeAk1xZXJbyoTfdPlNR0bK7rpOMuhBYb0f5qUVCO1xlsitYd3w5FQTK7zpNVKb3rZoUrrQ==}
+    requiresBuild: true
     dependencies:
       pug-error: 2.0.0
     dev: false
 
   /pug-walk@2.0.0:
     resolution: {integrity: sha512-yYELe9Q5q9IQhuvqsZNwA5hfPkMJ8u92bQLIMcsMxf/VADjNtEYptU+inlufAFYcWdHlwNfZOEnOOQrZrcyJCQ==}
+    requiresBuild: true
     dev: false
 
   /pug@3.0.2:
@@ -27763,7 +27746,6 @@ packages:
 
   /safevalues@0.3.4:
     resolution: {integrity: sha512-LRneZZRXNgjzwG4bDQdOTSbze3fHm1EAKN/8bePxnlEZiBmkYEDggaHbuvHI9/hoqHbGfsEA7tWS9GhYHZBBsw==}
-    dev: true
 
   /sass-loader@12.6.0(sass@1.63.2)(webpack@5.86.0):
     resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
@@ -29299,6 +29281,7 @@ packages:
 
   /token-stream@1.0.0:
     resolution: {integrity: sha512-VSsyNPPW74RpHwR8Fc21uubwHY7wMDeJLys2IX5zJNih+OnAnaifKHo+1LHT7DAdloQ7apeaaWg8l7qnf/TnEg==}
+    requiresBuild: true
     dev: false
 
   /tough-cookie@2.5.0:
@@ -30273,6 +30256,7 @@ packages:
   /void-elements@3.1.0:
     resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dev: false
 
   /w3c-xmlserializer@4.0.0:
@@ -31043,6 +31027,7 @@ packages:
   /with@7.0.2:
     resolution: {integrity: sha512-RNGKj82nUPg3g5ygxkQl0R937xLyho1J24ItRCBTr/m1YnZkzJy1hUiHUJrc/VlsDQzsCnInEGSg3bci0Lmd4w==}
     engines: {node: '>= 10.0.0'}
+    requiresBuild: true
     dependencies:
       '@babel/parser': 7.22.5
       '@babel/types': 7.22.5
