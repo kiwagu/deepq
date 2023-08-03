@@ -1,7 +1,7 @@
 {
   "name": "iam-srv",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/iam/src",
+  "sourceRoot": "apps/iam/apps/iam/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -11,12 +11,12 @@
       "options": {
         "target": "node",
         "compiler": "tsc",
-        "outputPath": "apps/iam/apps/iam/dist/apps/iam",
-        "main": "apps/iam/src/main.ts",
-        "tsConfig": "apps/iam/tsconfig.app.json",
-        "assets": ["apps/iam/src/assets"],
+        "outputPath": "apps/iam/apps/iam/dist",
+        "main": "apps/iam/apps/iam/src/main.ts",
+        "tsConfig": "apps/iam/apps/iam/tsconfig.app.json",
+        "assets": ["apps/iam/apps/iam/src/assets"],
         "isolatedConfig": true,
-        "webpackConfig": "apps/iam/webpack.config.js"
+        "webpackConfig": "apps/iam/apps/iam/webpack.config.js"
       },
       "configurations": {
         "development": {},
@@ -42,14 +42,14 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/iam/**/*.ts"]
+        "lintFilePatterns": ["apps/iam/apps/iam/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/iam/jest.config.ts",
+        "jestConfig": "apps/iam/apps/iam/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
