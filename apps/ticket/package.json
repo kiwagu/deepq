@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "start:dev": "nx run-many --output-style=stream -t serve -p ticket-api,ticket-srv",
     "start:dev:api": "nx serve ticket-api",
     "start:dev:srv": "nx serve ticket-srv",
     "build:ticket-app": "nx build ticket-app",

@@ -12,6 +12,7 @@
     "dev:iam:notif-srv": "pnpm -r --filter iam start:dev:notif-srv",
     "dev:iam:portal": "pnpm -r --filter iam start:dev:portal",
     "-----TICKET----": "",
+    "dev:ticket": "pnpm -r --filter ticket start:dev",
     "dev:ticket:api": "pnpm -r --filter ticket start:dev:api",
     "dev:ticket:srv": "pnpm -r --filter ticket start:dev:srv",
     "dev:ticket:all": "stmux [ \"pnpm dev:ticket:api\" .. \"pnpm dev:ticket:srv\" ] -M",
