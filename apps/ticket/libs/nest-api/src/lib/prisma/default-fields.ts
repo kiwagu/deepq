@@ -1,5 +1,5 @@
 // This file is generated automatically. Do not edit it manually.
-import { Prisma } from './generated';
+import { Prisma } from '@prisma/client/nest-api';
 
 export type DefaultFields = {
   readonly Spot?: Prisma.SpotSelect;
