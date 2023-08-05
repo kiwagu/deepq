@@ -17,6 +17,7 @@
     "dev:ticket:srv": "pnpm -r --filter ticket start:dev:srv",
     "dev:ticket:all": "stmux [ \"pnpm dev:ticket:api\" .. \"pnpm dev:ticket:srv\" ] -M",
     "-----GQL GATEWAY----": "",
+    "dev:gateway": "pnpm -r --filter gateway start:dev",
     "dev:gateway:api": "pnpm -r --filter gateway start:dev:api",
     "dev:gateway:ui": "pnpm -r --filter gateway start:dev:ui",
     "dev:gateway:all": "pnpm dev:gateway:api",
