@@ -1,7 +1,7 @@
 {
   "name": "iam-api",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/api/src",
+  "sourceRoot": "apps/iam/apps/api/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -10,11 +10,11 @@
       "options": {
         "target": "node",
         "compiler": "tsc",
-        "outputPath": "dist/apps/api",
-        "main": "apps/api/src/main.ts",
-        "tsConfig": "apps/api/tsconfig.app.json",
-        "assets": ["apps/api/src/assets"],
-        "webpackConfig": "apps/api/webpack.config.js",
+        "outputPath": "apps/iam/apps/api/dist",
+        "main": "apps/iam/apps/api/src/main.ts",
+        "tsConfig": "apps/iam/apps/api/tsconfig.app.json",
+        "assets": ["apps/iam/apps/api/src/assets"],
+        "webpackConfig": "apps/iam/apps/api/webpack.config.js",
         "isolatedConfig": true,
         "babelUpwardRootMode": true
       },
@@ -25,8 +25,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/api/src/environments/environment.ts",
-              "with": "apps/api/src/environments/environment.prod.ts"
+              "replace": "apps/iam/apps/api/src/environments/environment.ts",
+              "with": "apps/iam/apps/api/src/environments/environment.prod.ts"
             }
           ]
         }

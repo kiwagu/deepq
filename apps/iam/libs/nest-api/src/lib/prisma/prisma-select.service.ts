@@ -3,8 +3,8 @@ import { PrismaSelect } from '@paljs/plugins';
 import { GraphQLResolveInfo } from 'graphql';
 
 import { PalDefaultFields } from './default-fields';
-import { Prisma } from './generated';
-import { DMMF } from './generated/runtime';
+import { Prisma } from '@prisma/client/nest-api';
+import { DMMF } from '@prisma/client/nest-api/runtime';
 
 @Injectable()
 export class PrismaSelectService {

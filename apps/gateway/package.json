@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
+    "start:dev": "nx run-many --output-style=stream --parallel=5 -t serve -p gateway-api,ui-host",
     "start:dev:ui": "nx serve ui-host",
     "start:dev:api": "nx serve gateway-api",
     "build:gateway-app": "nx build gateway-app"

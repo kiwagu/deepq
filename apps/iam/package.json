@@ -4,6 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "start:dev": "nx run-many --output-style=stream --parallel=4 -t serve -p iam-api,iam-srv,notif-srv,iam-portal",
     "start": "nx serve iam-portal --host=127.0.0.1",
     "start:dev:portal": "nx serve iam-portal --host=127.0.0.1",
     "start:dev:api": "nx serve iam-api",

@@ -8,7 +8,7 @@
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "libs/nest-auth/dist",
+        "outputPath": "libs/nest-auth/dist/libs/nest-auth",
         "tsConfig": "libs/nest-auth/tsconfig.lib.json",
         "packageJson": "libs/nest-auth/package.json",
         "main": "libs/nest-auth/src/index.ts",

@@ -6,8 +6,8 @@
     "start": "nx serve nest-auth",
     "build": "tsc --build && cp package.json dist && cp README.md dist"
   },
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "dist/libs/nest-auth/src/index.js",
+  "types": "dist/libs/nest-auth/src/index.d.ts",
   "private": true,
   "devDependencies": {
     "@nestjs/schematics": "^9.2.0",
